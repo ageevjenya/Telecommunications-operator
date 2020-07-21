@@ -32,6 +32,7 @@ public class TestRestController {
         RestResponse result = new RestResponse();
         result.setSize("100");
         result.setCoust(name);
+        
         return result;
     }
     @RequestMapping(value  = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
