@@ -1,9 +1,6 @@
 package ru.netcracker.trainingproject.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity // This tells Hibernate to make a table out of this class
 public class IntetyInternet {
@@ -13,10 +10,18 @@ public class IntetyInternet {
 
     private String pack;
 
-    private String cost;
+    private String price;
+
+    public IntetyInternet() {
+    }
 
     public Integer getId() {
         return id;
+    }
+
+    public IntetyInternet(String pack, String price) {
+        this.pack = pack;
+        this.price = price;
     }
 
     public void setId(Integer id) {
@@ -32,10 +37,10 @@ public class IntetyInternet {
     }
 
     public String getCost() {
-        return cost;
+        return price;
     }
 
-    public void setCost(String cost) {
-        this.cost = cost;
+    public void setCost(String price) {
+        this.price = price;
     }
 }
