@@ -15,13 +15,14 @@ public class IntetyInternet {
     public IntetyInternet() {
     }
 
-    public Integer getId() {
-        return id;
-    }
+
 
     public IntetyInternet(String pack, String price) {
         this.pack = pack;
         this.price = price;
+    }
+    public Integer getId() {
+        return id;
     }
 
     public void setId(Integer id) {
