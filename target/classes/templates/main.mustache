@@ -1,36 +1,11 @@
 <html>
-<body>
-     <div>
-     <form method="post">
-        <input type="text" name="pack" placeholder="Введите объем пакета" />
-        <input type="text" name="price" placeholder="Укажите цену пакета" />
-        <button type="submit">Добавить</button>
-     </form>
-     </div>
-     <div>Список пакетов интернета</div>
-     <form method="post" action="filter">
-           <input type="text" name="filter" placeholder="Введите объем пакета" />
-           <button type="submit">Найти</button>
-     </form>
-     <form method="post" action="deletePack">
-         <input type="text" name="packId" placeholder="Введите id пакета" />
-         <button type="submit">Удалить</button>
-
-     </form>
-     <div> {{deleteIdCheck}}</div>
-     <form method="post" action="updatePack">
-         <input type="text" name="packId" placeholder="Введите id пакета" />
-         <input type="text" name="pack" placeholder="Введите объем пакета" />
-         <input type="text" name="price" placeholder="Укажите цену пакета" />
-         <button type="submit">Обновить</button>
-
-     </form>
-     {{#packinternet}}
-     <div>
-     <b>{{id}}</b>
-     <span>{{pack}} Мб</span>
-     <i>{{price}} $</i>
-     </div>
-     {{/packinternet}}
+<head>
+    <title>
+        Welcome to the best website in the world</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<div>Main page</div>
+<div><a href="internet">Internet</a></div>
+<div><a href="networkcoveragemap">Networkcoveragemap</a></div>
 </body>
 </html>

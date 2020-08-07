@@ -13,36 +13,29 @@ import java.util.Map;
 import java.util.Optional;
 
 @Controller
-public class AppController {
+public class InternetController {
     @Autowired
     private InternetRepository internetRepository;
 
-    @GetMapping("/internet")
-    public String intenet(@RequestParam(name = "name", required = false, defaultValue = "World") String name,
-                          Map<String, Object> model) {
-        model.put("name", name);
-        return "internet";
-    }
-
-    @GetMapping
-    public String main(Map<String, Object> model) {
+    @GetMapping("internet")
+    public String intenet(String name, Map<String, Object> model) {
         Iterable<IntetyInternet> internetRepositorys = internetRepository.findAll();
         model.put("packinternet", internetRepositorys);
         model.put("deleteIdCheck", "");
-        return "main";
+        return "internet";
     }
 
-    @PostMapping
+    @PostMapping("internet/add")
     public String add(@RequestParam String pack, @RequestParam String price, Map<String, Object> model) {
         IntetyInternet intetyInternet = new IntetyInternet(pack, price);
         internetRepository.save(intetyInternet);
         Iterable<IntetyInternet> internetRepositorys = internetRepository.findAll();
         model.put("packinternet", internetRepositorys);
         model.put("deleteIdCheck", "");
-        return "main";
+        return "internet";
     }
 
-    @PostMapping("filter")
+    @PostMapping("internet/filter")
     public String filter(@RequestParam String filter, Map<String, Object> model) {
 
         Iterable<IntetyInternet> internetRepositorys;
@@ -54,11 +47,11 @@ public class AppController {
 
         model.put("packinternet", internetRepositorys);
         model.put("deleteIdCheck", "");
-        return "main";
+        return "internet";
     }
 
     @Transactional
-    @PostMapping("deletePack")
+    @PostMapping("internet/deletePack")
     public String deleteManager(@RequestParam Integer packId, Map<String, Object> model) {
 
         Optional<IntetyInternet> packInternet = internetRepository.findById(packId);
@@ -69,13 +62,14 @@ public class AppController {
             internetRepository.deleteById(packId);
             model.put("deleteIdCheck", "");
         }
-        model.put("packinternet", internetRepository.findAll());
+        Iterable<IntetyInternet> internetRepositorys = internetRepository.findAll();
+        model.put("packinternet", internetRepositorys);
 
-        return "main";
+        return "internet";
     }
 
     @Transactional
-    @PostMapping("updatePack")
+    @PostMapping("internet/updatePack")
     public String updateCourier(@RequestParam Integer packId,
                                 @RequestParam(required = false) String pack,
                                 @RequestParam(required = false) String price,
@@ -90,16 +84,14 @@ public class AppController {
             }
         }
 
+        Iterable<IntetyInternet> internetRepositorys = internetRepository.findAll();
 
-        model.put("packinternet", internetRepository.findAll());
+        model.put("packinternet", internetRepositorys);
         model.put("deleteIdCheck", "");
-        return "main";
+        return "internet";
     }
 
-    @GetMapping("networkcoveragemap")
-    public String coveragemap(Map<String, Object> model) {
 
 
-        return "networkcoveragemap";
-    }
+
 }
