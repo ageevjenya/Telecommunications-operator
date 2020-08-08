@@ -17,7 +17,7 @@ public class InternetController {
     @Autowired
     private InternetRepository internetRepository;
 
-    @GetMapping("internet")
+    @GetMapping("/internet")
     public String intenet(String name, Map<String, Object> model) {
         Iterable<IntetyInternet> internetRepositorys = internetRepository.findAll();
         model.put("packinternet", internetRepositorys);
@@ -25,7 +25,7 @@ public class InternetController {
         return "internet";
     }
 
-    @PostMapping("internet/add")
+    @PostMapping("/internet/add")
     public String add(@RequestParam String pack, @RequestParam String price, Map<String, Object> model) {
         IntetyInternet intetyInternet = new IntetyInternet(pack, price);
         internetRepository.save(intetyInternet);
@@ -35,7 +35,7 @@ public class InternetController {
         return "internet";
     }
 
-    @PostMapping("internet/filter")
+    @PostMapping("/internet/filter")
     public String filter(@RequestParam String filter, Map<String, Object> model) {
 
         Iterable<IntetyInternet> internetRepositorys;
@@ -51,7 +51,7 @@ public class InternetController {
     }
 
     @Transactional
-    @PostMapping("internet/deletePack")
+    @PostMapping("/internet/deletePack")
     public String deleteManager(@RequestParam Integer packId, Map<String, Object> model) {
 
         Optional<IntetyInternet> packInternet = internetRepository.findById(packId);
@@ -69,21 +69,22 @@ public class InternetController {
     }
 
     @Transactional
-    @PostMapping("internet/updatePack")
+    @PostMapping("/internet/updatePack")
     public String updateCourier(@RequestParam Integer packId,
                                 @RequestParam(required = false) String pack,
                                 @RequestParam(required = false) String price,
                                 Map<String, Object> model) {
-        Optional<IntetyInternet> packInternet = internetRepository.findById(packId);
-        if (packInternet.isPresent()) {
-            if (!pack.isEmpty()) {
-                internetRepository.setPackFor(pack, packId);
-            }
-            if (!price.isEmpty()) {
-                internetRepository.setPriceFor(price, packId);
+        if (packId!=null){
+            Optional<IntetyInternet> packInternet = internetRepository.findById(packId);
+            if (packInternet.isPresent()) {
+                if (!pack.isEmpty()) {
+                    internetRepository.setPackFor(pack, packId);
+                }
+                if (!price.isEmpty()) {
+                    internetRepository.setPriceFor(price, packId);
+                }
             }
         }
-
         Iterable<IntetyInternet> internetRepositorys = internetRepository.findAll();
 
         model.put("packinternet", internetRepositorys);

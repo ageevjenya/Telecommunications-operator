@@ -7,7 +7,7 @@ import java.util.Map;
 @Controller
 public class NetworkcoveragemapController {
 
-    @GetMapping("networkcoveragemap")
+    @GetMapping("/networkcoveragemap")
     public String coveragemap(Map<String, Object> model) {
 
 

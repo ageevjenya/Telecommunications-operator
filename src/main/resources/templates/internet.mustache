@@ -5,21 +5,24 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-<div><a href="http://localhost:8080"> На главную страницу</a></div>
+<div><a href="/main"> На главную страницу</a></div>
 <div>
     <form method="post" action="/internet/add">
         <input type="text" name="pack" placeholder="Введите объем пакета" />
         <input type="text" name="price" placeholder="Укажите цену пакета" />
+        <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
         <button type="submit">Добавить</button>
     </form>
 </div>
 <div>Список пакетов интернета</div>
 <form method="post" action="/internet/filter">
     <input type="text" name="filter" placeholder="Введите объем пакета" />
+    <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
     <button type="submit">Найти</button>
 </form>
 <form method="post" action="/internet/deletePack">
     <input type="text" name="packId" placeholder="Введите id пакета" />
+    <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
     <button type="submit">Удалить</button>
 
 </form>
@@ -28,6 +31,7 @@
     <input type="text" name="packId" placeholder="Введите id пакета" />
     <input type="text" name="pack" placeholder="Введите объем пакета" />
     <input type="text" name="price" placeholder="Укажите цену пакета" />
+    <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
     <button type="submit">Обновить</button>
 
 </form>

@@ -5,7 +5,14 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <div>Main page</div>
-<div><a href="internet">Internet</a></div>
-<div><a href="networkcoveragemap">Networkcoveragemap</a></div>
+<div><a href="/internet">Internet</a></div>
+<div><a href="/networkcoveragemap">Networkcoveragemap</a></div>
+<div>
+    <form action="/logout" method="post">
+        <input type="hidden" name="_csrf" value="{{_csrf.token}}"/>
+        <input type="submit" value="Sign Out"/>
+    </form>
+</div>
+
 </body>
 </html>
