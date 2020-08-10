@@ -2,6 +2,7 @@ package ru.netcracker.trainingproject.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,25 +19,7 @@ public class InternetController {
     private InternetRepo internetRepository;
 
     @GetMapping("/internet")
-    public String intenet(String name, Map<String, Object> model) {
-        Iterable<Internet> internetRepositorys = internetRepository.findAll();
-        model.put("packinternet", internetRepositorys);
-        model.put("deleteIdCheck", "");
-        return "internet";
-    }
-
-    @PostMapping("/internet/add")
-    public String add(@RequestParam String pack, @RequestParam String price, Map<String, Object> model) {
-        Internet intetyInternet = new Internet(pack, price);
-        internetRepository.save(intetyInternet);
-        Iterable<Internet> internetRepositorys = internetRepository.findAll();
-        model.put("packinternet", internetRepositorys);
-        model.put("deleteIdCheck", "");
-        return "internet";
-    }
-
-    @PostMapping("/internet/filter")
-    public String filter(@RequestParam String filter, Map<String, Object> model) {
+    public String intenet(@RequestParam(required = false, defaultValue = "") String filter, Model model) {
 
         Iterable<Internet> internetRepositorys;
         if (filter != null && !filter.isEmpty()) {
@@ -45,10 +28,22 @@ public class InternetController {
             internetRepositorys = internetRepository.findAll();
         }
 
-        model.put("packinternet", internetRepositorys);
+        model.addAttribute("internetpacks", internetRepositorys);
+        model.addAttribute("filter", filter);
+        model.addAttribute("deleteIdCheck", "");
+        return "internet";
+    }
+
+    @PostMapping("/internet/add")
+    public String add(@RequestParam String pack, @RequestParam String price, Map<String, Object> model) {
+        Internet intetyInternet = new Internet(pack, price);
+        internetRepository.save(intetyInternet);
+        Iterable<Internet> internetRepositorys = internetRepository.findAll();
+        model.put("internetpacks", internetRepositorys);
         model.put("deleteIdCheck", "");
         return "internet";
     }
+
 
     @Transactional
     @PostMapping("/internet/deletePack")
@@ -63,7 +58,7 @@ public class InternetController {
             model.put("deleteIdCheck", "");
         }
         Iterable<Internet> internetRepositorys = internetRepository.findAll();
-        model.put("packinternet", internetRepositorys);
+        model.put("internetpacks", internetRepositorys);
 
         return "internet";
     }
@@ -87,7 +82,7 @@ public class InternetController {
         }
         Iterable<Internet> internetRepositorys = internetRepository.findAll();
 
-        model.put("packinternet", internetRepositorys);
+        model.put("internetpacks", internetRepositorys);
         model.put("deleteIdCheck", "");
         return "internet";
     }
