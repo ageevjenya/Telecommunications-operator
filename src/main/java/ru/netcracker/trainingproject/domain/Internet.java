@@ -3,7 +3,7 @@ package ru.netcracker.trainingproject.domain;
 import javax.persistence.*;
 
 @Entity // This tells Hibernate to make a table out of this class
-public class IntetyInternet {
+public class Internet {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
@@ -12,12 +12,12 @@ public class IntetyInternet {
 
     private String price;
 
-    public IntetyInternet() {
+    public Internet() {
     }
 
 
 
-    public IntetyInternet(String pack, String price) {
+    public Internet(String pack, String price) {
         this.pack = pack;
         this.price = price;
     }

@@ -1,8 +1,7 @@
-package ru.netcracker.trainingproject;
+package ru.netcracker.trainingproject.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import ru.netcracker.trainingproject.domain.IntetyInternet;
 
 import java.util.Map;
 
