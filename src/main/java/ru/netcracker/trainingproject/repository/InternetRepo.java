@@ -12,13 +12,13 @@ public interface InternetRepo extends CrudRepository<Internet, Integer> {
     Optional<Internet> findById(Integer id);
     void deleteById(Integer id);
 
-    @Modifying
-    @Query("update Internet ii set ii.pack = ?1 where ii.id = ?2")
-    void setPackFor(String pack, Integer id);
-
-    @Modifying
-    @Query("update Internet ii set ii.price = ?1 where ii.id = ?2")
-    void setPriceFor(String price, Integer id);
+//    @Modifying
+//    @Query("update Internet ii set ii.pack = ?1 where ii.id = ?2")
+//    void setPackFor(String pack, Integer id);
+//
+//    @Modifying
+//    @Query("update Internet ii set ii.price = ?1 where ii.id = ?2")
+//    void setPriceFor(String price, Integer id);
 
 
 }

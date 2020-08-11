@@ -1,7 +1,7 @@
 <#import "parts/common.ftlh" as c>
 
 <@c.page>
-<div><a href="/main"> На главную страницу</a></div>
+<div><a href="/"> На главную страницу</a></div>
 <div>Карта покрытия</div>
 <script type="text/javascript" charset="utf-8" async
         src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Ae1991d81e87a69a96fdceb20a7880dfa328eac078d720bb422926d1250e52bdf

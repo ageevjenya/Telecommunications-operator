@@ -9,13 +9,8 @@ import java.util.Map;
 @Controller
 public class MainController {
 
-    @GetMapping
-    public String greeting(Map<String, Object> model) {
 
-        return "greeting";
-    }
-
-    @GetMapping("/main")
+    @GetMapping("/")
     public String main(Map<String, Object> model) {
 
         return "main";
