@@ -14,6 +14,9 @@
               integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
               crossorigin="anonymous">
 
+            <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"/>
+            <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+
     </head>
     <body>
     <#include "navbar.ftlh">
