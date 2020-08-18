@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Mobile tariffs</title>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css"/>
+  </head>
+  <body>
+  <h1>Your resume</h1>
+<div>
+{{#yourResume}}
+          <p>Vacancy: {{vacancy.name}}</p>
+          <p>First name: {{firstName}}</p>
+          <p>Last name: {{lastName}}</p>
+          <p>Birthday: {{birthDate}}</p>
+          <p>Phone: {{phone}}</p>
+          <p>Email: {{email}}</p>
+          <p>About yourself: {{text}}</p>
+{{/yourResume}}
+    </div>
+
+    <br></br>
+    <a href="/info">Back to info</a>
+    <br></br>
+    <a href="/work">Back to vacancies</a>
+
+  </body>
+  </html>

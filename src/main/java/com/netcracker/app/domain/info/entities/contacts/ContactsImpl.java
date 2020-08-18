@@ -1,0 +1,14 @@
+package com.netcracker.app.domain.info.entities.contacts;
+
+import javax.persistence.Entity;
+
+@Entity
+public class ContactsImpl extends AbstractContacts {
+    public ContactsImpl(String address, String phone, String workHours) throws Exception {
+        super(address, phone, workHours);
+    }
+
+    public ContactsImpl(){
+        super();
+    }
+}
