@@ -20,31 +20,29 @@ public class MobileController extends AbstractTariffController<Mobile, MobileSer
     }
 
     @Transactional
-    @RequestMapping("tariffs")
-    public String index(Model model) {
-        model.addAttribute("mobileTariffs", mobileService.getAll());
+    @GetMapping("tariffs")
+    public String tariff(@RequestParam(required = false) String filter, Model model) {
+        if (filter != null && !filter.isEmpty()) {
+            model.addAttribute("mobileTariffs", mobileService.getAllByName(filter));
+        } else {
+            model.addAttribute("mobileTariffs", mobileService.getAll());
+        }
+        model.addAttribute("filter", filter);
         return "tariffs";
     }
 
     @Transactional
-    @PostMapping("search")
-    public String find(@RequestParam String name, Map<String, Object> model) {
-        model.put("mobileTariffs", mobileService.getAllByName(name));
-        return "tariffs";
-    }
-
-    @Transactional
-    @PostMapping("create") //it doesn't add (without any errors)
-    public String create(@ModelAttribute("mobileTariff") Mobile mobile, Map<String, Object> model) {
+    @PostMapping("createMobile")
+    public String create(@RequestParam String name,
+                         @RequestParam double priceOfMonth,
+                         @RequestParam int minutes,
+                         @RequestParam int sms,
+                         @RequestParam String description,
+                         Map<String, Object> model) {
+        Mobile mobile = new Mobile(minutes, sms, priceOfMonth, name, description);
         mobileService.add(mobile);
         model.put("mobileTariffs", mobileService.getAll());
         return "redirect:/tariffs";
-        /*<input type="text" name="name" value="{{#mobileTariff.name}}{{mobileTariff.name}}{{/mobileTariff.name}}" placeholder="Enter the name" />
-            <input type="text" name="priceOfMonth" value="{{#mobileTariff.priceOfMonth}}{{mobileTariff.priceOfMonth}}{{/mobileTariff.priceOfMonth}}" placeholder="Enter price of month" />
-            <input type="text" name="minutes" value="{{#mobileTariff.minutes}}{{mobileTariff.minutes}}{{/mobileTariff.minutes}}" placeholder="Enter amount of minutes" />
-            <input type="text" name="sms" value="{{#mobileTariff.sms}}{{mobileTariff.sms}}{{/mobileTariff.sms}}" placeholder="Enter amount of sms" />
-            <input type="text" name="description" value="{{#mobileTariff.description}}{{mobileTariff.description}}{{/mobileTariff.description}}" placeholder="Enter description" />
-            <button type="submit">Create</button>*/
     }
 
     @Transactional

@@ -1,7 +1,5 @@
 package com.netcracker.app.domain.info.entities.resumes;
 
-import com.fasterxml.jackson.databind.deser.DataFormatReaders;
-
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
@@ -11,13 +9,17 @@ import java.util.regex.Pattern;
 
 @MappedSuperclass
 public abstract class AbstractResume implements Resume {
+    public Integer getId() {
+        return id;
+    }
+
     @Id
     @GeneratedValue
     private Integer id;
 
     private String firstName;
     private String lastName;
-    private Calendar birthDate;
+    private Calendar birthday;
     private String phone;
     private String email;
     private String text;
@@ -25,26 +27,16 @@ public abstract class AbstractResume implements Resume {
 
     public AbstractResume() {}
 
-    public AbstractResume(/*int vacancyId, */String firstName, String lastName, String birthDate,
+    public AbstractResume(/*int vacancyId, */String firstName, String lastName, String birthday,
                           String phone, String email, String text) throws Exception {
         //setVacancyId(vacancyId);
         setFirstName(firstName);
         setLastName(lastName);
-        setBirthDate(birthDate);
+        setBirthday(birthday);
         setPhone(phone);
         setEmail(email);
         setText(text);
     }
-
-/*    @Override
-    public void setVacancyId(int vacancyId) {
-        this.vacancyId = vacancyId;
-    }
-
-    @Override
-    public int getVacancyId() {
-        return vacancyId;
-    }*/
 
     @Override
     public String getFirstName() {
@@ -124,24 +116,34 @@ public abstract class AbstractResume implements Resume {
         }
     }
 
-    @Override
-    public Calendar getBirthDate() {
-        return birthDate;
+    public Calendar getBirthday() {
+        return birthday;
     }
 
-    @Override
-    public void setBirthDate(String birthDate) throws Exception {
-        Pattern pattern = Pattern.compile("^(((0[1-9]|[12][0-9]|3[01])[- /.](0[13578]|1[02])|(0[1-9]|[12][0-9]|30)[- /.](0[469]|11)|(0[1-9]|1\\d|2[0-8])[- /.]02)[- /.]\\d{4}|29[- /.]02[- /.](\\d{2}(0[48]|[2468][048]|[13579][26])|([02468][048]|[1359][26])00))$");
+    public void setBirthday(String birthDate) throws Exception {
+        Pattern pattern = Pattern.compile("(([0][1-9])|([12][0-9])|([3][01]))([.// -]*)(([0][1-9])|([1][0-2]))([.// -]*)(([1][9][4-9][0-9])|([2][0][0][0-5]))");
         birthDate = birthDate.trim();
         Matcher matcher = pattern.matcher(birthDate);
         if (matcher.matches()) {
             Calendar calendar = Calendar.getInstance();
-            int day = Integer.parseInt(birthDate.substring(0, birthDate.indexOf("[.-/ ]")));
-            int month = Integer.parseInt(birthDate.substring(birthDate.indexOf("[.-/ ]")) + 1, birthDate.lastIndexOf("[.-/ ]"));
-            int year = Integer.parseInt(birthDate.substring(birthDate.lastIndexOf("[.-/ ]")) + 1);
+            int day = 0;
+            int month = 0;
+            int year = 0;
+            String[] digits = birthDate.split("[.|,|/|-| ]");
+            if (digits[0].charAt(0) == '0') {
+                day = Integer.parseInt(digits[0].substring(1));
+            } else {
+                day = Integer.parseInt(digits[0]);
+            }
+            if (digits[1].charAt(0) == '0') {
+                month = Integer.parseInt(digits[1].substring(1));
+            } else {
+                month = Integer.parseInt(digits[1]);
+            }
+            year = Integer.parseInt(digits[2]);
             calendar.set(year, month, day);
             if (calendar.isLenient()) {
-                this.birthDate = calendar;
+                this.birthday = calendar;
             } else {
                 throw new Exception("Incorrect birthday");
             }

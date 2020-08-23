@@ -12,6 +12,10 @@ import java.util.Map;
 
 @MappedSuperclass
 public abstract class AbstractContacts implements Contacts {
+    public Integer getId() {
+        return id;
+    }
+
     @Id
     @GeneratedValue
     private Integer id;

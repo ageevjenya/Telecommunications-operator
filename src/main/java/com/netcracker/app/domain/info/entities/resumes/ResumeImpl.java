@@ -4,6 +4,10 @@ import com.netcracker.app.domain.info.entities.vacancies.VacancyImpl;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 @Entity
 public class ResumeImpl extends AbstractResume {
@@ -11,9 +15,9 @@ public class ResumeImpl extends AbstractResume {
         super();
     }
 
-    public ResumeImpl(/*int vacancyId, */String firstName, String lastName, String birthDate, String phone,
+    public ResumeImpl(String firstName, String lastName, String birthday, String phone,
                       String email, String text, VacancyImpl vacancy) throws Exception {
-        super(/*vacancyId, */firstName, lastName, birthDate, phone, email, text);
+        super(firstName, lastName, birthday, phone, email, text);
         this.vacancy = vacancy;
     }
 
@@ -27,4 +31,15 @@ public class ResumeImpl extends AbstractResume {
 
     @ManyToOne
     private VacancyImpl vacancy;
+
+    public static List<String> getFieldsNames() {
+        String name = "firstName lastName birthday phone email text";
+        List<String> names = Arrays.asList(name.split(" "));
+        return names;
+    }
+
+    public String getBirthdayString() { //remove time and timezone
+        return getBirthday().getTime().toString();
+    }
+    //Ctrl+Alt+I выравнивание
 }

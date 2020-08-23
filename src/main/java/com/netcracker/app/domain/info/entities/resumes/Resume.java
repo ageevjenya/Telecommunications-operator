@@ -13,8 +13,6 @@ public interface Resume {
     void setEmail(String email) throws Exception;
     String getText();
     void setText(String text) throws Exception;
-    Calendar getBirthDate();
-    void setBirthDate(String birthDate) throws Exception;
-/*    void setVacancyId(int vacancyId);
-    int getVacancyId();*/
+    Calendar getBirthday();
+    void setBirthday(String birthday) throws Exception;
 }

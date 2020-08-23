@@ -11,4 +11,9 @@ public class ContactsImpl extends AbstractContacts {
     public ContactsImpl(){
         super();
     }
+
+    public static String[] getFieldsNames() {
+        String[] names = {"address", "phone", "workHours"};
+        return names;
+    }
 }

@@ -1,6 +1,7 @@
 package com.netcracker.app.domain.info.entities.vacancies;
 
 import com.netcracker.app.domain.info.entities.resumes.ResumeImpl;
+import net.minidev.json.annotate.JsonIgnore;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
@@ -26,5 +27,11 @@ public class VacancyImpl extends AbstractVacancy {
     }
 
     @OneToMany
+    @JsonIgnore
     Set<ResumeImpl> resumes;
+
+    public static String[] getFieldsNames() {
+        String[] names = {"name", "text"};
+        return names;
+    }
 }

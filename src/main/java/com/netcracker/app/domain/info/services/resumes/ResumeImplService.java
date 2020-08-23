@@ -1,7 +1,6 @@
 package com.netcracker.app.domain.info.services.resumes;
 
 import com.netcracker.app.domain.info.entities.resumes.ResumeImpl;
-import com.netcracker.app.domain.info.entities.vacancies.Vacancy;
 import com.netcracker.app.domain.info.entities.vacancies.VacancyImpl;
 import com.netcracker.app.domain.info.repositories.resumes.ResumeImplRepository;
 import com.netcracker.app.domain.info.repositories.vacancies.VacancyImplRepository;
@@ -29,7 +28,7 @@ public class ResumeImplService extends AbstractResumeService<ResumeImpl> {
 
     @Override
     public void updateVacancyId(VacancyImpl vacancy, int id) throws Exception {
-        if (repository.existsById(id)/* && vacancyImplRepository.existsById(vacancyId)*/) {
+        if (repository.existsById(id)) {
             ResumeImpl resume = repository.getById(id);
             //resume.setVacancyId(vacancyId);
             resume.setVacancy(vacancy);
@@ -76,7 +75,7 @@ public class ResumeImplService extends AbstractResumeService<ResumeImpl> {
     public void updateBirthDate(String birthDate, int id) throws Exception {
         if (repository.existsById(id) && birthDate != null) {
             ResumeImpl resume = repository.getById(id);
-            resume.setBirthDate(birthDate);
+            resume.setBirthday(birthDate);
             repository.saveAndFlush(resume);
         } else {
             throw new Exception("Doesn't exist");

@@ -1,4 +1,4 @@
-package com.netcracker.app.domain.info.controllers;
+package com.netcracker.app.domain.info.controllers.vacancyAndResume;
 
 import com.netcracker.app.domain.info.entities.resumes.ResumeImpl;
 import com.netcracker.app.domain.info.entities.vacancies.VacancyImpl;
@@ -6,10 +6,7 @@ import com.netcracker.app.domain.info.services.resumes.ResumeImplService;
 import com.netcracker.app.domain.info.services.vacancies.VacancyImplService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
 import java.util.Map;
@@ -46,12 +43,26 @@ public class VacancyResumeImplController {
     }
 
     @Transactional
-    @PostMapping("addResume") //405 error (method is known by server but was turned off)
-    public String addResume(@ModelAttribute("vacancy") VacancyImpl vacancy, @ModelAttribute("resume") ResumeImpl resume, Map<String, Object> model) throws Exception {
-        resume.setVacancy(vacancy);
+    @PostMapping("/resume/{id}")
+    public String addResume(@PathVariable("id") Integer id,
+                            @RequestParam String firstName,
+                            @RequestParam String lastName,
+                            @RequestParam String birthday,
+                            @RequestParam String phone,
+                            @RequestParam String email,
+                            @RequestParam String text,
+                            Map<String, Object> model) throws Exception {
+        VacancyImpl vacancy = service.getById(id);
+        ResumeImpl resume = new ResumeImpl(firstName, lastName, birthday, phone, email, text, vacancy);
         resumeImplService.add(resume);
         model.put("yourResume", resume);
         return "yourResume";
     }
 
+    @Transactional
+    @GetMapping("resume/{id}/yourResume")
+    public String yourResume(@PathVariable("id") ResumeImpl resume, Map<String, Object> model) {
+        model.put("yourResume", resume);
+        return "yourResume";
+    }
 }

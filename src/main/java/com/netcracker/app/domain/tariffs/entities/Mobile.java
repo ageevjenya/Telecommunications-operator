@@ -32,4 +32,9 @@ public class Mobile extends Tariff {
     }
 
     public Mobile() {}
+
+    public static String[] getFieldsNames() {
+        String[] names = {"name", "minutes", "sms", "priceOfMonth", "description"};
+        return names;
+    }
 }

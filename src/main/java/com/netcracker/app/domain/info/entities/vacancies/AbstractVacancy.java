@@ -20,6 +20,10 @@ public abstract class AbstractVacancy implements Vacancy {
 
     public AbstractVacancy() {}
 
+    public Integer getId() {
+        return id;
+    }
+
     @Override
     public String getName() {
         return name;
