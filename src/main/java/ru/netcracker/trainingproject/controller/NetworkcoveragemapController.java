@@ -15,6 +15,7 @@ import ru.netcracker.trainingproject.repository.PointAccesRepo;
 import ru.netcracker.trainingproject.repository.UserRepo;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -27,22 +28,46 @@ public class NetworkcoveragemapController {
 
     @GetMapping
     public String coveragemap(Model model) {
+        //PointAcces.newSomePoint(pointAccesRepo);
+//        List[] types;
+//        for (TypePointAcces type: TypePointAcces.values()
+//             ) {type.setState(true);
+//
+//
+//        }
         Iterable<PointAcces> pointsacces = pointAccesRepo.findAll();
         model.addAttribute("typepoints", TypePointAcces.values());
         model.addAttribute("pointsacces", pointsacces);
         return "networkcoveragemap";
     }
-    @PostMapping("/filter")
-    public String coveragemap(@RequestParam Map<String, String> form, Model model) {
 
-        Set<TypePointAcces> setTypePoint = null  ;//= Arrays.stream(TypePointAcces.values());
-        for (String key : form.keySet()) {
-            if (setTypePoint.contains(key)) {
-                setTypePoint.add(TypePointAcces.valueOf(key));
-            }
+    @PostMapping
+    public String coveragemap(@RequestParam(value = "G2", required = false) boolean G2,
+                              @RequestParam(value = "G3", required = false) boolean G3,
+                              @RequestParam(value = "G4", required = false) boolean G4,
+                              @RequestParam Map<String, String> form,
+                              Model model) {
+        StringBuffer type = null;
+        if (G2) {
+            type.append("G2");
         }
-//        Iterable<PointAcces> pointsacces = pointAccesRepo.selectPointAcces(setTypePoint);
-        Iterable<PointAcces> pointsacces = pointAccesRepo.findAll();
+        if (G3) {
+            type.append("G3");
+        }
+        if (G4) {
+            type.append("G4");
+        }
+//        Set<TypePointAcces> setTypePoint = null;//= Arrays.stream(TypePointAcces.values());
+//        for (String key : form.keySet()) {
+//            if (setTypePoint.contains(key)) {
+//                setTypePoint.add(TypePointAcces.valueOf(key));
+//            }
+//        }
+        Iterable<PointAcces> pointsacces = null;
+        if (type!=null){
+        pointsacces = pointAccesRepo.selectPointAcces(type.toString());}
+
+        //Iterable<PointAcces> pointsacces = pointAccesRepo.findAll();
         model.addAttribute("typepoints", TypePointAcces.values());
         model.addAttribute("pointsacces", pointsacces);
         return "networkcoveragemap";

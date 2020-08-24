@@ -9,6 +9,20 @@ public enum TypePointAcces implements GrantedAuthority {
 
     private String title;
 
+//    public boolean isState() {
+//        return state;
+//    }
+//
+//    public void setState(boolean state) {
+//        this.state = state;
+//    }
+//
+//    private boolean state;
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
     TypePointAcces(String title) {
         this.title=title;
     }

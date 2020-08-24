@@ -1,7 +1,10 @@
 package ru.netcracker.trainingproject.domain;
 
+import ru.netcracker.trainingproject.repository.PointAccesRepo;
+
+import java.util.*;
+
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
 public class PointAcces  {
@@ -13,14 +16,18 @@ public class PointAcces  {
     private float longitude;
     private float latitude;
 
-    private float radius;
+    private int radius;
 
     private String title;
+    private String info;
+
+
 
     @ElementCollection(targetClass = TypePointAcces.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "type_point_acces", joinColumns = @JoinColumn(name = "pointacces_id"))
     @Enumerated(EnumType.STRING)
     private Set<TypePointAcces> typePoint;
+
 
     public float getLongitude() {
         return longitude;
@@ -67,11 +74,45 @@ public class PointAcces  {
         this.id = id;
     }
 
-    public float getRadius() {
+    public int getRadius() {
         return radius;
     }
 
-    public void setRadius(float radius) {
+    public void setRadius(int radius) {
         this.radius = radius;
+    }
+
+    public String getInfo() {
+        return info;
+    }
+
+    public void setInfo(String info) {
+        this.info = info;
+    }
+
+    public static void newSomePoint(PointAccesRepo pointAccesRepo){
+        float minLati = (float) 55.315128;
+        float minLong = (float) 36.853015;
+        float maxLati = (float) 56.166084;
+        float maxLong = (float) 38.738402;
+        Set<TypePointAcces> set = new LinkedHashSet<TypePointAcces>();
+        set.add(TypePointAcces.G2);
+        final Random random = new Random();
+        for (int i = 0;  i < 1000; i++) {
+
+            if (i % 2 == 0)
+            set.add(TypePointAcces.G3);
+
+            set.add(TypePointAcces.G4);
+            PointAcces pointAcces = new PointAcces();
+            pointAcces.setLatitude(minLati + random.nextFloat() * (maxLati-minLati));
+            pointAcces.setLongitude(minLong + random.nextFloat() * (maxLong-minLong));
+            pointAcces.setRadius(3000 + random.nextInt(1500));
+
+            pointAcces.setTypePoint(set);
+            pointAcces.setTitle("Адрес точки доступа");
+            pointAcces.setInfo("Дополниетльная информация");
+            pointAccesRepo.save(pointAcces);
+        }
     }
 }
