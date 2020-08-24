@@ -1,23 +1,24 @@
 <#import "parts/common.ftl" as c>
 
 <@c.page>
-  <h1>Send resume</h1>
-    <p>${vacancy.name}</p>
+<br>
+  <h3>Send resume</h3><br>
+    <p><strong>Vacancy: ${vacancy.name}</strong></p>
 <br></br>
 
     <div>
-            <form method="post">
-               <input type="text" name="firstName" placeholder="Enter firstname" />
-               <input type="text" name="lastName" placeholder="Enter lastname" />
-               <input type="text" name="birthday" placeholder="Enter birthday" />
-               <input type="text" name="phone" placeholder="Enter phone" />
-               <input type="text" name="email" placeholder="Enter email" />
-               <input type="text" name="text" placeholder="About yourself..." />
-               <button type="submit">Send</button>
+            <form method="post" class="form-inline">
+               <input type="text" class="form-control" name="firstName" placeholder="Enter firstname" />
+               <input type="text" class="form-control" name="lastName" placeholder="Enter lastname" />
+               <input type="text" class="form-control" name="birthday" placeholder="Enter birthday" />
+               <input type="text" class="form-control" name="phone" placeholder="Enter phone" />
+               <input type="text" class="form-control" name="email" placeholder="Enter email" />
+               <input type="text" class="form-control" name="text" placeholder="About yourself..." />
+               <button type="submit" class="btn btn-default">Send</button>
             </form>
         </div>
 
     <br></br>
-    <a href="/vacancy/${id}">Back to vacancy</a>
+    <a href="/vacancy/${id}" class="btn text-nowrap-light">Back to vacancy</a>
 
 </@c.page>

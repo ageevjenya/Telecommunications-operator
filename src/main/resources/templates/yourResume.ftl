@@ -1,9 +1,10 @@
 <#import "parts/common.ftl" as c>
 <@c.page>
-  <h1>Your resume</h1>
+<br>
+  <h3>Your resume</h3><br>
 <div>
 
-          <p>Vacancy: ${yourResume.vacancy.name}</p>
+          <p><strong>Vacancy: ${yourResume.vacancy.name}</strong></p>
           <p>First name: ${yourResume.firstName}</p>
           <p>Last name: ${yourResume.lastName}</p>
           <p>Birthday: ${yourResume.getBirthdayString()}</p>

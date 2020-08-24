@@ -1,14 +1,17 @@
 <#import "parts/common.ftl" as c>
 <@c.page>
-    <h1>Contacts</h1>
+    <br><h3>Contacts</h3><br>
 <#list contacts as contact>
-<div>
-      <p>Address: ${contact.address}</p>
-      <p>Phone: ${contact.phone}</p>
-      <p>Work hours: ${contact.workHours}</p>
-</div>
-</#list>
+<address>
+  <strong>Name</strong><br>
+  ${contact.address}<br>
+  ${contact.workHours}<br>
+  ${contact.phone}
+</address>
 
-<a href="/info">Back to info page</a>
+<address>
+  <a href="mailto:#">alesiknep@mail.ru</a>
+</address>
+</#list>
 
 </@c.page>

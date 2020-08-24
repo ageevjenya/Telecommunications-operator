@@ -1,18 +1,20 @@
 <#import "parts/common.ftl" as c>
 <@c.page>
-    <h1>Mobile tariffs</h1>
+    <br>
+    <h3>Mobile tariffs</h3>
+    <br>
 
     <div>
-        <form method="get" action="tariffs">
-            <input type="text" name="filter" placeholder="Enter the name" />
-            <button type="submit">Find</button>
+        <form method="get" action="tariffs" class="form-inline">
+            <input type="text" class="form-control" name="filter" placeholder="Enter the name" />
+            <button type="submit" class="btn btn-default">Find</button>
         </form>
     </div>
 
     <br></br>
 
     <div>
-      <table border="1">
+      <table class="table table-hover">
         <tr>
           <th>Name</th>
           <th>Minutes</th>
@@ -37,27 +39,27 @@
     <br></br>
 
     <div>
-        <form method="post" action="update">
-           <input type="text" name="id" placeholder="Enter id" />
-           <input type="text" name="name" placeholder="Enter the name" />
-           <input type="text" name="priceOfMonth" placeholder="Enter price of month" />
-           <input type="text" name="minutes" placeholder="Enter amount of minutes" />
-           <input type="text" name="sms" placeholder="Enter amount of sms" />
-           <input type="text" name="description" placeholder="Enter description" />
-           <button type="submit">Edit</button>
+        <form method="post" action="update" class="form-inline">
+           <input type="text" class="form-control" name="id" placeholder="Enter id" />
+           <input type="text" class="form-control" name="name" placeholder="Enter the name" />
+           <input type="text" class="form-control" name="priceOfMonth" placeholder="Enter price of month" />
+           <input type="text" class="form-control" name="minutes" placeholder="Enter amount of minutes" />
+           <input type="text" class="form-control" name="sms" placeholder="Enter amount of sms" />
+           <input type="text" class="form-control" name="description" placeholder="Enter description" />
+           <button type="submit" class="btn btn-default">Edit</button>
         </form>
     </div>
 
     <br></br>
 
     <div>
-        <form method="post" action="createMobile">
-           <input type="text" name="name" placeholder="Enter the name" />
-           <input type="text" name="priceOfMonth" placeholder="Enter price of month" />
-           <input type="text" name="minutes" placeholder="Enter amount of minutes" />
-           <input type="text" name="sms" placeholder="Enter amount of sms" />
-           <input type="text" name="description" placeholder="Enter description" />
-           <button type="submit">Create</button>
+        <form method="post" action="createMobile" class="form-inline">
+           <input type="text" class="form-control" name="name" placeholder="Enter the name" />
+           <input type="text" class="form-control" name="priceOfMonth" placeholder="Enter price of month" />
+           <input type="text" class="form-control" name="minutes" placeholder="Enter amount of minutes" />
+           <input type="text" class="form-control" name="sms" placeholder="Enter amount of sms" />
+           <input type="text" class="form-control" name="description" placeholder="Enter description" />
+           <button type="submit" class="btn btn-default">Create</button>
         </form>
     </div>
 

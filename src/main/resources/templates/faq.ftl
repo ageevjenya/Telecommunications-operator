@@ -1,6 +1,7 @@
 <#import "parts/common.ftl" as c>
 <@c.page>
-    <h1>F.A.Q.</h1>
+<br>
+    <h3>F.A.Q.</h3><br>
     <#list faq as f>
         <div class="accordion" id="accordion">
           <div class="card">

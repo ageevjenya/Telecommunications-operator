@@ -1,9 +1,10 @@
 <#import "parts/common.ftl" as c>
 <@c.page>
-    <h1>Vacancies</h1>
+<br>
+    <h3>Vacancies</h3> <br>
     <#list vacancies as vacancy>
     <div>
-    <a href="/vacancy/${vacancy.id}">${vacancy.name}</a>
+    <a href="/vacancy/${vacancy.id}" class="btn btn-light">${vacancy.name}</a>
     <br></br>
     </div>
         <#else>
@@ -12,5 +13,5 @@
     </#list>
 
     <br></br>
-    <a href="/info">Back to info</a>
+    <a class="btn text-nowrap-light" href="/info">Back to info</a>
 </@c.page>

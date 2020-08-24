@@ -1,10 +1,11 @@
 <#import "parts/common.ftl" as c>
 <@c.page>
-    <h1>${vacancy.name}</h1>
+<br>
+    <h3>${vacancy.name}</h3><br>
     <p>${vacancy.text}</p>
 
 <br></br>
-    <a href="/resume/${vacancy.id}">Send resume</a>
+    <a href="/resume/${vacancy.id}" class="btn btn-light" >Send resume</a>
     <br></br>
-    <a href="/work">Back to list of vacancies</a>
+    <a href="/work" class="btn text-nowrap-light">Back to list of vacancies</a>
 </@c.page>
