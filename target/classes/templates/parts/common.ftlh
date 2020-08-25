@@ -4,6 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <title>Best telecommunications operator</title>
+         <link rel="shortcut icon" href="http://s1.iconbird.com/ico/0612/vistabasesoftwareicons/w256h2561339252701Globe2.png" type="image/png">
         <link rel="stylesheet" href="/static/style.css">
 
         <meta charset="utf-8">

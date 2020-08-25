@@ -9,21 +9,27 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="/">Home</a>
+                <a class="nav-link" href="/">На главную</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/networkcoveragemap">Networkcoveragemap</a>
+                <a class="nav-link" href="/networkcoveragemap">Карта покрытия</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/login">Sign in</a>
+                <a class="nav-link" href="/login">Войти</a>
             </li>
             <#if isAdmin>
             <li class="nav-item">
-                <a class="nav-link" href="/user">User list</a>
+                <a class="nav-link" href="/user">Список пользователей</a>
             </li>
             </#if>
             <li class="nav-item">
-                <a class="nav-link" href="/internet">Internet</a>
+                <a class="nav-link" href="/internet">Интернет</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/promo">Акции</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/advertising">Реклама</a>
             </li>
         </ul>
         <div class="navbar-text mr-3">${name}</div>

@@ -1,7 +1,8 @@
 <#import "parts/common.ftlh" as c>
+<<<<<<< HEAD
 
 <@c.page>
-List of user page
+List of user
 <table>
     <thead>
     <tr>
