@@ -26,7 +26,7 @@ public class VacancyImpl extends AbstractVacancy {
         this.resumes = resumes;
     }
 
-    @OneToMany
+    @OneToMany(mappedBy = "vacancy")
     @JsonIgnore
     Set<ResumeImpl> resumes;
 

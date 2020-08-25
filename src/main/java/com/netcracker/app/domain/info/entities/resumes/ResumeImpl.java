@@ -3,6 +3,7 @@ package com.netcracker.app.domain.info.entities.resumes;
 import com.netcracker.app.domain.info.entities.vacancies.VacancyImpl;
 
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import java.util.Arrays;
 import java.util.Calendar;

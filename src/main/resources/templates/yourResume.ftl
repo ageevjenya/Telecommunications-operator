@@ -9,7 +9,7 @@
           <p>Last name: ${yourResume.lastName}</p>
           <p>Birthday: ${yourResume.getBirthdayString()}</p>
           <p>Phone: ${yourResume.phone}</p>
-          <p>Email: ${yourResume.email}</p>
+          <p>E-mail: ${yourResume.email}</p>
           <p>About yourself: ${yourResume.text}</p>
     </div>
 

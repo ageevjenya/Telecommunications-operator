@@ -12,7 +12,7 @@
                <input type="text" class="form-control" name="lastName" placeholder="Enter lastname" />
                <input type="text" class="form-control" name="birthday" placeholder="Enter birthday" />
                <input type="text" class="form-control" name="phone" placeholder="Enter phone" />
-               <input type="text" class="form-control" name="email" placeholder="Enter email" />
+               <input type="text" class="form-control" name="email" placeholder="Enter e-mail" />
                <input type="text" class="form-control" name="text" placeholder="About yourself..." />
                <button type="submit" class="btn btn-default">Send</button>
             </form>

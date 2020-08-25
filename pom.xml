@@ -12,7 +12,7 @@
     <artifactId>app</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>app</name>
-    <description>Spring application for NetCracker "telecommunications operator"</description>
+    <description>Spring application for NetCracker "telecommunication operator"</description>
 
     <properties>
         <java.version>11</java.version>

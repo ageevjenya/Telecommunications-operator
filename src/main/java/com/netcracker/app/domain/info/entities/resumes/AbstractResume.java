@@ -23,7 +23,6 @@ public abstract class AbstractResume implements Resume {
     private String phone;
     private String email;
     private String text;
-    //private int vacancyId;
 
     public AbstractResume() {}
 
