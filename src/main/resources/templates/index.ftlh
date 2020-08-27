@@ -2,11 +2,11 @@
 <@c.page>
 <br>
     <div class="jumbotron">
-      <h3 class="display-4">Telecommunication operator</h3>
-      <p class="lead">Description about deal of this site and company</p>
+      <h3 class="display-4">Оператор связи</h3>
+      <p class="lead">Описание компании ляляля</p>
       <hr class="my-4">
-      <p>Some text</p>
-      <a class="btn btn-light" href="/tariffs" role="button">View tariffs</a>
-      <a class="btn text-nowrap-light" href="/info">About us</a>
+      <p>Что-то написано</p>
+      <a class="btn btn-light" href="/#" role="button">Интернет-магазин</a>
+      <a class="btn text-nowrap-light" href="/info">О нас</a>
     </div>
 </@c.page>

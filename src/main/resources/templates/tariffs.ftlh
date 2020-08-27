@@ -1,13 +1,13 @@
 <#import "parts/common.ftlh" as c>
 <@c.page>
     <br>
-    <h3>Mobile tariffs</h3>
+    <h3>Мобильная связь</h3>
     <br>
 
     <div>
         <form method="get" action="tariffs" class="form-inline">
             <input type="text" class="form-control" name="filter" placeholder="Enter the name" />
-            <button type="submit" class="btn btn-default">Find</button>
+            <button type="submit" class="btn btn-default">Найти</button>
         </form>
     </div>
 
@@ -16,12 +16,12 @@
     <div>
       <table class="table table-hover">
         <tr>
-          <th>Name</th>
-          <th>Minutes</th>
+          <th>Пакет</th>
+          <th>Минуты</th>
           <th>SMS</th>
-          <th>Price of month</th>
-          <th>Description</th>
-          <th>Delete</th>
+          <th>Цена, руб/мес</th>
+          <th>Описание</th>
+          <th>Удалить</th>
         </tr>
         <#list mobileTariffs as mobileTariff>
         <tr>
@@ -30,7 +30,7 @@
           <td>${mobileTariff.sms}</td>
           <td>${mobileTariff.priceOfMonth}</td>
           <td>${mobileTariff.description}</td>
-          <td><a href="/delete/${mobileTariff.id}">Delete</a></td>
+          <td><a href="/delete/${mobileTariff.id}">Удалить</a></td>
         </tr>
         </#list>
       </table>
@@ -46,7 +46,7 @@
            <input type="text" class="form-control" name="minutes" placeholder="Enter amount of minutes" />
            <input type="text" class="form-control" name="sms" placeholder="Enter amount of sms" />
            <input type="text" class="form-control" name="description" placeholder="Enter description" />
-           <button type="submit" class="btn btn-default">Edit</button>
+           <button type="submit" class="btn btn-default">Обновить</button>
         </form>
     </div>
 
@@ -59,7 +59,7 @@
            <input type="text" class="form-control" name="minutes" placeholder="Enter amount of minutes" />
            <input type="text" class="form-control" name="sms" placeholder="Enter amount of sms" />
            <input type="text" class="form-control" name="description" placeholder="Enter description" />
-           <button type="submit" class="btn btn-default">Create</button>
+           <button type="submit" class="btn btn-default">Добавить</button>
         </form>
     </div>
 

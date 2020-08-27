@@ -5,7 +5,7 @@
     <p>${vacancy.text}</p>
 
 <br></br>
-    <a href="/resume/${vacancy.id}" class="btn btn-light" >Send resume</a>
+    <a href="/resume/${vacancy.id}" class="btn btn-light" >Отправить резюме</a>
     <br></br>
-    <a href="/work" class="btn text-nowrap-light">Back to list of vacancies</a>
+    <a href="/work" class="btn text-nowrap-light">Назад к вакансиям</a>
 </@c.page>
