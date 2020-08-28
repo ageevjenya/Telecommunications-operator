@@ -14,6 +14,8 @@ public abstract class Tariff {
 
     private String description;
 
+    private double gbInternet;
+
     public String getDescription() {
         return description;
     }
@@ -49,9 +51,18 @@ public abstract class Tariff {
     }
 
     public Tariff() {}
-    protected Tariff(double priceOfMonth, String name, String description) {
+    protected Tariff(double priceOfMonth, String name, String description, double gbInternet) {
         this.priceOfMonth = priceOfMonth;
         this.name = name;
         this.description = description;
+        this.gbInternet = gbInternet;
+    }
+
+    public double getGbInternet() {
+        return gbInternet;
+    }
+
+    public void setGbInternet(double gbInternet) {
+        this.gbInternet = gbInternet;
     }
 }

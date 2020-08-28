@@ -9,8 +9,8 @@ public class Mobile extends Tariff {
 
     private int sms;
 
-    public Mobile(int minutes, int sms, double priceOfMonth, String name, String description) {
-        super(priceOfMonth, name, description);
+    public Mobile(int minutes, int sms, double priceOfMonth, String name, String description, double gbInternet) {
+        super(priceOfMonth, name, description, gbInternet);
         this.minutes = minutes;
         this.sms = sms;
     }
@@ -34,7 +34,7 @@ public class Mobile extends Tariff {
     public Mobile() {}
 
     public static String[] getFieldsNames() {
-        String[] names = {"name", "minutes", "sms", "priceOfMonth", "description"};
+        String[] names = {"name", "minutes", "sms", "priceOfMonth", "description", "gbInternet"};
         return names;
     }
 }

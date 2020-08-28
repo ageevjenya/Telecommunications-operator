@@ -37,9 +37,10 @@ public class MobileController extends AbstractTariffController<Mobile, MobileSer
                          @RequestParam double priceOfMonth,
                          @RequestParam int minutes,
                          @RequestParam int sms,
+                         @RequestParam double gbInternet,
                          @RequestParam String description,
                          Map<String, Object> model) {
-        Mobile mobile = new Mobile(minutes, sms, priceOfMonth, name, description);
+        Mobile mobile = new Mobile(minutes, sms, priceOfMonth, name, description, gbInternet);
         mobileService.add(mobile);
         model.put("mobileTariffs", mobileService.getAll());
         return "redirect:/tariffs";
@@ -52,6 +53,7 @@ public class MobileController extends AbstractTariffController<Mobile, MobileSer
                          @RequestParam(required = false, defaultValue = "0.0") double priceOfMonth,
                          @RequestParam(required = false, defaultValue = "0") int minutes,
                          @RequestParam(required = false, defaultValue = "0") int sms,
+                         @RequestParam(required = false, defaultValue = "0") double gbInternet,
                          @RequestParam(required = false, defaultValue = "defaultValue") String description,
                          Map<String, Object> model) {
             if (!name.equals("defaultValue")) {
@@ -66,7 +68,10 @@ public class MobileController extends AbstractTariffController<Mobile, MobileSer
             if (sms != 0) {
                 mobileService.updateSms(sms, id);
             }
-            if (!description.equals("defaultValue")) {
+        if (gbInternet != 0) {
+            mobileService.updateGbInternet(gbInternet, id);
+        }
+        if (!description.equals("defaultValue")) {
                 mobileService.updateDescription(description, id);
             }
         model.put("mobileTariffs", mobileService.getAll());

@@ -14,5 +14,6 @@ public interface TariffService<E extends Tariff> {
     void updateName(String name, int id);
     void updatePriceOfMonth(double priceOfMonth, int id);
     void updateDescription(String description, int id);
+    void updateGbInternet(double gbInternet, int id);
     boolean existsById(int id);
 }

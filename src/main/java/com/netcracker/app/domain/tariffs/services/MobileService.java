@@ -50,6 +50,15 @@ public class MobileService extends AbstractTariffService<Mobile> {
         }
     }
 
+    @Override
+    public void updateGbInternet(double gbInternet, int id) {
+        if (mobileRepository.existsById(id) && gbInternet != 0) {
+            Mobile mobile = mobileRepository.getById(id);
+            mobile.setGbInternet(gbInternet);
+            mobileRepository.saveAndFlush(mobile);
+        }
+    }
+
     public void updateMinutes(int minutes, int id) {
         if (mobileRepository.existsById(id) && minutes != 0) {
             Mobile mobile = mobileRepository.getById(id);

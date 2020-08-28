@@ -5,8 +5,8 @@ import com.netcracker.app.domain.tariffs.entities.Internet;
 
 import java.util.Optional;
 
-public interface InternetRepo extends CrudRepository<Internet, Integer> {
-    Iterable<Internet> findByPack(String pack);
+public interface InternetRepo extends TariffRepository<Internet> {
+    Iterable<Internet> findByName(String name);
     Optional<Internet> findById(Integer id);
     void deleteById(Integer id);
 

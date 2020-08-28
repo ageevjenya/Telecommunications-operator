@@ -16,15 +16,19 @@ import java.util.Optional;
 @Controller
 @RequestMapping("/internet")
 public class InternetController {
-    @Autowired
-    private InternetRepo internetRepository;
+
+    private final InternetRepo internetRepository;
+
+    public InternetController(InternetRepo internetRepository) {
+        this.internetRepository = internetRepository;
+    }
 
     @GetMapping
-    public String intenet(@RequestParam(required = false, defaultValue = "") String filter, Model model) {
+    public String internet(@RequestParam(required = false, defaultValue = "") String filter, Model model) {
 
         Iterable<Internet> internetRepositorys;
         if (filter != null && !filter.isEmpty()) {
-            internetRepositorys = internetRepository.findByPack(filter);
+            internetRepositorys = internetRepository.findByName(filter);
         } else {
             internetRepositorys = internetRepository.findAll();
         }
@@ -36,8 +40,12 @@ public class InternetController {
     }
 
     @PostMapping
-    public String add(@RequestParam String pack, @RequestParam String price, Model model) {
-        Internet internet = new Internet(pack, price);
+    public String add(@RequestParam String name,
+                      @RequestParam double priceOfMonth,
+                      @RequestParam double gbInternet,
+                      @RequestParam String description,
+                      Model model) {
+        Internet internet = new Internet(name, priceOfMonth, gbInternet, description);
         internetRepository.save(internet);
         Iterable<Internet> internetRepositorys = internetRepository.findAll();
         model.addAttribute("internetpacks", internetRepositorys);
@@ -69,16 +77,24 @@ public class InternetController {
 
     @PostMapping("/update")
     public String update(
-            @RequestParam(required = false) String pack,
-            @RequestParam(required = false) String price,
+            @RequestParam(required = false) String name,
+            @RequestParam(required = false) double priceOfMonth,
+            @RequestParam(required = false) double gbInternet,
+            @RequestParam(required = false) String description,
             @RequestParam Map<String, String> form,
             @RequestParam("packId") Internet internet, Model model) {
         if (internet != null) {
-            if (!pack.isEmpty()) {
-                internet.setPack(pack);
+            if (!name.isEmpty()) {
+                internet.setName(name);
             }
-            if (!price.isEmpty()) {
-                internet.setCost(price);
+            if (priceOfMonth != 0) {
+                internet.setPriceOfMonth(priceOfMonth);
+            }
+            if (gbInternet != 0) {
+                internet.setGbInternet(gbInternet);
+            }
+            if (!description.isEmpty()) {
+                internet.setDescription(description);
             }
         }
         internetRepository.save(internet);
