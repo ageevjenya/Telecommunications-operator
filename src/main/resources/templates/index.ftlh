@@ -6,7 +6,7 @@
       <p class="lead">Описание компании ляляля</p>
       <hr class="my-4">
       <p>Что-то написано</p>
-      <a class="btn btn-light" href="/#" role="button">Интернет-магазин</a>
+      <a class="btn btn-light" href="/shop" role="button">Услуги</a>
       <a class="btn text-nowrap-light" href="/info">О нас</a>
     </div>
 </@c.page>

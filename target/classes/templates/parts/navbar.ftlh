@@ -20,6 +20,9 @@
                     <a class="dropdown-item" href="/internet">Домашний интернет</a>
                 </div>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/shop">Интернет-магазин</a>
+            </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="/info" id="navbarDropdownInfo" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Инфо

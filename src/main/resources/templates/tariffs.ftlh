@@ -6,7 +6,7 @@
 
     <div>
         <form method="get" action="tariffs" class="form-inline">
-            <input type="text" class="form-control" name="filter" placeholder="Enter the name" />
+            <input type="text" class="form-control" name="filter" placeholder="Пакет" />
             <button type="submit" class="btn btn-default">Найти</button>
         </form>
     </div>
