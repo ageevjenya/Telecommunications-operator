@@ -9,14 +9,14 @@
             <img class="card-img-top" src="/images/connection.jpg" alt="Card image connection">
             <div class="card-body">
                 <h5 class="card-title">Тарифы</h5>
-                <p class="card-text">Выберите лучший тариф мобильной связи и домашнего интернета</p>
+                <p class="card-text">Выберите лучшие тарифы мобильной связи и домашнего интернета</p>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownTariffs" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Подключить
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownDTariffs">
-                        <a class="dropdown-item" href="#">Мобильная связь</a>
-                        <a class="dropdown-item" href="#">Домашний интернет</a>
+                        <a class="dropdown-item" href="/tariffs">Мобильная связь</a>
+                        <a class="dropdown-item" href="/internet">Домашний интернет</a>
                     </div>
                 </li>
                 <p class="card-text"><small class="text-muted">Все тарифы актуальны</small></p>
@@ -41,6 +41,7 @@
                         Перейти
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownDevices">
+                        <a class="dropdown-item" href="#">Все</a>
                         <a class="dropdown-item" href="#">Телефоны</a>
                         <a class="dropdown-item" href="#">ПК</a>
                     </div>
@@ -58,6 +59,7 @@
                         Подключить
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownSubs">
+                        <a class="dropdown-item" href="#">Все</a>
                         <a class="dropdown-item" href="#">Красивый номер</a>
                         <a class="dropdown-item" href="#">Автоплатёж</a>
                         <a class="dropdown-item" href="#">Баланс близких</a>

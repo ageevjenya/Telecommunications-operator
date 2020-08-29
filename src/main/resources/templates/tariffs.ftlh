@@ -1,3 +1,4 @@
+<#include "parts/security.ftlh">
 <#import "parts/common.ftlh" as c>
 <@c.page>
     <br>
@@ -11,7 +12,7 @@
         </form>
     </div>
 
-    <br></br>
+    <br><br>
 
     <div>
       <table class="table table-hover">
@@ -22,7 +23,11 @@
           <th>Интернет, GB</th>
           <th>Цена, руб/мес</th>
           <th>Описание</th>
-          <th>Удалить</th>
+            <#if isAdmin>
+                <th>Удалить</th>
+                <#else>
+                <th></th>
+            </#if>
         </tr>
         <#list mobileTariffs as mobileTariff>
         <tr>
@@ -32,14 +37,19 @@
           <td>${mobileTariff.gbInternet}</td>
           <td>${mobileTariff.priceOfMonth}</td>
           <td>${mobileTariff.description}</td>
-          <td><a href="/delete/${mobileTariff.id}">Удалить</a></td>
+          <#if isAdmin>
+              <td><a href="/delete/${mobileTariff.id}">Удалить</a></td>
+              <input type="hidden" name="_csrf" value="${_csrf.token}"/>
+              <#else>
+              <td><a href="#">Подключить</a></td>
+          </#if>
         </tr>
         </#list>
       </table>
     </div>
 
-    <br></br>
-
+    <#if isAdmin>
+        <br></br>
     <div>
         <form method="post" action="update" class="form-inline">
            <input type="text" class="form-control" name="id" placeholder="Enter id" />
@@ -49,11 +59,12 @@
            <input type="text" class="form-control" name="sms" placeholder="Enter amount of sms" />
            <input type="text" class="form-control" name="gbInternet" placeholder="Enter GB of internet" />
            <input type="text" class="form-control" name="description" placeholder="Enter description" />
+            <input type="hidden" name="_csrf" value="${_csrf.token}"/>
            <button type="submit" class="btn btn-default">Обновить</button>
         </form>
     </div>
 
-    <br></br>
+    <br>
 
     <div>
         <form method="post" action="createMobile" class="form-inline">
@@ -63,8 +74,9 @@
            <input type="text" class="form-control" name="sms" placeholder="Enter amount of sms" />
             <input type="text" class="form-control" name="gbInternet" placeholder="Enter GB of internet" />
            <input type="text" class="form-control" name="description" placeholder="Enter description" />
+            <input type="hidden" name="_csrf" value="${_csrf.token}"/>
            <button type="submit" class="btn btn-default">Добавить</button>
         </form>
     </div>
-
+    </#if>
 </@c.page>

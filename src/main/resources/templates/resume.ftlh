@@ -14,6 +14,7 @@
                <input type="text" class="form-control" name="phone" placeholder="+79999999999" />
                <input type="text" class="form-control" name="email" placeholder="masha@yandex.com" />
                <input type="text" class="form-control" name="text" placeholder="Трудолюбивая, умею..." />
+                <input type="hidden" name="_csrf" value="${_csrf.token}"/>
                <button type="submit" class="btn btn-default">Отправить</button>
             </form>
         </div>
