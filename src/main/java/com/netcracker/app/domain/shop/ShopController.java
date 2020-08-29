@@ -1,4 +1,4 @@
-package com.netcracker.app.domain.shop.controllers;
+package com.netcracker.app.domain.shop;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

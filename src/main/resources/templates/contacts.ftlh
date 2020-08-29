@@ -3,10 +3,10 @@
     <br><h3>Контакты</h3><br>
 <#list contacts as contact>
 <address>
-  <strong>Название точки</strong><br>
+  <strong>${contact.pointName}</strong><br>
   ${contact.address}<br>
   ${contact.workHours}<br>
-  ${contact.phone}
+  ${contact.phone}<br>
 </address>
 
 <address>

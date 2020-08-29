@@ -27,7 +27,7 @@
             <div class="card-body">
                 <h5 class="card-title">Модемы и роутеры</h5>
                 <p class="card-text">Арендуйте наши устройства для поддержки лучшей связи дома</p>
-                <a class="btn btn-link" href="#">Арендовать</a>
+                <a class="btn btn-link" href="/modems">Арендовать</a>
                 <p class="card-text"><small class="text-muted">Наличие всех устройств гарантировано</small></p>
             </div>
         </div>
@@ -37,11 +37,11 @@
                 <h5 class="card-title">Техника</h5>
                 <p class="card-text">Техника от лучших реселлеров по самым выгодным ценам</p>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownDevices" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="/techs" id="navbarDropdownDevices" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Перейти
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownDevices">
-                        <a class="dropdown-item" href="#">Все</a>
+                        <a class="dropdown-item" href="/techs">Все</a>
                         <a class="dropdown-item" href="#">Телефоны</a>
                         <a class="dropdown-item" href="#">ПК</a>
                     </div>

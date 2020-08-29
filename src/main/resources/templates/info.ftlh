@@ -6,7 +6,7 @@
     <br>
     Здесь описание нашей компании ляляля
     <br><br>
-    <div class="row">
+    <div class="d-flex justify-content-center">
 
         <div class="card" style="width: 18rem;">
             <div class="card-body">
