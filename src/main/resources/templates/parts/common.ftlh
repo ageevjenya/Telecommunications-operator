@@ -9,7 +9,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-
+        <style type="text/css">
+            * { margin: 0; padding: 0; }
+            p { padding: 10px; }
+            #left { position: absolute; left: 0; top: 80px; width: 20%; }
+            #right { position: absolute; right: 0; top: 80px; width: 80%; }
+        </style>
     </head>
     <body>
     <#include "navbar.ftlh">

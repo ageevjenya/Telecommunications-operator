@@ -104,7 +104,7 @@ public class AdminModemTechController {
     }
 
     @Transactional
-    @GetMapping("/delete")
+    @PostMapping("/delete")
     public String delete(@RequestParam String deviceName, @RequestParam int id) throws Exception {
         if (deviceName.toLowerCase().equals("modem")) {
             if (modemService.existsById(id)) {

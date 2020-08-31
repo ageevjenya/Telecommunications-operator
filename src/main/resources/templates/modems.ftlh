@@ -7,19 +7,26 @@
         <a class="btn btn-primary" href="/adminModemTech">Управлять</a>
         <br>
     </#if>
+    <div id="left">
+    <#include "parts/shopnav.ftlh">
+    </div>
 
-    <h3>Модемы и роутеры</h3><br>
-
-    <#list modems as modem>
-        <div class="card mb-3">
-            <img class="card-img float-left" src="${modem.imgUrl}" alt="Card image ${modem.name}">
-            <div class="card-body">
+    <div id="right">
+    <ul class="list-unstyled">
+        <#list modems as modem>
+        <li class="media">
+            <img src="${modem.imgUrl}" class="align-self-start mr-3" alt="Modem image">
+            <div class="media-body">
+                <br><br>
                 <h5 class="card-title">${modem.name}</h5>
                 <p class="card-text">${modem.shortDescription}</p>
                 <p class="card-text">${modem.price}, руб</p>
-                <a class="btn btn-nowrap-light float-right" href="/modem/${modem.id}"><strong>Купить</strong></a>
+                <a class="btn btn-nowrap-light" href="/modems/${modem.id}"><h5><strong>Купить</strong></h5></a>
             </div>
-        </div>
-    </#list>
+        </li>
+        </#list>
+    </ul>
+    </div>
+
 
 </@c.page>

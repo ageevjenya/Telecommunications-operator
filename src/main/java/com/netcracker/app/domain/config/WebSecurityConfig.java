@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
@@ -31,7 +32,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/", "/registration", "/static/**", "/networkcoveragemap", "/contacts",
                         "/faq", "/index", "/info", "/resume", "/vacancy", "/work", "/yourResume", "/shop", "/tariffs",
-                        "/internet", "/resources/static/images/*", "/modems", "/modem", "/techs", "/tech").permitAll()
+                        "/internet", "/main/resources/static/images/**", "/modems", "/modem", "/techs", "/tech",
+                        "/modems/**", "/techs/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -40,6 +42,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout()
                 .permitAll();
+
     }
 
     @Override
