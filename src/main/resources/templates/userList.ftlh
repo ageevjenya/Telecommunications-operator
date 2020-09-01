@@ -1,5 +1,4 @@
 <#import "parts/common.ftlh" as c>
-<<<<<<< HEAD
 
 <@c.page>
 List of user
@@ -12,7 +11,7 @@ List of user
     </tr>
     </thead>
     <tbody>
-    <#list  users as user>
+    <#list users as user>
         <tr>
             <td>${user.username}</td>
             <td><#list user.roles as role>${role}<#sep>, </#list></td>
