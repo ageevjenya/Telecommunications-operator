@@ -1,59 +1,87 @@
+<#include "parts/security.ftlh">
 <#import "parts/common.ftlh" as c>
 
 <@c.page>
-    <div><a href="/"> На главную страницу</a></div>
-
+    <#if isAdmin>
+        <br>
     <div>
-        <form method="post" action="/internet">
-            <input type="text" name="pack" placeholder="Введите объем пакета"/>
-            <input type="text" name="price" placeholder="Укажите цену пакета"/>
+        <form method="post" action="/internet" class="form-inline">
+            <input type="text" class="form-control" name="name" placeholder="Введите название пакета"/>
+            <input type="text" class="form-control" name="priceOfMonth" placeholder="Укажите цену пакета"/>
+            <input type="text" class="form-control" name="gbInternet" placeholder="Укажите количество GB интернета"/>
+            <input type="text" class="form-control" name="description" placeholder="Введите описание пакета"/>
             <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-            <button type="submit">Добавить</button>
+            <button type="submit" class="btn btn-default">Добавить</button>
         </form>
     </div>
+    </#if>
+    <br>
+    <h3>Домашний интернет</h3>
+    <br>
 
-    <div>Список пакетов интернета</div>
-
-    <form method="get" action="/internet">
-        <input type="text" name="filter" value="${filter}" placeholder="Введите объем пакета"/>
-        <button type="submit">Найти</button>
+    <form method="get" action="/internet" class="form-inline">
+        <input type="text" class="form-control" name="filter" value="${filter}" placeholder="Введите объем пакета"/>
+        <button type="submit" class="btn btn-default">Найти</button>
     </form>
 
-    <form method="post" action="/internet/delete">
-        <input type="text" name="packId" placeholder="Введите id пакета"/>
+    <br><br>
+
+    <#if isAdmin>
+    <br>
+    <form method="post" action="/internet/delete" class="form-inline">
+        <input type="text" class="form-control" name="packId" placeholder="Введите id пакета"/>
         <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-        <button type="submit">Удалить</button>
+        <button type="submit" class="btn btn-default">Удалить</button>
     </form>
+    <br>
 
     <div> ${deleteIdCheck}</div>
+    <br>
 
-    <form method="post" action="/internet/update">
-        <input type="text" name="packId" placeholder="Введите id пакета"/>
-        <input type="text" name="pack" placeholder="Введите объем пакета"/>
-        <input type="text" name="price" placeholder="Укажите цену пакета"/>
+    <form method="post" action="/internet/update" class="form-inline">
+        <input type="text" class="form-control" name="packId" placeholder="Введите id пакета"/>
+        <input type="text" class="form-control" name="name" placeholder="Введите название пакета"/>
+        <input type="text" class="form-control" name="priceOfMonth" placeholder="Укажите цену пакета"/>
+        <input type="text" class="form-control" name="gbInternet" placeholder="Введите количество GB интернета"/>
+        <input type="text" class="form-control" name="description" placeholder="Введите описание пакета"/>
         <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-        <button type="submit">Обновить</button>
+        <button type="submit" class="btn btn-default">Обновить</button>
     </form>
-    <table>
-        <thead>
+    <br>
+    </#if>
+
+    <div>
+    <table class="table table-hover">
         <tr>
             <th>ID</th>
-            <th>Pack</th>
-            <th>Price</th>
+            <th>Пакет</th>
+            <th>Цена, руб/мес</th>
+            <th>Интернет, GB</th>
+            <th>Описание</th>
+            <#if !isAdmin>
+                <th></th>
+            </#if>
         </tr>
-        </thead>
-        <tbody>
         <#list  internetpacks as internetpack>
             <tr>
                 <td>${internetpack.id}</td>
-                <td>${internetpack.pack} Мб</td>
-                <td>${internetpack.price} $</td>
+                <td>${internetpack.name}</td>
+                <td>${internetpack.priceOfMonth}</td>
+                <td>${internetpack.gbInternet}</td>
+                <td>${internetpack.description}</td>
+                <#if !isAdmin>
+                    <td>
+                        <a href="#">Подключить</a>
+                    </td>
+                </#if>
             </tr>
         <#else>
-            No pack internet
+            <br>
+            <strong>No pack internet</strong>
+            <br>
         </#list>
-        </tbody>
     </table>
+    </div>
 
 
 </@c.page>
