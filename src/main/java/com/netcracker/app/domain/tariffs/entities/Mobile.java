@@ -3,7 +3,7 @@ package com.netcracker.app.domain.tariffs.entities;
 import javax.persistence.*;
 
 @Entity
-public class Mobile extends Tariff {
+public class Mobile extends TariffOldMustDelete {
 
     private int minutes;
 

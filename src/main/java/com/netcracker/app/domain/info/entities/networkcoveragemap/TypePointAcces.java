@@ -1,4 +1,4 @@
-package com.netcracker.app.domain.info.entities;
+package com.netcracker.app.domain.info.entities.networkcoveragemap;
 
 import org.springframework.security.core.GrantedAuthority;
 
@@ -9,15 +9,6 @@ public enum TypePointAcces implements GrantedAuthority {
 
     private String title;
 
-//    public boolean isState() {
-//        return state;
-//    }
-//
-//    public void setState(boolean state) {
-//        this.state = state;
-//    }
-//
-//    private boolean state;
 
     public void setTitle(String title) {
         this.title = title;

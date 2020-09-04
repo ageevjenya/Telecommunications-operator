@@ -3,7 +3,7 @@ package com.netcracker.app.domain.tariffs.entities;
 import javax.persistence.*;
 
 @Entity // This tells Hibernate to make a table out of this class
-public class Internet extends Tariff {
+public class Internet extends TariffOldMustDelete {
 
     public Internet() {
     }

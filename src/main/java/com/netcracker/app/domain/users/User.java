@@ -1,5 +1,7 @@
 package com.netcracker.app.domain.users;
 
+
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -15,11 +17,70 @@ public class User implements UserDetails {
     private Long id;
     private String username;
     private String password;
+    private String firstName;
+    private String secondName;
+    private String surName;
+    private float Age;
+    private String number;
+
+    private Long idTariff;
+
+
+
     private boolean active;
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
     @Enumerated(EnumType.STRING)
     private Set<Role> roles;
+
+    public float getAge() {
+        return Age;
+    }
+
+    public void setAge(float age) {
+        Age = age;
+    }
+
+    public Long getIdTariff() {
+        return idTariff;
+    }
+
+    public void setIdTariff(Long idTariff) {
+        this.idTariff = idTariff;
+    }
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
+    }
+
+
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getSecondName() {
+        return secondName;
+    }
+
+    public void setSecondName(String secondName) {
+        this.secondName = secondName;
+    }
+
+    public String getSurName() {
+        return surName;
+    }
+
+    public void setSurName(String surName) {
+        this.surName = surName;
+    }
 
     public Long getId() {
         return id;

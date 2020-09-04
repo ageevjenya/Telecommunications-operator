@@ -31,12 +31,16 @@
                     <a class="dropdown-item" href="/contacts">Контакты</a>
                     <a class="dropdown-item" href="/faq">F.A.Q.</a>
                     <a class="dropdown-item" href="/info">О нас</a>
+                    <a class="dropdown-item" href="/work">Работа</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="/promo">Акции</a>
                     <a class="dropdown-item" href="/advertising">Реклама</a>
                     <a class="dropdown-item" href="#">Рекомендации</a>
-                    <a class="dropdown-item" href="/work">Работа</a>
+
                 </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/personalArea">Личый кабинет</a>
             </li>
             <#if isAdmin>
                 <li class="nav-item">

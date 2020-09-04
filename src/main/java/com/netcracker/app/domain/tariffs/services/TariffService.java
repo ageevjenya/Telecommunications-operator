@@ -1,10 +1,10 @@
 package com.netcracker.app.domain.tariffs.services;
 
-import com.netcracker.app.domain.tariffs.entities.Tariff;
+import com.netcracker.app.domain.tariffs.entities.TariffOldMustDelete;
 
 import java.util.List;
 
-public interface TariffService<E extends Tariff> {
+public interface TariffService<E extends TariffOldMustDelete> {
 
     void add(E e);
     void delete(int id);
