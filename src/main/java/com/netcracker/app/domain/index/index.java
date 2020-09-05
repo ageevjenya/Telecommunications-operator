@@ -1,7 +1,7 @@
 package com.netcracker.app.domain.index;
 
 import com.netcracker.app.domain.info.entities.networkcoveragemap.PointAcces;
-import com.netcracker.app.domain.info.repositories.networkcoveragemap.PointAccesRepo;
+import com.netcracker.app.domain.info.repositories.PointAccesRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

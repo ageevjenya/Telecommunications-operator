@@ -1,6 +1,6 @@
 package com.netcracker.app.domain.personalArea;
 
-import com.netcracker.app.domain.users.UserRepo;
+import com.netcracker.app.domain.users.repositories.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

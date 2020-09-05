@@ -1,4 +1,6 @@
-package com.netcracker.app.domain.users;
+package com.netcracker.app.domain.users.entities;
+
+import com.netcracker.app.domain.users.entities.User;
 
 import javax.persistence.*;
 
@@ -9,10 +11,14 @@ public class UserUsedTariff {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private Long idUser;
+    @OneToOne
+    @JoinColumn(name="user_id", nullable=false)
+    private User user;
+
     private float usedInternet;
     private float usedMinutes;
     private float usedSms;
+
 
     public Long getId() {
         return id;
@@ -22,12 +28,12 @@ public class UserUsedTariff {
         this.id = id;
     }
 
-    public Long getIdUser() {
-        return idUser;
+    public User getUser() {
+        return user;
     }
 
-    public void setIdUser(Long idUser) {
-        this.idUser = idUser;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public float getUsedInternet() {

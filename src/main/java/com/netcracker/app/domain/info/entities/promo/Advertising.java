@@ -1,5 +1,5 @@
 package com.netcracker.app.domain.info.entities.promo;
-import com.netcracker.app.domain.users.User;
+import com.netcracker.app.domain.users.entities.User;
 
 import javax.persistence.*;
 

@@ -1,6 +1,6 @@
 package com.netcracker.app.domain.info.entities.networkcoveragemap;
 
-import com.netcracker.app.domain.info.repositories.networkcoveragemap.PointAccesRepo;
+import com.netcracker.app.domain.info.repositories.PointAccesRepo;
 
 import java.util.*;
 

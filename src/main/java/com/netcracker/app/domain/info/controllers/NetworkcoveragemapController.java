@@ -1,4 +1,4 @@
-package com.netcracker.app.domain.info.controllers.networkcoveragemap;
+package com.netcracker.app.domain.info.controllers;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.netcracker.app.domain.info.entities.networkcoveragemap.PointAcces;
 import com.netcracker.app.domain.info.entities.networkcoveragemap.TypePointAcces;
-import com.netcracker.app.domain.info.repositories.networkcoveragemap.PointAccesRepo;
+import com.netcracker.app.domain.info.repositories.PointAccesRepo;
 
 import java.util.*;
 import java.util.stream.Collectors;

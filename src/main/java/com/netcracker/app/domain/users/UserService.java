@@ -1,5 +1,6 @@
 package com.netcracker.app.domain.users;
 
+import com.netcracker.app.domain.users.repositories.UserRepo;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

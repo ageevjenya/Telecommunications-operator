@@ -1,5 +1,8 @@
-package com.netcracker.app.domain.users;
+package com.netcracker.app.domain.users.controllers;
 
+import com.netcracker.app.domain.users.entities.Role;
+import com.netcracker.app.domain.users.entities.User;
+import com.netcracker.app.domain.users.repositories.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;

@@ -1,4 +1,4 @@
-package com.netcracker.app.domain.info.repositories.networkcoveragemap;
+package com.netcracker.app.domain.info.repositories;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;

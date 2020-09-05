@@ -1,13 +1,12 @@
 package com.netcracker.app.domain.tariffs.repositories;
 
-import org.springframework.data.repository.CrudRepository;
-import com.netcracker.app.domain.tariffs.entities.Internet;
+import com.netcracker.app.domain.tariffs.entities.TariffHome;
 
 import java.util.Optional;
 
-public interface InternetRepo extends TariffRepository<Internet> {
-    Iterable<Internet> findByName(String name);
-    Optional<Internet> findById(Integer id);
+public interface TariffHomeRepo extends TariffRepository<TariffHome> {
+    Iterable<TariffHome> findByName(String name);
+    Optional<TariffHome> findById(Integer id);
     void deleteById(Integer id);
 
 //    @Modifying

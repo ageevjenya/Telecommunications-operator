@@ -1,7 +1,7 @@
 package com.netcracker.app.domain.info.controllers.contacts;
 
 import com.netcracker.app.domain.info.entities.networkcoveragemap.PointAcces;
-import com.netcracker.app.domain.info.repositories.networkcoveragemap.PointAccesRepo;
+import com.netcracker.app.domain.info.repositories.PointAccesRepo;
 import com.netcracker.app.domain.info.services.contacts.ContactsServiceImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
