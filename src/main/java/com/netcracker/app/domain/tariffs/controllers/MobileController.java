@@ -1,6 +1,6 @@
 package com.netcracker.app.domain.tariffs.controllers;
 
-import com.netcracker.app.domain.tariffs.entities.Mobile;
+import com.netcracker.app.domain.tariffs.entities.TariffMobile;
 import com.netcracker.app.domain.tariffs.services.MobileService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,7 +10,7 @@ import javax.transaction.Transactional;
 import java.util.Map;
 
 @Controller
-public class MobileController extends AbstractTariffController<Mobile, MobileService> {
+public class MobileController extends AbstractTariffController<TariffMobile, MobileService> {
 
     private final MobileService mobileService;
 
@@ -40,8 +40,8 @@ public class MobileController extends AbstractTariffController<Mobile, MobileSer
                          @RequestParam double gbInternet,
                          @RequestParam String description,
                          Map<String, Object> model) {
-        Mobile mobile = new Mobile(minutes, sms, priceOfMonth, name, description, gbInternet);
-        mobileService.add(mobile);
+        TariffMobile tariffMobile = new TariffMobile(minutes, sms, priceOfMonth, name, description, gbInternet);
+        mobileService.add(tariffMobile);
         model.put("mobileTariffs", mobileService.getAll());
         return "redirect:/tariffs";
     }
@@ -80,7 +80,7 @@ public class MobileController extends AbstractTariffController<Mobile, MobileSer
 
     @Transactional
     @GetMapping("/delete/{id}")
-    public String delete(@PathVariable("id") Integer id, Map<String, Object> model) {
+    public String delete(@PathVariable("id") Integer id, Map<String, Object> model) throws Exception {
         mobileService.delete(id);
         model.put("mobileTariffs", mobileService.getAll());
         return "redirect:/tariffs";

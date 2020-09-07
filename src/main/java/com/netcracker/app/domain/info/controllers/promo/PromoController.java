@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import com.netcracker.app.domain.info.entities.promo.Promo;
 
-import com.netcracker.app.domain.users.User;
+import com.netcracker.app.domain.users.entities.User;
 import com.netcracker.app.domain.info.repositories.promo.PromoRepo;
 
 import javax.transaction.Transactional;

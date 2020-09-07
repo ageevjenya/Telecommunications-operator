@@ -1,4 +1,4 @@
-package com.netcracker.app.domain.users;
+package com.netcracker.app.domain.users.entities;
 
 import org.springframework.security.core.GrantedAuthority;
 

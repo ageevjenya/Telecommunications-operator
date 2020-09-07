@@ -9,5 +9,4 @@ import java.util.List;
 
 @Component
 public abstract class AbstractTariffService<E extends Tariff> implements TariffService<E> {
-
 }

@@ -57,7 +57,7 @@
            <input type="text" class="form-control" name="priceOfMonth" placeholder="Enter price of month" />
            <input type="text" class="form-control" name="minutes" placeholder="Enter amount of minutes" />
            <input type="text" class="form-control" name="sms" placeholder="Enter amount of sms" />
-           <input type="text" class="form-control" name="gbInternet" placeholder="Enter GB of internet" />
+           <input type="text" class="form-control" name="gbInternet" placeholder="Enter GB of tariffHome" />
            <input type="text" class="form-control" name="description" placeholder="Enter description" />
             <input type="hidden" name="_csrf" value="${_csrf.token}"/>
            <button type="submit" class="btn btn-default">Обновить</button>
@@ -72,7 +72,7 @@
            <input type="text" class="form-control" name="priceOfMonth" placeholder="Enter price of month" />
            <input type="text" class="form-control" name="minutes" placeholder="Enter amount of minutes" />
            <input type="text" class="form-control" name="sms" placeholder="Enter amount of sms" />
-            <input type="text" class="form-control" name="gbInternet" placeholder="Enter GB of internet" />
+            <input type="text" class="form-control" name="gbInternet" placeholder="Enter GB of tariffHome" />
            <input type="text" class="form-control" name="description" placeholder="Enter description" />
             <input type="hidden" name="_csrf" value="${_csrf.token}"/>
            <button type="submit" class="btn btn-default">Добавить</button>

@@ -5,7 +5,7 @@
     <#if isAdmin>
         <br>
     <div>
-        <form method="post" action="/internet" class="form-inline">
+        <form method="post" action="/tariffHome" class="form-inline">
             <input type="text" class="form-control" name="name" placeholder="Введите название пакета"/>
             <input type="text" class="form-control" name="priceOfMonth" placeholder="Укажите цену пакета"/>
             <input type="text" class="form-control" name="gbInternet" placeholder="Укажите количество GB интернета"/>
@@ -19,7 +19,7 @@
     <h3>Домашний интернет</h3>
     <br>
 
-    <form method="get" action="/internet" class="form-inline">
+    <form method="get" action="/tariffHome" class="form-inline">
         <input type="text" class="form-control" name="filter" value="${filter}" placeholder="Введите объем пакета"/>
         <button type="submit" class="btn btn-default">Найти</button>
     </form>
@@ -28,7 +28,7 @@
 
     <#if isAdmin>
     <br>
-    <form method="post" action="/internet/delete" class="form-inline">
+    <form method="post" action="/tariffHome/delete" class="form-inline">
         <input type="text" class="form-control" name="packId" placeholder="Введите id пакета"/>
         <input type="hidden" name="_csrf" value="${_csrf.token}"/>
         <button type="submit" class="btn btn-default">Удалить</button>
@@ -38,7 +38,7 @@
     <div> ${deleteIdCheck}</div>
     <br>
 
-    <form method="post" action="/internet/update" class="form-inline">
+    <form method="post" action="/tariffHome/update" class="form-inline">
         <input type="text" class="form-control" name="packId" placeholder="Введите id пакета"/>
         <input type="text" class="form-control" name="name" placeholder="Введите название пакета"/>
         <input type="text" class="form-control" name="priceOfMonth" placeholder="Укажите цену пакета"/>
@@ -67,7 +67,7 @@
                 <td>${internetpack.id}</td>
                 <td>${internetpack.name}</td>
                 <td>${internetpack.priceOfMonth}</td>
-                <td>${internetpack.gbInternet}</td>
+                <td>${internetpack.gbOfInternet}</td>
                 <td>${internetpack.description}</td>
                 <#if !isAdmin>
                     <td>
@@ -77,7 +77,7 @@
             </tr>
         <#else>
             <br>
-            <strong>No pack internet</strong>
+            <strong>No pack tariffHome</strong>
             <br>
         </#list>
     </table>

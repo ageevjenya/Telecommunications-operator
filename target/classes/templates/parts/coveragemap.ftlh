@@ -1,6 +1,11 @@
 <#macro networkcoveragemap pointsacces>
+    <head>
 
-    <div id="map" style="width:900px; height:500px;"></div>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"/>
+        <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+
+    </head>
+    <div id="map" style="width:1100px; height:500px;"></div>
     <script>
         // Creating map options
         var mapOptions = {

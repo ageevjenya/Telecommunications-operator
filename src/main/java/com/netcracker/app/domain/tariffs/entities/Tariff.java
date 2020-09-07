@@ -1,20 +1,41 @@
 package com.netcracker.app.domain.tariffs.entities;
 
+import com.netcracker.app.domain.users.entities.User;
+
 import javax.persistence.*;
+import java.util.Set;
 
 @MappedSuperclass
 public abstract class Tariff {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
-
-    private double priceOfMonth;
-
+    private Long id;
     private String name;
-
     private String description;
-
+    private double priceOfMonth;
     private double gbInternet;
+//    @OneToMany//(mappedBy="user") с этим не работает
+//    private Set<User> users;
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public double getGbInternet() {
+        return gbInternet;
+    }
+
+    public void setGbInternet(double gbInternet) {
+        this.gbInternet = gbInternet;
+    }
+/*
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
+    }*/
 
     public String getDescription() {
         return description;
@@ -46,7 +67,7 @@ public abstract class Tariff {
         this.name = name;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
@@ -58,11 +79,4 @@ public abstract class Tariff {
         this.gbInternet = gbInternet;
     }
 
-    public double getGbInternet() {
-        return gbInternet;
-    }
-
-    public void setGbInternet(double gbInternet) {
-        this.gbInternet = gbInternet;
-    }
 }
