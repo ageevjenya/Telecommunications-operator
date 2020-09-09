@@ -40,7 +40,7 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/personalArea">Личый кабинет</a>
+                <a class="nav-link" href="/personalArea">Личный кабинет</a>
             </li>
             <#if isAdmin>
                 <li class="nav-item">

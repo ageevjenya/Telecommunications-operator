@@ -1,10 +1,12 @@
 package com.netcracker.app.domain.users.entities;
 
+import com.netcracker.app.domain.tariffs.entities.TariffHome;
 import com.netcracker.app.domain.tariffs.entities.TariffMobile;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.Set;
 
@@ -21,27 +23,52 @@ public class User implements UserDetails {
     private String firstName;
     private String middleName;
     private String lastName;
-    private Integer age;
+    private LocalDate birthday;
     private String number;
     private boolean active;
 
     @ManyToOne
-    @JoinColumn(name="tariffMobile_id")
+    @JoinColumn(name = "tariffMobile_id")
     private TariffMobile tariffMobile;
 
     @ManyToOne
-    @JoinColumn(name="tariffHome_id")
-    private TariffMobile tariffHome;
+    @JoinColumn(name = "tariffHome_id")
+    private TariffHome tariffHome;
 
-    @OneToOne
-    @JoinColumn(name="userUsedTariff_id")
-    private UserUsedTariff userUsedTariff;
+    @OneToOne(optional = false, cascade = CascadeType.ALL)
+    @JoinColumn(name = "userUsedTariffMobile_id")
+    private UserUsedTariffMobile userUsedTariffMobile;
 
 
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
     @Enumerated(EnumType.STRING)
     private Set<Role> roles;
+
+    public User() {
+    }
+
+    ;
+
+    public User(String username,
+                String password,
+                String firstName,
+                String middleName,
+                String lastName,
+                LocalDate birthday,
+                String number,
+                boolean active,
+                Set<Role> roles) {
+        this.username = username;
+        this.password = password;
+        this.firstName = firstName;
+        this.middleName = middleName;
+        this.lastName = lastName;
+        this.birthday = birthday;
+        this.number = number;
+        this.active = active;
+        this.roles = roles;
+    }
 
     public Long getId() {
         return id;
@@ -93,12 +120,12 @@ public class User implements UserDetails {
         this.lastName = lastName;
     }
 
-    public Integer getAge() {
-        return age;
+    public LocalDate getBirthday() {
+        return birthday;
     }
 
-    public void setAge(Integer age) {
-        this.age = age;
+    public void setBirthday(LocalDate birthday) {
+        this.birthday = birthday;
     }
 
     public String getNumber() {
@@ -117,28 +144,28 @@ public class User implements UserDetails {
         this.active = active;
     }
 
-    public TariffMobile getMobileTariff() {
+    public TariffMobile getTariffMobile() {
         return tariffMobile;
     }
 
-    public void setMobileTariff(TariffMobile tariffMobile) {
+    public void setTariffMobile(TariffMobile tariffMobile) {
         this.tariffMobile = tariffMobile;
     }
 
-    public TariffMobile getTariffHome() {
+    public TariffHome getTariffHome() {
         return tariffHome;
     }
 
-    public void setTariffHome(TariffMobile tariffHome) {
+    public void setTariffHome(TariffHome tariffHome) {
         this.tariffHome = tariffHome;
     }
 
-    public UserUsedTariff getUserUsedTariff() {
-        return userUsedTariff;
+    public UserUsedTariffMobile getUserUsedTariffMobile() {
+        return userUsedTariffMobile;
     }
 
-    public void setUserUsedTariff(UserUsedTariff userUsedTariff) {
-        this.userUsedTariff = userUsedTariff;
+    public void setUserUsedTariffMobile(UserUsedTariffMobile userUsedTariffMobile) {
+        this.userUsedTariffMobile = userUsedTariffMobile;
     }
 
     public Set<Role> getRoles() {
@@ -149,7 +176,7 @@ public class User implements UserDetails {
         this.roles = roles;
     }
 
-    public boolean isAdmin(){
+    public boolean isAdmin() {
         return roles.contains(Role.ADMIN);
     }
 

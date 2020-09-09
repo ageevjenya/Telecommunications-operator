@@ -2,19 +2,25 @@ package com.netcracker.app.domain.users.controllers;
 
 import com.netcracker.app.domain.users.entities.Role;
 import com.netcracker.app.domain.users.entities.User;
+import com.netcracker.app.domain.users.entities.UserUsedTariffMobile;
 import com.netcracker.app.domain.users.repositories.UserRepo;
+import com.netcracker.app.domain.users.repositories.UserUsedTariffRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import java.time.LocalDate;
 import java.util.Collections;
-import java.util.Map;
 
 @Controller
 public class RegistrationController {
     @Autowired
     private UserRepo userRepo;
+    @Autowired
+    private UserUsedTariffRepo userUsedTariffRepo;
 
     @GetMapping("/registration")
     public String registration() {
@@ -22,16 +28,33 @@ public class RegistrationController {
     }
 
     @PostMapping("/registration")
-    public String addUser(User user, Map<String, Object> model) {
+    public String addUser(@RequestParam(required = false) String username,
+                          @RequestParam(required = false) String password,
+                          @RequestParam(required = false) String number,
+                          @RequestParam(required = false) String lastName,
+                          @RequestParam(required = false) String firstName,
+                          @RequestParam(required = false) String middleName,
+                          @RequestParam(required = false) String birthday,   Model model) {
+        System.out.println(birthday);//User user,
 
-        User userFromDb = userRepo.findByUsername(user.getUsername());
+        User userFromDb = userRepo.findByUsername(username);
         if (userFromDb != null) {
-            model.put("message", "User exists!");
+            model.addAttribute("message","Пользователь уже существет!");
+
             return "registration";
         }
-        user.setActive(true);
-        user.setRoles(Collections.singleton(Role.USER));
+        if (username == null || password == null || number == null || lastName == null ||
+                firstName == null || middleName == null || birthday == null) {
+            model.addAttribute("message","Заполните все данные пожайлуста");
+
+            return "registration";
+        }
+        User user = new User(username, password, firstName, middleName, lastName, LocalDate.parse(birthday),
+                number, true,   Collections.singleton(Role.USER));
+        UserUsedTariffMobile userUsedTariffMobile = new UserUsedTariffMobile(user, 0, 0, 0);
+        user.setUserUsedTariffMobile(userUsedTariffMobile);
         userRepo.save(user);
+        userUsedTariffRepo.save(userUsedTariffMobile);
         return "redirect:/login";
     }
 }
