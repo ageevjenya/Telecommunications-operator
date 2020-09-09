@@ -1,4 +1,4 @@
-package com.netcracker.app.domain.info.entities;
+package com.netcracker.app.domain.info.entities.networkcoveragemap;
 
 import com.netcracker.app.domain.info.repositories.PointAccesRepo;
 
@@ -7,7 +7,7 @@ import java.util.*;
 import javax.persistence.*;
 
 @Entity
-public class PointAcces  {
+public class PointAcces {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,9 +22,8 @@ public class PointAcces  {
     private String info;
 
 
-
     @ElementCollection(targetClass = TypePointAcces.class, fetch = FetchType.EAGER)
-    @CollectionTable(name = "type_point_acces", joinColumns = @JoinColumn(name = "pointacces_id"))
+    //@CollectionTable(name = "type_point_acces", joinColumns = @JoinColumn(name = "pointacces_id"))
     @Enumerated(EnumType.STRING)
     private Set<TypePointAcces> typePoint;
 
@@ -54,16 +53,13 @@ public class PointAcces  {
     }
 
 
-
-
-    public  Set<TypePointAcces> getTypePoint() {
+    public Set<TypePointAcces> getTypePoint() {
         return typePoint;
     }
 
-    public void setTypePoint( Set<TypePointAcces> typesPoint) {
+    public void setTypePoint(Set<TypePointAcces> typesPoint) {
         this.typePoint = typesPoint;
     }
-
 
 
     public Integer getId() {
@@ -90,7 +86,7 @@ public class PointAcces  {
         this.info = info;
     }
 
-    public static void newSomePoint(PointAccesRepo pointAccesRepo){
+    public static void newSomePoint(PointAccesRepo pointAccesRepo) {
         float minLati = (float) 55.315128;
         float minLong = (float) 36.853015;
         float maxLati = (float) 56.166084;
@@ -98,21 +94,29 @@ public class PointAcces  {
         Set<TypePointAcces> set = new LinkedHashSet<TypePointAcces>();
         set.add(TypePointAcces.G2);
         final Random random = new Random();
-        for (int i = 0;  i < 1000; i++) {
+        int a = 2;
+        int b = 3;
+        int c;
+        for (int i =0; i < 1000; i++) {
+            set.add(TypePointAcces.G2);
+            c = i;
+            if ((c % a) == 0) {
+                set.add(TypePointAcces.G3);
+            }
+            if ((c % b) == 0) {
+                set.add(TypePointAcces.G4);
+            }
 
-            if (i % 2 == 0)
-            set.add(TypePointAcces.G3);
-
-            set.add(TypePointAcces.G4);
             PointAcces pointAcces = new PointAcces();
-            pointAcces.setLatitude(minLati + random.nextFloat() * (maxLati-minLati));
-            pointAcces.setLongitude(minLong + random.nextFloat() * (maxLong-minLong));
+            pointAcces.setLatitude(minLati + random.nextFloat() * (maxLati - minLati));
+            pointAcces.setLongitude(minLong + random.nextFloat() * (maxLong - minLong));
             pointAcces.setRadius(3000 + random.nextInt(1500));
 
             pointAcces.setTypePoint(set);
             pointAcces.setTitle("Адрес точки доступа");
             pointAcces.setInfo("Дополниетльная информация");
             pointAccesRepo.save(pointAcces);
+            set.clear();
         }
     }
 }

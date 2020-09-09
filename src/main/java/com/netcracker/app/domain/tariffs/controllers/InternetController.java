@@ -1,6 +1,7 @@
 package com.netcracker.app.domain.tariffs.controllers;
 
-import com.netcracker.app.domain.tariffs.repositories.InternetRepo;
+import com.netcracker.app.domain.tariffs.entities.TariffHome;
+import com.netcracker.app.domain.tariffs.repositories.TariffHomeRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,50 +9,50 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import com.netcracker.app.domain.tariffs.entities.Internet;
 
 import java.util.Map;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/internet")
+@RequestMapping("/tariffHome")
 public class InternetController {
 
-    private final InternetRepo internetRepository;
+    @Autowired
+    private final TariffHomeRepo tariffHomeRepository;
 
-    public InternetController(InternetRepo internetRepository) {
-        this.internetRepository = internetRepository;
+    public InternetController(TariffHomeRepo tariffHomeRepository) {
+        this.tariffHomeRepository = tariffHomeRepository;
     }
 
     @GetMapping
     public String internet(@RequestParam(required = false, defaultValue = "") String filter, Model model) {
 
-        Iterable<Internet> internetRepositorys;
+        Iterable<TariffHome> internetRepositorys;
         if (filter != null && !filter.isEmpty()) {
-            internetRepositorys = internetRepository.findByName(filter);
+            internetRepositorys = tariffHomeRepository.findByName(filter);
         } else {
-            internetRepositorys = internetRepository.findAll();
+            internetRepositorys = tariffHomeRepository.findAll();
         }
 
         model.addAttribute("internetpacks", internetRepositorys);
         model.addAttribute("filter", filter);
         model.addAttribute("deleteIdCheck", "");
-        return "internet";
+        return "tariffHome";
     }
 
-    @PostMapping
+    @PostMapping("/add")
     public String add(@RequestParam String name,
                       @RequestParam double priceOfMonth,
                       @RequestParam double gbInternet,
                       @RequestParam String description,
                       Model model) {
-        Internet internet = new Internet(name, priceOfMonth, gbInternet, description);
-        internetRepository.save(internet);
-        Iterable<Internet> internetRepositorys = internetRepository.findAll();
+        TariffHome tariffHome = new TariffHome(name, priceOfMonth, gbInternet, description);
+        tariffHomeRepository.save(tariffHome);
+        Iterable<TariffHome> internetRepositorys = tariffHomeRepository.findAll();
         model.addAttribute("internetpacks", internetRepositorys);
         model.addAttribute("deleteIdCheck", "");
         model.addAttribute("filter", "");
-        return "internet";
+        return "tariffHome";
     }
 
 
@@ -59,19 +60,19 @@ public class InternetController {
     @PostMapping("/delete")
     public String delete(@RequestParam Integer packId, Model model) {
 
-        Optional<Internet> packInternet = internetRepository.findById(packId);
+        Optional<TariffHome> packInternet = tariffHomeRepository.findById(packId);
 
         if (!packInternet.isPresent()) {
             model.addAttribute("deleteIdCheck", "No pack internet with such index!");
         } else {
-            internetRepository.deleteById(packId);
+            tariffHomeRepository.deleteById(packId);
             model.addAttribute("deleteIdCheck", "");
         }
-        Iterable<Internet> internetRepositorys = internetRepository.findAll();
+        Iterable<TariffHome> internetRepositorys = tariffHomeRepository.findAll();
         model.addAttribute("internetpacks", internetRepositorys);
         model.addAttribute("filter", "");
 
-        return "internet";
+        return "tariffHome";
     }
 
 
@@ -79,30 +80,30 @@ public class InternetController {
     public String update(
             @RequestParam(required = false) String name,
             @RequestParam(required = false) double priceOfMonth,
-            @RequestParam(required = false) double gbInternet,
+            @RequestParam(required = false) double gbOfInternet,
             @RequestParam(required = false) String description,
             @RequestParam Map<String, String> form,
-            @RequestParam("packId") Internet internet, Model model) {
-        if (internet != null) {
+            @RequestParam("packId") TariffHome tariffHome, Model model) {
+        if (tariffHome != null) {
             if (!name.isEmpty()) {
-                internet.setName(name);
+                tariffHome.setName(name);
             }
             if (priceOfMonth != 0) {
-                internet.setPriceOfMonth(priceOfMonth);
+                tariffHome.setPriceOfMonth(priceOfMonth);
             }
-            if (gbInternet != 0) {
-                internet.setGbInternet(gbInternet);
+            if (gbOfInternet != 0) {
+                tariffHome.setGbInternet(gbOfInternet);
             }
             if (!description.isEmpty()) {
-                internet.setDescription(description);
+                tariffHome.setDescription(description);
             }
         }
-        internetRepository.save(internet);
-        Iterable<Internet> internetRepositorys = internetRepository.findAll();
+        tariffHomeRepository.save(tariffHome);
+        Iterable<TariffHome> internetRepositorys = tariffHomeRepository.findAll();
         model.addAttribute("internetpacks", internetRepositorys);
         model.addAttribute("filter", "");
         model.addAttribute("deleteIdCheck", "");
-        return "internet";
+        return "tariffHome";
     }
 
 

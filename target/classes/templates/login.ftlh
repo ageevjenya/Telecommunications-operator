@@ -2,8 +2,13 @@
 <#import "parts/login.ftlh" as l>
 
 <@c.page>
-
-<@l.login "/login" false />
+    <div class="container">
+        <div class="row">
+            <div class="col mx-1 mt-3">
+                <@l.login "/login" false />
+            </div>
+        </div>
+    </div>
 </@c.page>
 
 

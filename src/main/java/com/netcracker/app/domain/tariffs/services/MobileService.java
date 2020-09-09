@@ -1,98 +1,102 @@
 package com.netcracker.app.domain.tariffs.services;
 
-import com.netcracker.app.domain.tariffs.repositories.MobileRepository;
-import com.netcracker.app.domain.tariffs.entities.Mobile;
+import com.netcracker.app.domain.tariffs.repositories.TariffMobileRepo;
+import com.netcracker.app.domain.tariffs.entities.TariffMobile;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class MobileService extends AbstractTariffService<Mobile> {
+public class MobileService extends AbstractTariffService<TariffMobile> {
 
-    private final MobileRepository mobileRepository;
+    private final TariffMobileRepo tariffMobileRepo;
 
-    public MobileService(MobileRepository mobileRepository) {
-        this.mobileRepository = mobileRepository;
+    public MobileService(TariffMobileRepo tariffMobileRepo) {
+        this.tariffMobileRepo = tariffMobileRepo;
+    }
+
+    @Override
+    public void add(TariffMobile mobile) {
+        tariffMobileRepo.saveAndFlush(mobile);
+    }
+
+    @Override
+    public void delete(int id) throws Exception {
+        if (tariffMobileRepo.existsById(id)) {
+            tariffMobileRepo.deleteById(id);
+        } else {
+            throw new Exception();
+        }
+    }
+
+    @Override
+    public List<TariffMobile> getAll() {
+        return tariffMobileRepo.findAll();
     }
 
     @Override
     public boolean existsById(int id) {
-        return mobileRepository.existsById(id);
+        return tariffMobileRepo.existsById(id);
     }
 
     @Override
-    public void add(Mobile mobile) {
-        mobileRepository.saveAndFlush(mobile);
+    public Iterable<TariffMobile> getAllByName(String name) {
+        return tariffMobileRepo.getAllByName(name);
     }
 
-    @Override
-    public void delete(int id) {
-        mobileRepository.deleteById(id);
-    }
-
-    @Override
-    public List<Mobile> getAll() {
-        return mobileRepository.findAll();
-    }
-
-    @Override
-    public Iterable<Mobile> getAllByName(String name) {
-        return mobileRepository.getAllByName(name);
-    }
-
-    public Mobile getById(int id) {
-        return mobileRepository.getById(id);
+    public TariffMobile getById(int id) {
+        return tariffMobileRepo.getById(id);
     }
 
     @Override
     public void updateName(String name, int id) {
-        if (mobileRepository.existsById(id) && name != null) {
-            Mobile mobile = mobileRepository.getById(id);
-            mobile.setName(name);
-            mobileRepository.saveAndFlush(mobile);
+        if (tariffMobileRepo.existsById(id) && name != null) {
+            TariffMobile tariffMobile = tariffMobileRepo.getById(id);
+            tariffMobile.setName(name);
+            tariffMobileRepo.saveAndFlush(tariffMobile);
         }
     }
 
     @Override
     public void updatePriceOfMonth(double priceOfMonth, int id) {
-        if (mobileRepository.existsById(id) && priceOfMonth != 0) {
-            Mobile mobile = mobileRepository.getById(id);
-            mobile.setPriceOfMonth(priceOfMonth);
-            mobileRepository.saveAndFlush(mobile);
+        if (tariffMobileRepo.existsById(id) && priceOfMonth != 0) {
+            TariffMobile tariffMobile = tariffMobileRepo.getById(id);
+            tariffMobile.setPriceOfMonth(priceOfMonth);
+            tariffMobileRepo.saveAndFlush(tariffMobile);
         }
     }
 
     @Override
     public void updateDescription(String description, int id) {
-        if (mobileRepository.existsById(id) && description != null) {
-            Mobile mobile = mobileRepository.getById(id);
-            mobile.setDescription(description);
-            mobileRepository.saveAndFlush(mobile);
+        if (tariffMobileRepo.existsById(id) && description != null) {
+            TariffMobile tariffMobile = tariffMobileRepo.getById(id);
+            tariffMobile.setDescription(description);
+            tariffMobileRepo.saveAndFlush(tariffMobile);
         }
     }
 
     @Override
     public void updateGbInternet(double gbInternet, int id) {
-        if (mobileRepository.existsById(id) && gbInternet != 0) {
-            Mobile mobile = mobileRepository.getById(id);
-            mobile.setGbInternet(gbInternet);
-            mobileRepository.saveAndFlush(mobile);
+        if (tariffMobileRepo.existsById(id) && gbInternet != 0) {
+            TariffMobile tariffMobile = tariffMobileRepo.getById(id);
+            tariffMobile.setGbInternet(gbInternet);
+            tariffMobileRepo.saveAndFlush(tariffMobile);
         }
     }
 
     public void updateMinutes(int minutes, int id) {
-        if (mobileRepository.existsById(id) && minutes != 0) {
-            Mobile mobile = mobileRepository.getById(id);
-            mobile.setMinutes(minutes);
-            mobileRepository.saveAndFlush(mobile);
+        if (tariffMobileRepo.existsById(id) && minutes != 0) {
+            TariffMobile tariffMobile = tariffMobileRepo.getById(id);
+            tariffMobile.setMinutes(minutes);
+            tariffMobileRepo.saveAndFlush(tariffMobile);
         }
     }
 
     public void updateSms(int sms, int id) {
-        if (mobileRepository.existsById(id) && sms != 0) {
-            Mobile mobile = mobileRepository.getById(id);
-            mobile.setSms(sms);
-            mobileRepository.saveAndFlush(mobile);
+        if (tariffMobileRepo.existsById(id) && sms != 0) {
+            TariffMobile tariffMobile = tariffMobileRepo.getById(id);
+            tariffMobile.setSms(sms);
+            tariffMobileRepo.saveAndFlush(tariffMobile);
         }
     }
 }

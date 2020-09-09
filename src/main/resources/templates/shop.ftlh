@@ -16,7 +16,7 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownDTariffs">
                         <a class="dropdown-item" href="/tariffs">Мобильная связь</a>
-                        <a class="dropdown-item" href="/internet">Домашний интернет</a>
+                        <a class="dropdown-item" href="/tariffHome">Домашний интернет</a>
                     </div>
                 </li>
                 <p class="card-text"><small class="text-muted">Все тарифы актуальны</small></p>
