@@ -1,5 +1,8 @@
 <#import "parts/common.ftlh" as c>
 <#import "parts/coveragemap.ftlh" as n>
+<#import "parts/commoncontacts.ftlh" as cont>
+<#import "parts/comwork.ftlh" as work>
+<#import "parts/comfaq.ftlh" as fq>
 <@c.page>
 
     <br>
@@ -12,7 +15,9 @@
       <a class="btn btn-light" href="/shop" role="button">Услуги</a>
     </div>
     <br>
-    Здесь описание нашей компании ляляля
+    <div class="col mx-1">
+        Здесь описание нашей компании ляляля
+    </div>
     <br><br>
 
     <div class="container">
@@ -42,9 +47,9 @@
                                     Раскрыть
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                    <p><a href="/contacts" class="card-link">Контакты</a></p>
+                                    <p><a href="#contacts" class="card-link">Контакты</a></p>
                                     <p><a href="#networkcoveragemap" class="card-link">Карта покрытия</a></p>
-                                    <p><a href="/work" class="card-link">Работа</a></p>
+                                    <p><a href="#work" class="card-link">Работа</a></p>
                                 </div>
                             </div>
                         </div>
@@ -56,7 +61,7 @@
                             <h6 class="card-subtitle mb-2 text-muted">Ваш BTC</h6>
                             <p class="card-text">Если у Вас есть вопросы, возможно мы уже на них ответили на этой
                                 странице</p>
-                            <a href="/faq" class="card-link">F.A.Q.</a>
+                            <a href="#faq" class="card-link">F.A.Q.</a>
                         </div>
                     </div>
                 </div>
@@ -64,12 +69,34 @@
         </div>
         <div class="row">
             <div class="col mx-1">
+                <p><a name="contacts"></a></p>
+                <@cont.comcontacts/>
+                <a href="/contacts" class="card-link">Подробнее</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col mx-1">
                 <p><a name="networkcoveragemap"></a></p>
                 <a href="/networkcoveragemap" class="card-link">Подробнее</a>
                 <@n.networkcoveragemap pointsacces />
-
+            </div>
+        </div>
+        <div class="row">
+            <div class="col mx-1">
+                <p><a name="work"></a></p>
+                <@work.comwork/>
+                <a href="/work" class="card-link">Подробнее</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col mx-1">
+                <p><a name="faq"></a></p>
+                <@fq.comfaq/>
+                <br>
+                <a href="/faq" class="card-link">Подробнее</a>
             </div>
         </div>
     </div>
+    <br>
 
 </@c.page>

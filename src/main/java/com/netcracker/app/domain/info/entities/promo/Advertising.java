@@ -1,5 +1,5 @@
 package com.netcracker.app.domain.info.entities.promo;
-import com.netcracker.app.domain.users.User;
+import com.netcracker.app.domain.users.entities.User;
 
 import javax.persistence.*;
 
@@ -31,7 +31,7 @@ public class Advertising {
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id")
+    //@JoinColumn(name = "user_id")
     private User author;
 
     public Integer getId() {

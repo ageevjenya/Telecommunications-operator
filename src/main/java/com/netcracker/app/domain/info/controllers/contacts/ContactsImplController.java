@@ -12,20 +12,9 @@ import javax.transaction.Transactional;
 @Controller
 public class ContactsImplController {
     private ContactsServiceImpl service;
-    private final PointAccesRepo pointAccesRepo;
 
-    public ContactsImplController(ContactsServiceImpl service, PointAccesRepo pointAccesRepo) {
+    public ContactsImplController(ContactsServiceImpl service) {
         this.service = service;
-        this.pointAccesRepo = pointAccesRepo;
-    }
-
-    @GetMapping("/info")
-    public String info(Model model) {
-
-        Iterable<PointAcces> pointsacces = pointAccesRepo.findAll();
-
-        model.addAttribute("pointsacces", pointsacces);
-        return "info";
     }
 
     @Transactional
