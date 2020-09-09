@@ -24,13 +24,12 @@
                 <a class="nav-link" href="/shop">Интернет-магазин</a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="/info" id="navbarDropdownInfo" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="/contacts" id="navbarDropdownInfo" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Инфо
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownInfo">
                     <a class="dropdown-item" href="/contacts">Контакты</a>
                     <a class="dropdown-item" href="/faq">F.A.Q.</a>
-                    <a class="dropdown-item" href="/info">О нас</a>
                     <a class="dropdown-item" href="/work">Работа</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="/promo">Акции</a>
@@ -40,7 +39,7 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/personalArea">Личый кабинет</a>
+                <a class="nav-link" href="/personalArea">Личный кабинет</a>
             </li>
             <#if isAdmin>
                 <li class="nav-item">

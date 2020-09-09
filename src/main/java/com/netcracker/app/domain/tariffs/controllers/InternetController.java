@@ -14,7 +14,7 @@ import java.util.Map;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/internet")
+@RequestMapping("/tariffHome")
 public class InternetController {
 
     @Autowired
@@ -37,10 +37,10 @@ public class InternetController {
         model.addAttribute("internetpacks", internetRepositorys);
         model.addAttribute("filter", filter);
         model.addAttribute("deleteIdCheck", "");
-        return "internet";
+        return "tariffHome";
     }
 
-    @PostMapping
+    @PostMapping("/add")
     public String add(@RequestParam String name,
                       @RequestParam double priceOfMonth,
                       @RequestParam double gbInternet,
@@ -52,7 +52,7 @@ public class InternetController {
         model.addAttribute("internetpacks", internetRepositorys);
         model.addAttribute("deleteIdCheck", "");
         model.addAttribute("filter", "");
-        return "internet";
+        return "tariffHome";
     }
 
 
@@ -72,7 +72,7 @@ public class InternetController {
         model.addAttribute("internetpacks", internetRepositorys);
         model.addAttribute("filter", "");
 
-        return "internet";
+        return "tariffHome";
     }
 
 
@@ -103,7 +103,7 @@ public class InternetController {
         model.addAttribute("internetpacks", internetRepositorys);
         model.addAttribute("filter", "");
         model.addAttribute("deleteIdCheck", "");
-        return "internet";
+        return "tariffHome";
     }
 
 

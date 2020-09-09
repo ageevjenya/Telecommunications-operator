@@ -5,7 +5,7 @@
     <#if isAdmin>
         <br>
     <div>
-        <form method="post" action="/tariffHome" class="form-inline">
+        <form method="post" action="/tariffHome/add" class="form-inline">
             <input type="text" class="form-control" name="name" placeholder="Введите название пакета"/>
             <input type="text" class="form-control" name="priceOfMonth" placeholder="Укажите цену пакета"/>
             <input type="text" class="form-control" name="gbInternet" placeholder="Укажите количество GB интернета"/>
@@ -67,7 +67,7 @@
                 <td>${internetpack.id}</td>
                 <td>${internetpack.name}</td>
                 <td>${internetpack.priceOfMonth}</td>
-                <td>${internetpack.gbOfInternet}</td>
+                <td>${internetpack.gbInternet}</td>
                 <td>${internetpack.description}</td>
                 <#if !isAdmin>
                     <td>

@@ -14,8 +14,8 @@ public abstract class Tariff {
     private String description;
     private double priceOfMonth;
     private double gbInternet;
-//    @OneToMany//(mappedBy="user") с этим не работает
-//    private Set<User> users;
+    @OneToMany
+    private Set<User> users;
 
     public void setId(Long id) {
         this.id = id;
@@ -28,14 +28,14 @@ public abstract class Tariff {
     public void setGbInternet(double gbInternet) {
         this.gbInternet = gbInternet;
     }
-/*
+
     public Set<User> getUsers() {
         return users;
     }
 
     public void setUsers(Set<User> users) {
         this.users = users;
-    }*/
+    }
 
     public String getDescription() {
         return description;

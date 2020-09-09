@@ -11,7 +11,7 @@ known = Session.SPRING_SECURITY_CONTEXT??
     >
 <#else>
     <#assign
-    name = "guest"
+    name = "гость"
     isAdmin = false
     >
 </#if>
