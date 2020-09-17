@@ -21,8 +21,8 @@
         <style type="text/css">
             * { margin: 0; padding: 0; }
             p { padding: 10px; }
-            #left { position: absolute; left: 0; top: 80px; width: 20%; }
-            #right { position: absolute; right: 0; top: 80px; width: 80%; }
+            #left { position: absolute; left: 0; top: 80px; width: 15%; }
+            #right { position: absolute; left: 20%; right: 30px; top: 80px; width: 80%; }
         </style>
     </head>
     <body>

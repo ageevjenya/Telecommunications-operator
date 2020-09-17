@@ -9,7 +9,7 @@
     </address>
 
     <address>
-        <a href="mailto:#">alesiknep@mail.ru</a>
+        <a href="mailto:#">${contact.email}</a>
     </address>
 </#list>
 </#macro>

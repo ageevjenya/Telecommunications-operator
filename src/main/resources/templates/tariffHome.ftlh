@@ -53,7 +53,9 @@
     <div>
     <table class="table table-hover">
         <tr>
-            <th>ID</th>
+            <#if isAdmin>
+                <th>ID</th>
+            </#if>
             <th>Пакет</th>
             <th>Цена, руб/мес</th>
             <th>Интернет, GB</th>
@@ -64,7 +66,9 @@
         </tr>
         <#list  internetpacks as internetpack>
             <tr>
-                <td>${internetpack.id}</td>
+                <#if isAdmin>
+                    <td>${internetpack.id}</td>
+                </#if>
                 <td>${internetpack.name}</td>
                 <td>${internetpack.priceOfMonth}</td>
                 <td>${internetpack.gbInternet}</td>

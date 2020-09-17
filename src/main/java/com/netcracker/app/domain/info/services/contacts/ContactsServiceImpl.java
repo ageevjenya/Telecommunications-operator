@@ -15,6 +15,14 @@ public class ContactsServiceImpl extends AbstractContactsService<ContactsImpl> {
         this.repository = repository;
     }
 
+    public ContactsImpl getOne(int id) throws Exception {
+        if (repository.existsById(id)) {
+            return repository.getOne(id);
+        } else {
+            throw new Exception();
+        }
+    }
+
     public void updateAddress(String address, int id) throws Exception {
         if (repository.existsById(id) && address != null) {
             ContactsImpl companyInfo = repository.getOne(id);
@@ -35,6 +43,14 @@ public class ContactsServiceImpl extends AbstractContactsService<ContactsImpl> {
         if (repository.existsById(id) && workHours != null) {
             ContactsImpl companyInfo = repository.getOne(id);
             companyInfo.setWorkHours(workHours);
+            repository.saveAndFlush(companyInfo);
+        }
+    }
+
+    public void updateEmail(String email, int id) {
+        if (repository.existsById(id) && email != null) {
+            ContactsImpl companyInfo = repository.getOne(id);
+            companyInfo.setEmail(email);
             repository.saveAndFlush(companyInfo);
         }
     }

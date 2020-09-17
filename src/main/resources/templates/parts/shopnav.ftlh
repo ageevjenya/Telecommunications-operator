@@ -1,11 +1,12 @@
 <nav class="nav flex-column">
-    <div class="accordion" id="accordionShop">
 
-        <div class="card">
-            <div class="card" id="headingMR">
+    <div class="accordion border-0" id="accordionShop">
+
+        <div class="card border-0">
+            <div class="card border-0" id="headingMR">
                 <h2 class="mb-0">
-                    <button class="btn btn-light btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseMR" aria-expanded="false" aria-controls="collapseMR">
-                        Модемы и роутеры
+                    <button class="btn btn-nowrap btn-block text-centre" type="button" data-toggle="collapse" data-target="#collapseMR" aria-expanded="false" aria-controls="collapseMR">
+                        <h6>Модемы и роутеры</h6>
                     </button>
                 </h2>
             </div>
@@ -18,10 +19,10 @@
                 </div>
             </div>
 
-            <div class="card" id="headingTech">
+            <div class="card border-0" id="headingTech">
                 <h2 class="mb-0">
-                    <button class="btn btn-light btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseTech" aria-expanded="false" aria-controls="collapseTech">
-                        Техника
+                    <button class="btn btn-nowrap btn-block text-centre" type="button" data-toggle="collapse" data-target="#collapseTech" aria-expanded="false" aria-controls="collapseTech">
+                        <h6>Техника</h6>
                     </button>
                 </h2>
             </div>
