@@ -3,6 +3,7 @@ package com.netcracker.app.domain.info.entities.resumes;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -19,7 +20,7 @@ public abstract class AbstractResume implements Resume {
 
     private String firstName;
     private String lastName;
-    private Calendar birthday;
+    private LocalDate birthday;
     private String phone;
     private String email;
     private String text;
@@ -115,7 +116,7 @@ public abstract class AbstractResume implements Resume {
         }
     }
 
-    public Calendar getBirthday() {
+    public LocalDate getBirthday() {
         return birthday;
     }
 
@@ -124,7 +125,6 @@ public abstract class AbstractResume implements Resume {
         birthDate = birthDate.trim();
         Matcher matcher = pattern.matcher(birthDate);
         if (matcher.matches()) {
-            Calendar calendar = Calendar.getInstance();
             int day = 0;
             int month = 0;
             int year = 0;
@@ -140,9 +140,12 @@ public abstract class AbstractResume implements Resume {
                 month = Integer.parseInt(digits[1]);
             }
             year = Integer.parseInt(digits[2]);
-            calendar.set(year, month, day);
+
+            Calendar calendar = Calendar.getInstance();
+            calendar.set(year, month - 1, day);
             if (calendar.isLenient()) {
-                this.birthday = calendar;
+                LocalDate date = LocalDate.of(year, month,day);
+                this.birthday = date;
             } else {
                 throw new Exception("Incorrect birthday");
             }

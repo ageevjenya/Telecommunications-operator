@@ -12,18 +12,16 @@
     </div>
 
     <div id="right">
-        <ul class="list-unstyled">
             <li class="media">
-                <img src="${tech.imgUrl}" class="align-self-start mr-3" alt="Modem image">
+                <img src="${tech.imgUrl}" class="align-self-center mr-3" style="width: 400px" alt="Modem image">
                 <div class="media-body">
                     <br><br>
-                    <h5 class="card-title">${tech.name}</h5>
+                    <h5 class="card-title p-2">${tech.name}</h5>
                     <p class="card-text">${tech.shortDescription}</p>
                     <p class="card-text">${tech.price}, руб</p>
                     <a class="btn btn-nowrap-light" href="#"><h5><strong>Купить</strong></h5></a>
                 </div>
             </li>
-        </ul>
 
         <br><br>
 

@@ -35,9 +35,5 @@ public class ResumeImpl extends AbstractResume {
         List<String> names = Arrays.asList(name.split(" "));
         return names;
     }
-
-    public String getBirthdayString() { //remove time and timezone
-        return getBirthday().getTime().toString();
-    }
     //Ctrl+Alt+I выравнивание
 }

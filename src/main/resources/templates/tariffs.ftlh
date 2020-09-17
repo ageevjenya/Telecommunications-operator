@@ -17,6 +17,9 @@
     <div>
       <table class="table table-hover">
         <tr>
+            <#if isAdmin>
+                <th>ID</th>
+            </#if>
           <th>Пакет</th>
           <th>Минуты</th>
           <th>SMS</th>
@@ -31,6 +34,9 @@
         </tr>
         <#list mobileTariffs as mobileTariff>
         <tr>
+            <#if isAdmin>
+                <td>${mobileTariff.id}</td>
+            </#if>
           <td>${mobileTariff.name}</td>
           <td>${mobileTariff.minutes}</td>
           <td>${mobileTariff.sms}</td>

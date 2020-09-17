@@ -16,4 +16,8 @@ public interface Contacts {
     String getWorkHours();
 
     void setWorkHours(String workHours);
+
+    String getEmail();
+
+    void setEmail(String email);
 }
