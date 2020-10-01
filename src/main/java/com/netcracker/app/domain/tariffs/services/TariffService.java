@@ -7,7 +7,7 @@ import java.util.List;
 public interface TariffService<E extends Tariff> {
 
     void add(E e);
-    void delete(int id);
+    void delete(int id) throws Exception;
     Iterable<E> getAllByName(String name);
     List<E> getAll();
     E getById(int id);

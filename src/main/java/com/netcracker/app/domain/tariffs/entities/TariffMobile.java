@@ -6,14 +6,14 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "TariffMobile")
+//@Table(name = "TariffMobile")
 public class TariffMobile extends Tariff {
 
     private double gbInternet;
     private int minutes;
 
     private int sms;
-    @OneToMany(mappedBy="user")
+    @OneToMany//(mappedBy="user")
     private Set<User> users;
 
     public TariffMobile(int minutes, int sms, double priceOfMonth, String name, String description, double gbInternet) {
@@ -23,12 +23,12 @@ public class TariffMobile extends Tariff {
         this.sms = sms;
     }
 
-    @Override
+    //@Override
     public Set<User> getUsers() {
         return users;
     }
 
-    @Override
+    //@Override
     public void setUsers(Set<User> users) {
         this.users = users;
     }

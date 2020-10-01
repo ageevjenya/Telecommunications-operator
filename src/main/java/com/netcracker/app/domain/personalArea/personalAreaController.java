@@ -40,7 +40,7 @@ public class personalAreaController {
         return "personalArea";
     }
 
-    @PostMapping
+    @PostMapping("/add")
     public String postpersonalArea(Model model) {
         User user = userRepo.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
         if (user != null) {

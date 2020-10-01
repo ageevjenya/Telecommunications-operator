@@ -80,7 +80,7 @@ public class MobileController extends AbstractTariffController<TariffMobile, Mob
 
     @Transactional
     @GetMapping("/delete/{id}")
-    public String delete(@PathVariable("id") Integer id, Map<String, Object> model) {
+    public String delete(@PathVariable("id") Integer id, Map<String, Object> model) throws Exception {
         mobileService.delete(id);
         model.put("mobileTariffs", mobileService.getAll());
         return "redirect:/tariffs";

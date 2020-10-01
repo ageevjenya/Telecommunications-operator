@@ -47,7 +47,7 @@ public class RegistrationController {
         }
         if (username == null || password == null || number == null || lastName == null ||
                 firstName == null || middleName == null || birthday == null) {
-            model.addAttribute("message","Заполните все данные пожайлуста");
+            model.addAttribute("message","Заполните все данные, пожайлуста");
 
             return "registration";
         }

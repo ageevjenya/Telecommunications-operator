@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
@@ -15,23 +16,28 @@ import javax.sql.DataSource;
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled=true)
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private final UserService userService;
+
     public WebSecurityConfig(UserService userService) {
         this.userService = userService;
     }
+
     @Autowired
     private DataSource dataSource;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/", "/registration",  "/static/**", "/networkcoveragemap", "/coveragemap","/contacts",
+                .antMatchers("/", "/registration", "/static/**", "/networkcoveragemap", "/coveragemap", "/contacts",
                         "/faq", "/index", "/info", "/resume", "/vacancy", "/work", "/yourResume", "/shop", "/tariffs",
-                        "/tariffsHome", "/resources/static/images/*").permitAll()
+                        "/tariffsHome", "/resources/static/images/*", "/main/resources/static/images/**", "/modems", "/modem", "/techs", "/tech",
+                        "/modems/**", "/techs/**").permitAll()
+
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -40,6 +46,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout()
                 .permitAll();
+
     }
 
     @Override
@@ -47,8 +54,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.jdbcAuthentication()
                 .dataSource(dataSource)
                 .passwordEncoder(NoOpPasswordEncoder.getInstance())
-                .usersByUsernameQuery("select username, password, active from usr where username=?1 or number=?1")  //or number=?
-        .authoritiesByUsernameQuery("select u.username, ur.roles from usr u inner join user_role ur on u.id = ur.user_id where u.username=?1 or u.number=?1"); //or u.number=?
+                .usersByUsernameQuery("select username, password, active from usr where username=?1 or number=?1")
+                .authoritiesByUsernameQuery("select u.username, ur.roles from usr u inner join user_role ur on u.id = ur.user_id where u.username=?1 or u.number=?1");
         auth.userDetailsService(userService)
                 .passwordEncoder(NoOpPasswordEncoder.getInstance());
     }

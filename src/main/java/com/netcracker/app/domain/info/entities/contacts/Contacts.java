@@ -1,6 +1,10 @@
 package com.netcracker.app.domain.info.entities.contacts;
 
 public interface Contacts {
+    String getPointName();
+
+    void setPointName(String pointName);
+
     String getAddress();
 
     void setAddress(String address) throws Exception;
@@ -12,4 +16,8 @@ public interface Contacts {
     String getWorkHours();
 
     void setWorkHours(String workHours);
+
+    String getEmail();
+
+    void setEmail(String email);
 }

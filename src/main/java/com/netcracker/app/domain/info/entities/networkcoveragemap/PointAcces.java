@@ -23,7 +23,7 @@ public class PointAcces {
 
 
     @ElementCollection(targetClass = TypePointAcces.class, fetch = FetchType.EAGER)
-    @CollectionTable(name = "type_point_acces", joinColumns = @JoinColumn(name = "pointacces_id"))
+    //@CollectionTable(name = "type_point_acces", joinColumns = @JoinColumn(name = "pointacces_id"))
     @Enumerated(EnumType.STRING)
     private Set<TypePointAcces> typePoint;
 

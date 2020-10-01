@@ -1,9 +1,9 @@
 package com.netcracker.app.domain;
 
-import com.netcracker.app.domain.users.entities.User;
+import com.netcracker.app.domain.info.entities.contacts.ContactsImpl;
+import com.netcracker.app.domain.info.services.contacts.ContactsServiceImpl;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.security.core.context.SecurityContextHolder;
 
 @SpringBootApplication
 public class Application {

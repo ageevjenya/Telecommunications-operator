@@ -19,9 +19,11 @@ public abstract class AbstractContacts implements Contacts {
     @Id
     @GeneratedValue
     private Integer id;
+    private String pointName;
     private String address;
     private String phone;
     private String workHours;
+    private String email;
 
     @Override
     public String getAddress() {
@@ -46,6 +48,15 @@ public abstract class AbstractContacts implements Contacts {
         }
     }
 
+
+    public String getPointName() {
+        return pointName;
+    }
+
+    public void setPointName(String pointName) {
+        this.pointName = pointName;
+    }
+
     @Override
     public String getPhone() {
         return phone;
@@ -53,7 +64,6 @@ public abstract class AbstractContacts implements Contacts {
 
     @Override
     public void setPhone(String phone) {
-
         this.phone = phone;
     }
 
@@ -67,10 +77,22 @@ public abstract class AbstractContacts implements Contacts {
         this.workHours = workHours;
     }
 
-    public AbstractContacts(String address, String phone, String workHours) throws Exception {
+    @Override
+    public String getEmail() {
+        return email;
+    }
+
+    @Override
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public AbstractContacts(String pointName, String address, String phone, String workHours, String email) throws Exception {
+        setPointName(pointName);
         setAddress(address);
         setPhone(phone);
         setWorkHours(workHours);
+        setEmail(email);
     }
 
     public AbstractContacts() {}

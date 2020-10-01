@@ -24,7 +24,7 @@ public class Promo {
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id")
+    //@JoinColumn(name = "user_id")
     private User author;
 
     public Promo() {

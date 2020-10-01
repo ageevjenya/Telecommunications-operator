@@ -1,6 +1,6 @@
 package com.netcracker.app.domain.info.entities.resumes;
 
-import java.util.Calendar;
+import java.time.LocalDate;
 
 public interface Resume {
     String getFirstName();
@@ -13,6 +13,6 @@ public interface Resume {
     void setEmail(String email) throws Exception;
     String getText();
     void setText(String text) throws Exception;
-    Calendar getBirthday();
+    LocalDate getBirthday();
     void setBirthday(String birthday) throws Exception;
 }

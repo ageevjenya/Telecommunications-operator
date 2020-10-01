@@ -4,8 +4,8 @@ import javax.persistence.Entity;
 
 @Entity
 public class ContactsImpl extends AbstractContacts {
-    public ContactsImpl(String address, String phone, String workHours) throws Exception {
-        super(address, phone, workHours);
+    public ContactsImpl(String pointName, String address, String phone, String workHours, String email) throws Exception {
+        super(pointName, address, phone, workHours, email);
     }
 
     public ContactsImpl(){
@@ -13,7 +13,7 @@ public class ContactsImpl extends AbstractContacts {
     }
 
     public static String[] getFieldsNames() {
-        String[] names = {"address", "phone", "workHours"};
+        String[] names = {"pointName", "address", "phone", "workHours", "email"};
         return names;
     }
 }

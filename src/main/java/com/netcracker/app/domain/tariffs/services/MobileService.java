@@ -4,14 +4,39 @@ import com.netcracker.app.domain.tariffs.repositories.TariffMobileRepo;
 import com.netcracker.app.domain.tariffs.entities.TariffMobile;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class MobileService extends AbstractTariffService<TariffMobile> {
 
     private final TariffMobileRepo tariffMobileRepo;
 
     public MobileService(TariffMobileRepo tariffMobileRepo) {
-        super(tariffMobileRepo);
         this.tariffMobileRepo = tariffMobileRepo;
+    }
+
+    @Override
+    public void add(TariffMobile mobile) {
+        tariffMobileRepo.saveAndFlush(mobile);
+    }
+
+    @Override
+    public void delete(int id) throws Exception {
+        if (tariffMobileRepo.existsById(id)) {
+            tariffMobileRepo.deleteById(id);
+        } else {
+            throw new Exception();
+        }
+    }
+
+    @Override
+    public List<TariffMobile> getAll() {
+        return tariffMobileRepo.findAll();
+    }
+
+    @Override
+    public boolean existsById(int id) {
+        return tariffMobileRepo.existsById(id);
     }
 
     @Override
