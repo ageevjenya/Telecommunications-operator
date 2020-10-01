@@ -11,7 +11,7 @@
                 <div class="form-group has-feedback">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-firstName"></i></span>
-                        <input type="text" class="form-control" required="required" pattern="[A-Z][a-z]+"
+                        <input type="text" class="form-control" required="required" pattern="[A-ZА-Я][a-zа-я]+"
                             name="firstName" placeholder="Маша" />
                         <span class="glyphicon form-control-feedback"></span>
                     </div>
@@ -19,7 +19,7 @@
                 <div class="form-group has-feedback">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-firstName"></i></span>
-                        <input type="text" class="form-control" required="required" pattern="[A-Z][a-z]+"
+                        <input type="text" class="form-control" required="required" pattern="[A-ZА-Я][a-zа-я]+"
                             name="lastName" placeholder="Иванова" />
                         <span class="glyphicon form-control-feedback"></span>
                     </div>
