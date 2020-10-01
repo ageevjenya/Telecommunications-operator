@@ -23,12 +23,12 @@ public class TariffMobile extends Tariff {
         this.sms = sms;
     }
 
-    //@Override
+
     public Set<User> getUsers() {
         return users;
     }
 
-    //@Override
+
     public void setUsers(Set<User> users) {
         this.users = users;
     }

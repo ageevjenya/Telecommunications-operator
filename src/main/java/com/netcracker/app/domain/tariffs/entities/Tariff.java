@@ -14,8 +14,6 @@ public abstract class Tariff {
     private String description;
     private Double priceOfMonth;
 
-//    @OneToMany
-//    private Set<User> users;
 
     public void setId(Long id) {
         this.id = id;
@@ -25,13 +23,7 @@ public abstract class Tariff {
         return id;
     }
 
-//    public Set<User> getUsers() {
-//        return users;
-//    }
-//
-//    public void setUsers(Set<User> users) {
-//        this.users = users;
-//    }
+
 
     public String getDescription() {
         return description;
