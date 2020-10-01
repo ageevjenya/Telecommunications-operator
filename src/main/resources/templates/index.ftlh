@@ -9,9 +9,9 @@
     <div class="jumbotron" style="background-image: linear-gradient(to bottom, rgba(255,255,255,0.6) 0%,rgba(255,255,255,0.9) 100%), url(https://cdn1.flamp.ru/2ccc59be9af855fef51bdbdcc0ca2cd7_1920.jpg); background-size: cover; background-position: center">
 
       <h3 class="display-4">Оператор связи</h3>
-      <p class="lead">Описание компании ляляля</p>
+      <p class="lead">Лучший оператор связи к вашим услугам</p>
       <hr class="my-4">
-      <p>Что-то написано</p>
+      <p>У нас вы можете подключить мобильный и домашний интернет, приобрести пакеты по тарифам, купить необходимую технику и многое другое.</p>
       <a class="btn btn-light" href="/shop" role="button">Услуги</a>
     </div>
     <br>
