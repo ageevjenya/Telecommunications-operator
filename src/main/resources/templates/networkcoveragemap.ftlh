@@ -12,7 +12,7 @@
                     <button type="submit">Найти</button>
                     <div>
                         <#list typepoints as typepoint>
-                            <label><input type="radio"
+                            <label><input type="checkbox"
                                           name="${typepoint}"  ${typepointschecked?seq_contains(typepoint)?string("checked", "")}>${typepoint.getTitle()}</label>
                         </#list>
                     </div>
