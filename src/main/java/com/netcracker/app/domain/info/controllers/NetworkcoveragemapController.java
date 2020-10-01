@@ -33,7 +33,7 @@ public class NetworkcoveragemapController {
 //        }
         Iterable<PointAcces> pointsacces = pointAccesRepo.findAll();
         model.addAttribute("typepoints", TypePointAcces.values());
-        model.addAttribute("typepointschecked", TypePointAcces.values());
+        model.addAttribute("typepointschecked", TypePointAcces.G2);
         model.addAttribute("pointsacces", pointsacces);
         return "networkcoveragemap";
     }
@@ -54,7 +54,7 @@ public class NetworkcoveragemapController {
             }
         }
 
-        System.out.println(ListTypePoint.toString());
+//        System.out.println(ListTypePoint.toString());
 
         Iterable<PointAcces> pointsacces = pointAccesRepo.selectPointAcces(ListTypePoint);
         model.addAttribute("typepoints", TypePointAcces.values());

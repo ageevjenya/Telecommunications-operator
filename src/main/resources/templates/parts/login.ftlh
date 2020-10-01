@@ -67,7 +67,7 @@
         <input type="hidden" name="_csrf" value="${_csrf.token}"/>
 
         <#if !isRegisterForm><a href="/registration">Зарегестрироваться</a></#if>
-        <button class="btn btn-primary" type="submit"><#if isRegisterForm>Зарегестрироваться<#else>Войти</#if></button>
+        <button class="btn btn-primary" type="submit"><#if isRegisterForm>Зарегистрироваться<#else>Войти</#if></button>
     </form>
 </#macro>
 

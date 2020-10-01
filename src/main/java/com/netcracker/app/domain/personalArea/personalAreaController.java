@@ -52,19 +52,20 @@ public class personalAreaController {
             Double usedInternet = user.getTariffMobile().getGbInternet() - user.getUserUsedTariffMobile().getUsedInternet();
             Integer usedMinutes = user.getTariffMobile().getMinutes() - user.getUserUsedTariffMobile().getUsedMinutes();
             Integer usedSms = user.getTariffMobile().getSms() - user.getUserUsedTariffMobile().getUsedSms();
-
+            usedTariffMobile.append("гб интернета: ");
             usedTariffMobile.append(usedInternet);
-            usedTariffMobile.append(", ");
+            usedTariffMobile.append(", минут: ");
             usedTariffMobile.append(usedMinutes);
-            usedTariffMobile.append(", ");
+            usedTariffMobile.append(", смс: ");
             usedTariffMobile.append(usedSms);
+
             model.addAttribute("usedTariffMobile", usedTariffMobile);
         }
         if (user.getTariffHome()!=null) {
             StringBuilder usedTariffHome = new StringBuilder();
 //            Double usedInternet = user.getTariffHome().getGbInternet();
 //            usedTariffMobile.append(usedInternet);
-            usedTariffHome.append(" Безлимитно");
+            usedTariffHome.append(" безлимитно gb");
             model.addAttribute("usedTariffHome", usedTariffHome);
 
         }

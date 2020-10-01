@@ -10,15 +10,18 @@ import java.util.Set;
 @Table(name = "TariffHome")
 public class TariffHome extends Tariff {
 
+    private Integer speedInternet;
     @OneToMany(mappedBy="user")
     private Set<User> users;
 
     public TariffHome() {
     }
 
-    public TariffHome(String name, double priceOfMonth, double gbInternet, String description) {
-        super(priceOfMonth, name, description, gbInternet);
+    public TariffHome(String name, double priceOfMonth, Integer speedInternet, String description) {
+        super(priceOfMonth, name, description);
+        this.speedInternet = speedInternet;
     }
+
 
     @Override
     public Set<User> getUsers() {
@@ -28,5 +31,13 @@ public class TariffHome extends Tariff {
     @Override
     public void setUsers(Set<User> users) {
         this.users = users;
+    }
+
+    public Integer getSpeedInternet() {
+        return speedInternet;
+    }
+
+    public void setSpeedInternet(Integer speedInternet) {
+        this.speedInternet = speedInternet;
     }
 }
