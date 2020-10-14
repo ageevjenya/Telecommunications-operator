@@ -21,7 +21,7 @@ public class MobileService extends AbstractTariffService<TariffMobile> {
     }
 
     @Override
-    public void delete(int id) throws Exception {
+    public void delete(Long id) throws Exception {
         if (tariffMobileRepo.existsById(id)) {
             tariffMobileRepo.deleteById(id);
         } else {
@@ -35,7 +35,7 @@ public class MobileService extends AbstractTariffService<TariffMobile> {
     }
 
     @Override
-    public boolean existsById(int id) {
+    public boolean existsById(Long id) {
         return tariffMobileRepo.existsById(id);
     }
 
@@ -44,12 +44,12 @@ public class MobileService extends AbstractTariffService<TariffMobile> {
         return tariffMobileRepo.getAllByName(name);
     }
 
-    public TariffMobile getById(int id) {
+    public TariffMobile getById(Long id) {
         return tariffMobileRepo.getById(id);
     }
 
     @Override
-    public void updateName(String name, int id) {
+    public void updateName(String name, Long id) {
         if (tariffMobileRepo.existsById(id) && name != null) {
             TariffMobile tariffMobile = tariffMobileRepo.getById(id);
             tariffMobile.setName(name);
@@ -58,7 +58,7 @@ public class MobileService extends AbstractTariffService<TariffMobile> {
     }
 
     @Override
-    public void updatePriceOfMonth(double priceOfMonth, int id) {
+    public void updatePriceOfMonth(double priceOfMonth, Long id) {
         if (tariffMobileRepo.existsById(id) && priceOfMonth != 0) {
             TariffMobile tariffMobile = tariffMobileRepo.getById(id);
             tariffMobile.setPriceOfMonth(priceOfMonth);
@@ -67,7 +67,7 @@ public class MobileService extends AbstractTariffService<TariffMobile> {
     }
 
     @Override
-    public void updateDescription(String description, int id) {
+    public void updateDescription(String description, Long id) {
         if (tariffMobileRepo.existsById(id) && description != null) {
             TariffMobile tariffMobile = tariffMobileRepo.getById(id);
             tariffMobile.setDescription(description);
@@ -76,7 +76,7 @@ public class MobileService extends AbstractTariffService<TariffMobile> {
     }
 
     @Override
-    public void updateGbInternet(double gbInternet, int id) {
+    public void updateGbInternet(double gbInternet, Long id) {
         if (tariffMobileRepo.existsById(id) && gbInternet != 0) {
             TariffMobile tariffMobile = tariffMobileRepo.getById(id);
             tariffMobile.setGbInternet(gbInternet);
@@ -84,7 +84,7 @@ public class MobileService extends AbstractTariffService<TariffMobile> {
         }
     }
 
-    public void updateMinutes(int minutes, int id) {
+    public void updateMinutes(int minutes, Long id) {
         if (tariffMobileRepo.existsById(id) && minutes != 0) {
             TariffMobile tariffMobile = tariffMobileRepo.getById(id);
             tariffMobile.setMinutes(minutes);
@@ -92,7 +92,7 @@ public class MobileService extends AbstractTariffService<TariffMobile> {
         }
     }
 
-    public void updateSms(int sms, int id) {
+    public void updateSms(int sms, Long id) {
         if (tariffMobileRepo.existsById(id) && sms != 0) {
             TariffMobile tariffMobile = tariffMobileRepo.getById(id);
             tariffMobile.setSms(sms);

@@ -3,11 +3,13 @@ package com.netcracker.app.domain.info.services.resumes;
 import com.netcracker.app.domain.info.entities.resumes.Resume;
 import com.netcracker.app.domain.info.entities.vacancies.VacancyImpl;
 
+import java.util.List;
+
 public interface ResumeService<E extends Resume> {
     void add(E e);
     void delete(int id) throws Exception;
     boolean existsById(int id);
-    Iterable<E> getAll();
+    List<E> getAll();
     E getById(int id) throws Exception;
     void updateVacancyId(VacancyImpl vacancy, int id) throws Exception;
     void updateFirstName(String firstName, int id) throws Exception;

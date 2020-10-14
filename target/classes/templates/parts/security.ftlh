@@ -1,3 +1,4 @@
+
 <#assign
 known = Session.SPRING_SECURITY_CONTEXT??
 >
@@ -8,10 +9,12 @@ known = Session.SPRING_SECURITY_CONTEXT??
     name= user.getUsername()
     <#--    isAdmin = user.isAdmin()-->
     isAdmin = user.getAuthorities()?seq_contains('ADMIN')
+    isAuth = user.getAuthorities()??
     >
 <#else>
     <#assign
     name = "гость"
     isAdmin = false
+    isAuth = false
     >
 </#if>

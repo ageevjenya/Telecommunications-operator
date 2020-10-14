@@ -25,10 +25,8 @@ public class ModemService extends AbstractDevicesService<Modem> {
         repository.deleteById(id);
     }
 
-    @Override
-    public Iterable<Modem> getAllByName(String name) {
-        return repository.getAllByName(name);
-    }
+/*    @Override
+    public Iterable<Modem> getAllByName(String name) { return repository.getAllByName(name); }
 
     @Override
     public List<Modem> getAll() {
@@ -38,12 +36,12 @@ public class ModemService extends AbstractDevicesService<Modem> {
     @Override
     public Modem getById(int id) {
         return repository.getById(id);
-    }
+    }*/
 
     @Override
     public void updateName(String name, int id) throws Exception {
         if (repository.existsById(id)) {
-            Modem modem = repository.getById(id);
+            Modem modem = repository.getOne(id);
             modem.setName(name);
             repository.saveAndFlush(modem);
         } else {
@@ -54,7 +52,7 @@ public class ModemService extends AbstractDevicesService<Modem> {
     @Override
     public void updatePrice(double price, int id) throws Exception {
         if (repository.existsById(id)) {
-            Modem modem = repository.getById(id);
+            Modem modem = repository.getOne(id);
             modem.setPrice(price);
             repository.saveAndFlush(modem);
         } else {
@@ -65,7 +63,7 @@ public class ModemService extends AbstractDevicesService<Modem> {
     @Override
     public void updateDescription(String description, int id) throws Exception {
         if (repository.existsById(id)) {
-            Modem modem = repository.getById(id);
+            Modem modem = repository.getOne(id);
             modem.setDescription(description);
             repository.saveAndFlush(modem);
         } else {
@@ -76,7 +74,7 @@ public class ModemService extends AbstractDevicesService<Modem> {
     @Override
     public void updateShortDescription(String shortDescription, int id) throws Exception {
         if (repository.existsById(id)) {
-            Modem modem = repository.getById(id);
+            Modem modem = repository.getOne(id);
             modem.setShortDescription(shortDescription);
             repository.saveAndFlush(modem);
         } else {
@@ -87,7 +85,7 @@ public class ModemService extends AbstractDevicesService<Modem> {
     @Override
     public void updateSpecifications(String specifications, int id) throws Exception {
         if (repository.existsById(id)) {
-            Modem modem = repository.getById(id);
+            Modem modem = repository.getOne(id);
             modem.setSpecifications(specifications);
             repository.saveAndFlush(modem);
         } else {
@@ -98,7 +96,7 @@ public class ModemService extends AbstractDevicesService<Modem> {
     @Override
     public void updateImgUrl(String imgUrl, int id) throws Exception {
         if (repository.existsById(id)) {
-            Modem modem = repository.getById(id);
+            Modem modem = repository.getOne(id);
             modem.setImgUrl(imgUrl);
             repository.saveAndFlush(modem);
         } else {

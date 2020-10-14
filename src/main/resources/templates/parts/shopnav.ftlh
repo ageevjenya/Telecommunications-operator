@@ -30,8 +30,8 @@
             <div id="collapseTech" class="collapse show" aria-labelledby="headingTech" data-parent="#accordionShop">
                 <div class="card-body">
                     <a class="nav-link active btn btn-nowrap" href="/techs">Все</a>
-                    <a class="nav-link btn btn-nowrap" href="/techs">Смартфоны</a>
-                    <a class="nav-link btn btn-nowrap" href="/techs">Компьютеры и ПК</a>
+                    <a class="nav-link btn btn-nowrap" href="/techs/Smartphone">Смартфоны</a>
+                    <a class="nav-link btn btn-nowrap" href="/techs/Tablet">Планшеты</a>
                 </div>
             </div>
         </div>

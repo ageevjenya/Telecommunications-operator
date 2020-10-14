@@ -10,5 +10,5 @@ public interface TariffMobileRepo extends TariffRepository<TariffMobile> {
     @Query("select m from TariffMobile m where m.name like :name")
     Iterable<TariffMobile> getAllByName(@Param("name") String name);
     @Query("select m from TariffMobile m where m.id = :id")
-    TariffMobile getById(@Param("id") int id);
+    TariffMobile getById(@Param("id") Long id);
 }

@@ -1,13 +1,13 @@
 <#macro comwork>
     <br>
-    <h3>Вакансии</h3> <br>
+    <h3 style="padding-left: 20%">Вакансии</h3> <br>
     <#list vacancies as vacancy>
-        <div>
-            <a href="/vacancy/${vacancy.id}" class="btn btn-light">${vacancy.name}</a>
+        <div style="padding-left: 20%">
+            <a href="/vacancy/${vacancy.id}" class="btn btn-dark">${vacancy.name}</a>
             <br></br>
         </div>
     <#else>
-        Нет вакансий
+        <div style="padding-left: 20%">Нет вакансий</div>
         <br></br>
     </#list>
 </#macro>

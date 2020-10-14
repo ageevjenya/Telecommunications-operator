@@ -1,7 +1,9 @@
 package com.netcracker.app.domain.users.entities;
 
+import com.netcracker.app.domain.info.entities.resumes.ResumeImpl;
 import com.netcracker.app.domain.tariffs.entities.TariffHome;
 import com.netcracker.app.domain.tariffs.entities.TariffMobile;
+import net.minidev.json.annotate.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -39,6 +41,9 @@ public class User implements UserDetails {
     @JoinColumn(name = "userUsedTariffMobile_id")
     private UserUsedTariffMobile userUsedTariffMobile;
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    private Set<ResumeImpl> resumes;
 
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
@@ -166,6 +171,14 @@ public class User implements UserDetails {
 
     public void setUserUsedTariffMobile(UserUsedTariffMobile userUsedTariffMobile) {
         this.userUsedTariffMobile = userUsedTariffMobile;
+    }
+
+    public Set<ResumeImpl> getResume() {
+        return resumes;
+    }
+
+    public void setResume(Set<ResumeImpl> resumes) {
+        this.resumes = resumes;
     }
 
     public Set<Role> getRoles() {

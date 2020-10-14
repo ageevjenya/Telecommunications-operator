@@ -12,30 +12,18 @@ public abstract class Tariff {
     private Long id;
     private String name;
     private String description;
-    private double priceOfMonth;
-    private double gbInternet;
-    @OneToMany
-    private Set<User> users;
+    private Double priceOfMonth;
+
 
     public void setId(Long id) {
         this.id = id;
     }
 
-    public double getGbInternet() {
-        return gbInternet;
+    public Long getId() {
+        return id;
     }
 
-    public void setGbInternet(double gbInternet) {
-        this.gbInternet = gbInternet;
-    }
 
-    public Set<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(Set<User> users) {
-        this.users = users;
-    }
 
     public String getDescription() {
         return description;
@@ -45,14 +33,14 @@ public abstract class Tariff {
         this.description = description;
     }
 
-    public double getPriceOfMonth() {
+    public Double getPriceOfMonth() {
         if (priceOfMonth == 0) {
             throw new NullPointerException();
         }
         return priceOfMonth;
     }
 
-    public void setPriceOfMonth(double priceOfMonth) {
+    public void setPriceOfMonth(Double priceOfMonth) {
         this.priceOfMonth = priceOfMonth;
     }
 
@@ -67,16 +55,14 @@ public abstract class Tariff {
         this.name = name;
     }
 
-    public Long getId() {
-        return id;
-    }
+
+
 
     public Tariff() {}
-    protected Tariff(double priceOfMonth, String name, String description, double gbInternet) {
+    protected Tariff(double priceOfMonth, String name, String description) {
         this.priceOfMonth = priceOfMonth;
         this.name = name;
         this.description = description;
-        this.gbInternet = gbInternet;
     }
 
 }

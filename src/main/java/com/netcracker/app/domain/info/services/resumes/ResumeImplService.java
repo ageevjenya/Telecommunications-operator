@@ -30,7 +30,6 @@ public class ResumeImplService extends AbstractResumeService<ResumeImpl> {
     public void updateVacancyId(VacancyImpl vacancy, int id) throws Exception {
         if (repository.existsById(id)) {
             ResumeImpl resume = repository.getById(id);
-            //resume.setVacancyId(vacancyId);
             resume.setVacancy(vacancy);
             repository.saveAndFlush(resume);
         } else {

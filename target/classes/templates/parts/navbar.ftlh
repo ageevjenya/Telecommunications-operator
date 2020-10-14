@@ -1,6 +1,6 @@
 <#include "security.ftlh">
 <#import "login.ftlh" as l>
-<nav id="navbar" class="navbar navbar-expand-lg navbar-light bg-light">
+<nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="/">Оператор связи</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -13,8 +13,8 @@
                     Тарифы
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownTariffs">
-                    <a class="dropdown-item" href="/tariffs">Мобильная связь</a>
-                    <a class="dropdown-item" href="/tariffHome">Домашний интернет</a>
+                    <a class="btn btn-nowrap" style="position: center; color: #314A40" href="/tariffs">Мобильная связь</a>
+                    <a class="btn btn-nowrap" style="position: center; color: #314A40" href="/tariffsHome">Домашний интернет</a>
                 </div>
             </li>
             <li class="nav-item">
@@ -25,14 +25,14 @@
                     О нас
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownInfo">
-                    <a class="dropdown-item" href="/contacts">Контакты</a>
-                    <a class="dropdown-item" href="/faq">F.A.Q.</a>
-                    <a class="dropdown-item" href="/networkcoveragemap">Карта покрытия</a>
-                    <a class="dropdown-item" href="/work">Работа</a>
+                    <a class="btn btn-nowrap" style="position: center; color: #314A40" href="/contacts">Контакты</a>
+                    <a class="btn btn-nowrap" style="position: center; color: #314A40" href="/faq">F.A.Q.</a>
+                    <a class="btn btn-nowrap" style="position: center; color: #314A40" href="/networkcoveragemap">Карта покрытия</a>
+                    <a class="btn btn-nowrap" style="position: center; color: #314A40" href="/work">Работа</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="/promo">Акции</a>
-                    <a class="dropdown-item" href="/advertising">Реклама</a>
-                    <a class="dropdown-item" href="#">Рекомендации</a>
+                    <a class="btn btn-nowrap" style="position: center; color: #314A40" href="/promo">Акции</a>
+                    <a class="btn btn-nowrap" style="position: center; color: #314A40" href="/advertising">Реклама</a>
+                    <a class="btn btn-nowrap" style="position: center; color: #314A40" href="#">Рекомендации</a>
 
                 </div>
             </li>

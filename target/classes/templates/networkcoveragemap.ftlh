@@ -3,14 +3,14 @@
 
 <@c.page>
     <body>
-    <div class="container">
-        <div class="row">
-            <div class="col mx-1">
-                <h3 class="display-5">Карта покрытия</h3>
-
+    <br>
+            <div>
+                <h3 class="display-5" style="padding-left: 20%">Карта покрытия</h3>
+<br>
                 <form  method="post">
-                    <button type="submit">Найти</button>
-                    <div>
+                    <button type="submit" style="margin-left: 20%">Найти</button>
+                    <br>
+                    <div class="row" style="padding-left: 21.15%; padding-top: 15px">
                         <#list typepoints as typepoint>
                             <label><input type="checkbox"
                                           name="${typepoint}"  ${typepointschecked?seq_contains(typepoint)?string("checked", "")}>${typepoint.getTitle()}</label>
@@ -19,12 +19,12 @@
                     <input type="hidden" value="${_csrf.token}" name="_csrf"/>
 
                 </form>
-                <div class="col-6">
+                <br>
+                <div class="row col-10" style="padding-left: 21%">
                     <@n.networkcoveragemap pointsacces/>
                 </div>
+                <br><br>
             </div>
-        </div>
-    </div>
 
     </body>
 
