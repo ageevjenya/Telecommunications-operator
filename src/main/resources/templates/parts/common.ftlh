@@ -31,10 +31,26 @@
     <#include "navbar.ftlh">
     <div class="container-fluid">
         <#nested>
+        <#--<br><br>
+        <div id="footer" style="background-color: #314A40; color: white">
+            <br>
+            <h10 style="margin-left: 46%; margin-bottom: -15px">NetCracker</h10>
+            <h11 style="margin-left: 45.4%">Москва, 2020</h11>
+            <br><br>
+        </div>-->
         <script>
         window.onload = function () {
             var scrolled;
             var timer;
+
+            /*var scrollHeight = Math.max(
+                document.body.scrollHeight, document.documentElement.scrollHeight,
+                document.body.offsetHeight, document.documentElement.offsetHeight,
+                document.body.clientHeight, document.documentElement.clientHeight
+            );
+
+            var element = document.getElementById("footer");
+            element.style.marginTop = scrollHeight + "px";*/
 
             $(document).ready(function(){
 

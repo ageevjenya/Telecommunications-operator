@@ -9,14 +9,14 @@
     <div class="jumbotron" style="background-image: linear-gradient(to bottom, rgba(255,255,255,0.6) 0%,rgba(255,255,255,0.9) 100%), url(https://expertsib.ru/assets/content/magazine/2018/6/08-01c.jpg); background-size: cover; background-position: center">
 
       <h3 class="display-4">Оператор связи</h3>
-      <p class="lead">Описание компании ляляля</p>
+      <p class="lead">У нас вам будут предоставлены лучшие услуги.</p>
       <hr class="my-4">
-      <p>Что-то написано</p>
+      <p>Нажав всего одну кнопку, вы узнаете о нас больше и получите достойное обслуживание.</p>
       <a class="btn btn-dark" href="/shop" style="margin-left: 10px" role="button">Услуги</a>
     </div>
     <br>
-    <div class="col mx-1" style="margin-left: 20%">
-        Здесь описание нашей компании ляляля
+    <div class="col mx-1" style="margin-left: 20%;  margin-right: 20%; text-align: center">
+        <p>Мы предоставляем услуги подключения тарифов мобильной и домашней связи, покупки техники и устройств. Так же мы всегда рады новым работникам, с вакансиями можно ознакомиться в разделе "Контакты"</p>
     </div>
     <br><br>
 

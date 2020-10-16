@@ -19,7 +19,7 @@
                 <li class="media">
                     <img src="${tech.imgUrl}" class="align-self-center mr-3" style="width: 100px" alt="Tech image">
                     <div class="media-body" style="margin-left: 30px">
-                        <h6 class="card-title p-2" style="width: 80%">${tech.name}</h6>
+                        <h6 class="card-title p-2" style="width: 80%"><a style="color: black" href="/techs/${tech.id}">${tech.name}</a></h6>
                         <p class="card-text" style="width: 80%">${tech.shortDescription}</p>
                         <p class="card-text">${tech.price}, руб</p>
                         <a class="btn btn-dark" style="margin-left: 11px" href="/techs/${tech.id}">Купить</a>

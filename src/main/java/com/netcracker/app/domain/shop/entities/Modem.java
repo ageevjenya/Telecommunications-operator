@@ -1,5 +1,7 @@
 package com.netcracker.app.domain.shop.entities;
 
+import org.hibernate.annotations.Type;
+
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import java.util.Set;
@@ -17,7 +19,18 @@ public class Modem extends Devices {
     }
 
     @OneToMany
+    private Set<ProductModemInfo> productModemInfos;
+
+    @OneToMany
     private Set<ImgModem> imgModems;
+
+    public Set<ImgModem> getImgModems() {
+        return imgModems;
+    }
+
+    public void setImgModems(Set<ImgModem> imgModems) {
+        this.imgModems = imgModems;
+    }
 
     public Modem(String name, double price, String description, String shortDescription, String specifications, String imgUrl) {
         super(name, price, description, shortDescription, specifications, imgUrl);

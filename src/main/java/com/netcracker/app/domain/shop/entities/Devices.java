@@ -1,10 +1,9 @@
 package com.netcracker.app.domain.shop.entities;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Set;
 
 @MappedSuperclass
 public abstract class Devices {

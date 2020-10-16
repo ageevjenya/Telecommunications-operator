@@ -17,6 +17,9 @@ public class Tech extends Devices {
     }
 
     @OneToMany
+    private Set<ProductTechInfo> productTechInfos;
+
+    @OneToMany
     private Set<ImgTech> imgTechs;
 
     public Tech(String name, double price, String description, String shortDescription, String specifications, String imgUrl) {

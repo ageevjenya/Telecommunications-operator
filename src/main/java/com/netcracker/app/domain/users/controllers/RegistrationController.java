@@ -1,5 +1,7 @@
 package com.netcracker.app.domain.users.controllers;
 
+import com.netcracker.app.domain.shop.entities.Cart;
+import com.netcracker.app.domain.shop.repositories.CartRepository;
 import com.netcracker.app.domain.users.entities.Role;
 import com.netcracker.app.domain.users.entities.User;
 import com.netcracker.app.domain.users.entities.UserUsedTariffMobile;
@@ -21,6 +23,8 @@ public class RegistrationController {
     private UserRepo userRepo;
     @Autowired
     private UserUsedTariffRepo userUsedTariffRepo;
+    @Autowired
+    private CartRepository cartRepository;
 
     @GetMapping("/registration")
     public String registration() {
@@ -53,7 +57,11 @@ public class RegistrationController {
                 number, true,   Collections.singleton(Role.USER));
         UserUsedTariffMobile userUsedTariffMobile = new UserUsedTariffMobile(user, 0, 0, 0);
         user.setUserUsedTariffMobile(userUsedTariffMobile);
+        Cart cart = new Cart();
+        user.setCart(cart);
+        cart.setUser(user);
         userRepo.save(user);
+        cartRepository.save(cart);
         userUsedTariffRepo.save(userUsedTariffMobile);
         return "redirect:/login";
     }

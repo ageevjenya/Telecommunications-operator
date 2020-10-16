@@ -47,7 +47,7 @@
                     <h6 class="card-title p-2" style="width: 80%">${tech.name}</h6>
                     <p class="card-text" style="width: 80%">${tech.shortDescription}</p>
                     <p class="card-text">${tech.price}, руб</p>
-                    <a class="btn btn-dark" style="margin-left: 11px" href="#">Купить</a>
+                    <a class="btn btn-dark" style="margin-left: 11px" href="/tech/${tech.id}">Добавить в корзину</a>
                 </div>
             </li>
 

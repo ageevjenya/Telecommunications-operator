@@ -1,5 +1,6 @@
 <#include "security.ftlh">
 <#import "login.ftlh" as l>
+
 <nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="/">Оператор связи</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -45,6 +46,11 @@
                 </li>
             </#if>
         </ul>
+        <#if Session.SPRING_SECURITY_CONTEXT??>
+            <div class="navbar-text mr-2">
+                <a class="nav-link" style="color: white" href="/cart">Корзина</a>
+            </div>
+        </#if>
         <div class="navbar-text mr-3">${name}</div>
         <@l.logout />
     </div>

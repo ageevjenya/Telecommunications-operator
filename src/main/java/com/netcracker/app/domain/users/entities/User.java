@@ -1,6 +1,8 @@
 package com.netcracker.app.domain.users.entities;
 
 import com.netcracker.app.domain.info.entities.resumes.ResumeImpl;
+import com.netcracker.app.domain.shop.entities.Cart;
+import com.netcracker.app.domain.shop.entities.UserOrder;
 import com.netcracker.app.domain.tariffs.entities.TariffHome;
 import com.netcracker.app.domain.tariffs.entities.TariffMobile;
 import net.minidev.json.annotate.JsonIgnore;
@@ -49,6 +51,28 @@ public class User implements UserDetails {
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
     @Enumerated(EnumType.STRING)
     private Set<Role> roles;
+
+    public Set<UserOrder> getUserOrders() {
+        return userOrders;
+    }
+
+    public void setUserOrders(Set<UserOrder> userOrders) {
+        this.userOrders = userOrders;
+    }
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private Set<UserOrder> userOrders;
+
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
+    }
+
+    @OneToOne(optional = false, cascade = CascadeType.ALL)
+    private Cart cart;
 
     public User() {
     }
