@@ -82,8 +82,8 @@
             }
         }
         </script>
-        <a id="top" class="btn btn-dark" style="position: fixed; right: 30px; bottom: 30px; wrap-option: 0px;
-        color: white; cursor: pointer; display: none">Наверх</a>
+        <button id="top" class="btn btn-outline-dark" style="position: fixed; right: 30px; bottom: 30px; wrap-option: 0px;
+        cursor: pointer; display: none">Наверх</button>
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>

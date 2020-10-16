@@ -7,6 +7,10 @@ import javax.persistence.ManyToOne;
 
 @Entity
 public class ProductTechInfo {
+    public int getId() {
+        return id;
+    }
+
     @Id
     @GeneratedValue
     private int id;
