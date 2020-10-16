@@ -9,4 +9,6 @@ import org.springframework.stereotype.Repository;
 public interface VacancyImplRepository extends VacancyRepository<VacancyImpl> {
     @Query("select v from VacancyImpl v where v.id = :id")
     VacancyImpl getById(@Param("id") int id);
+    @Query("select v from VacancyImpl v where lower(v.name) = lower(:name)")
+    VacancyImpl getByName(@Param("name") String name);
 }

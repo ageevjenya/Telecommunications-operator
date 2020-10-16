@@ -3,18 +3,15 @@
 
 <@c.page>
 <#--    <script type="text/javascript"></script>-->
-    <div class="container">
-        <div class="row">
-            <div class="col mx-1">
-                <br>
-                <h3>Домашний интернет</h3>
-                <br>
-
+    <br>
+    <h3 style="margin-left: 3%">Домашний интернет</h3>
+    <br>
+        <div style="margin-left: 3%">
                 <form method="get" action="/tariffsHome" class="form-inline">
                     Скорость интернета от 0 мб/с до
-                    <input type="text" class="form-control" name="filter" value="${filter}"
+                    <input type="text" class="form-control" style="margin-left: 7px" name="filter" value="${filter}"
                            placeholder="мб/с"/>
-                    <button type="submit" class="btn btn-default">Найти</button>
+                    <button type="submit" class="btn btn-light" style="margin-left: 7px">Найти</button>
                 </form>
 
                 <br>
@@ -74,7 +71,7 @@
                 </#if>
 
                 <div>
-                    <table class="table table-hover">
+                    <table class="table table-hover" style="width: 95%">
                         <tr>
                             <#if isAdmin>
                                 <th>ID</th></#if>
@@ -97,7 +94,7 @@
                                 <#if isAuth>
                                     <td>
                                         <#if userTariffHomes?? && userTariffHomes==tariffHome>
-                                            Подключено
+                                            <strong style="margin-left: 8px">Подключено</strong>
                                         <#else>
                                             <form method="post" action="/tariffsHome/connect" class="form-inline">
                                                 <input type="hidden" name="tariffHomeId" value="${tariffHome.id?c}"/>
@@ -107,7 +104,11 @@
                                                 <input type="hidden" name="tariffHomeDescription"
                                                        value="${tariffHome.description}"/>
                                                 <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-                                                <button type="submit" class="btn btn-default">Подключить</button>
+                                                <#if userTariffHomes??>
+                                                    <button type="submit" class="btn btn-light">Подключить</button>
+                                                <#else>
+                                                    <button type="submit" class="btn btn-dark">Подключить</button>
+                                                </#if>
                                             </form>
                                         </#if>
                                     </td>
@@ -125,14 +126,12 @@
                             </tr>
                         <#else>
                             <br>
-                            <strong>Извините, пока нет достпуных тарифов</strong>
-                            <br>
+                            <strong>Извините, пока нет доступных тарифов</strong>
+                            <br><br>
                         </#list>
                     </table>
                 </div>
             </div>
-        </div>
-    </div>
 
 
 </@c.page>

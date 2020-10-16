@@ -3,6 +3,8 @@ package com.netcracker.app.domain.shop.controllers;
 import com.netcracker.app.domain.shop.entities.Devices;
 import com.netcracker.app.domain.shop.entities.Modem;
 import com.netcracker.app.domain.shop.entities.Tech;
+import com.netcracker.app.domain.shop.repositories.ModemRepository;
+import com.netcracker.app.domain.shop.repositories.TechRepository;
 import com.netcracker.app.domain.shop.services.ModemService;
 import com.netcracker.app.domain.shop.services.TechService;
 import org.springframework.stereotype.Controller;
@@ -15,10 +17,15 @@ import javax.transaction.Transactional;
 public class AdminModemTechController {
     private final ModemService modemService;
     private final TechService techService;
+    private final TechRepository techRepository;
+    private final ModemRepository modemRepository;
 
-    public AdminModemTechController(ModemService modemService, TechService techService) {
+    public AdminModemTechController(ModemService modemService, TechService techService,
+                                    TechRepository techRepository, ModemRepository modemRepository) {
         this.modemService = modemService;
         this.techService = techService;
+        this.modemRepository = modemRepository;
+        this.techRepository = techRepository;
     }
 
     @Transactional
@@ -61,14 +68,14 @@ public class AdminModemTechController {
                          @RequestParam(required = false) String imgUrl) throws Exception {
         if (deviceName.toLowerCase().equals("modem")) {
             if (modemService.existsById(id)) {
-                Modem modem = modemService.getById(id);
+                Modem modem = modemRepository.getOne(id);
                 setValues(modem, name, price, description, shortDescription, specifications, imgUrl);
             } else {
                 throw new Exception();
             }
         } else if (deviceName.toLowerCase().equals("tech")) {
             if (techService.existsById(id)) {
-                Tech tech = techService.getById(id);
+                Tech tech = techRepository.getOne(id);
                 setValues(tech, name, price, description, shortDescription, specifications, imgUrl);
             } else {
                 throw new Exception();

@@ -25,7 +25,7 @@ public class TechService extends AbstractDevicesService<Tech> {
         repository.deleteById(id);
     }
 
-    @Override
+/*    @Override
     public Iterable<Tech> getAllByName(String name) {
         return repository.getAllByName(name);
     }
@@ -38,12 +38,12 @@ public class TechService extends AbstractDevicesService<Tech> {
     @Override
     public Tech getById(int id) {
         return repository.getById(id);
-    }
+    }*/
 
     @Override
     public void updateName(String name, int id) throws Exception {
         if (repository.existsById(id)) {
-            Tech tech = repository.getById(id);
+            Tech tech = repository.getOne(id);
             tech.setName(name);
             repository.saveAndFlush(tech);
         } else {
@@ -54,7 +54,7 @@ public class TechService extends AbstractDevicesService<Tech> {
     @Override
     public void updatePrice(double price, int id) throws Exception {
         if (repository.existsById(id)) {
-            Tech tech = repository.getById(id);
+            Tech tech = repository.getOne(id);
             tech.setPrice(price);
             repository.saveAndFlush(tech);
         } else {
@@ -65,7 +65,7 @@ public class TechService extends AbstractDevicesService<Tech> {
     @Override
     public void updateDescription(String description, int id) throws Exception {
         if (repository.existsById(id)) {
-            Tech tech = repository.getById(id);
+            Tech tech = repository.getOne(id);
             tech.setDescription(description);
             repository.saveAndFlush(tech);
         } else {
@@ -76,7 +76,7 @@ public class TechService extends AbstractDevicesService<Tech> {
     @Override
     public void updateShortDescription(String shortDescription, int id) throws Exception {
         if (repository.existsById(id)) {
-            Tech tech = repository.getById(id);
+            Tech tech = repository.getOne(id);
             tech.setShortDescription(shortDescription);
             repository.saveAndFlush(tech);
         } else {
@@ -87,7 +87,7 @@ public class TechService extends AbstractDevicesService<Tech> {
     @Override
     public void updateSpecifications(String specifications, int id) throws Exception {
         if (repository.existsById(id)) {
-            Tech tech = repository.getById(id);
+            Tech tech = repository.getOne(id);
             tech.setSpecifications(specifications);
             repository.saveAndFlush(tech);
         } else {
@@ -98,7 +98,7 @@ public class TechService extends AbstractDevicesService<Tech> {
     @Override
     public void updateImgUrl(String imgUrl, int id) throws Exception {
         if (repository.existsById(id)) {
-            Tech tech = repository.getById(id);
+            Tech tech = repository.getOne(id);
             tech.setImgUrl(imgUrl);
             repository.saveAndFlush(tech);
         } else {

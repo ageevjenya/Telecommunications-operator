@@ -27,9 +27,8 @@ public abstract class AbstractResume implements Resume {
 
     public AbstractResume() {}
 
-    public AbstractResume(/*int vacancyId, */String firstName, String lastName, String birthday,
+    public AbstractResume(String firstName, String lastName, String birthday,
                           String phone, String email, String text) throws Exception {
-        //setVacancyId(vacancyId);
         setFirstName(firstName);
         setLastName(lastName);
         setBirthday(birthday);
@@ -45,7 +44,7 @@ public abstract class AbstractResume implements Resume {
 
     @Override
     public void setFirstName(String firstName) throws Exception {
-        Pattern pattern = Pattern.compile("[A-Z][a-z]{1,20}");
+        Pattern pattern = Pattern.compile("[A-ZА-ЯЁ][a-zа-яё]{1,20}");
         Matcher matcher = pattern.matcher(firstName);
         if (matcher.matches()) {
             this.firstName = firstName;
@@ -61,7 +60,7 @@ public abstract class AbstractResume implements Resume {
 
     @Override
     public void setLastName(String lastName) throws Exception {
-        Pattern pattern = Pattern.compile("[A-Z][a-z]{1,10}[-]?[a-z]{1,10}");
+        Pattern pattern = Pattern.compile("[A-ZА-ЯЁ][a-zа-яё]{1,10}[-]?[a-zа-яё]{1,10}");
         Matcher matcher = pattern.matcher(lastName);
         if (matcher.matches()) {
             this.lastName = lastName;

@@ -9,6 +9,6 @@ public interface VacancyService<E extends Vacancy> {
     void delete(int id);
     boolean existsById(int id);
     Iterable<E> getAll();
-    //Iterable<Vacancy> getAllByName(String name);
+    Vacancy getByName(String name);
     E getById(int id);
 }

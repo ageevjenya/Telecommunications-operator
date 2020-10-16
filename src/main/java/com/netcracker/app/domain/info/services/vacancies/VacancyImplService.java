@@ -1,5 +1,6 @@
 package com.netcracker.app.domain.info.services.vacancies;
 
+import com.netcracker.app.domain.info.entities.vacancies.Vacancy;
 import com.netcracker.app.domain.info.entities.vacancies.VacancyImpl;
 import com.netcracker.app.domain.info.repositories.vacancies.VacancyImplRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,6 +53,10 @@ public class VacancyImplService implements VacancyService<VacancyImpl> {
     @Override
     public Iterable<VacancyImpl> getAll() {
         return repository.findAll();
+    }
+
+    public VacancyImpl getByName(String name) {
+        return repository.getByName(name);
     }
 
 /*    @Override

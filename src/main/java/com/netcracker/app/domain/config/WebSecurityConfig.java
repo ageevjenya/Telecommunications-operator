@@ -16,29 +16,24 @@ import javax.sql.DataSource;
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
+@EnableGlobalMethodSecurity(prePostEnabled=true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private final UserService userService;
-
     public WebSecurityConfig(UserService userService) {
         this.userService = userService;
     }
-
-
     @Autowired
     private DataSource dataSource;
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/", "/registration", "/static/**", "/networkcoveragemap", "/coveragemap", "/contacts",
+                .antMatchers("/", "/registration",  "/static/**", "/networkcoveragemap", "/coveragemap","/contacts",
                         "/faq", "/index", "/info", "/resume", "/vacancy", "/work", "/yourResume", "/shop", "/tariffs",
-                        "/tariffsHome", "/resources/static/images/*", "/main/resources/static/images/**", "/modems", "/modem", "/techs", "/tech",
+                        "/tariffHome", "/modems", "/modem", "/techs", "/tech",
                         "/modems/**", "/techs/**").permitAll()
-
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -55,8 +50,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.jdbcAuthentication()
                 .dataSource(dataSource)
                 .passwordEncoder(NoOpPasswordEncoder.getInstance())
-                .usersByUsernameQuery("select username, password, active from usr where username=?1 or number=?1")
-                .authoritiesByUsernameQuery("select u.username, ur.roles from usr u inner join user_role ur on u.id = ur.user_id where u.username=?1 or u.number=?1");
+                .usersByUsernameQuery("select username, password, active from usr where username=?1 or number=?1")  //or number=?
+        .authoritiesByUsernameQuery("select u.username, ur.roles from usr u inner join user_role ur on u.id = ur.user_id where u.username=?1 or u.number=?1"); //or u.number=?
         auth.userDetailsService(userService)
                 .passwordEncoder(NoOpPasswordEncoder.getInstance());
     }
