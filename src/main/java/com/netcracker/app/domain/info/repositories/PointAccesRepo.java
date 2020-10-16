@@ -14,7 +14,7 @@ import java.util.List;
 public interface PointAccesRepo extends CrudRepository<PointAcces, Integer> {
 
     @Query(
-            value = "SELECT DISTINCT p.* FROM Point_Acces p , Type_Point_Acces tp  WHERE p.id = tp.POINTACCES_id  AND tp.Type_Point  IN (:types) ",
+            value = "SELECT DISTINCT p.* FROM Point_Acces p , POINT_ACCES_TYPE_POINT tp  WHERE p.id = tp.POINT_ACCES_id  AND tp.Type_Point  IN (:types) ",
             nativeQuery = true)
-    Collection<PointAcces> selectPointAcces(@Param("types") List<String> types);
+    Iterable<PointAcces> selectPointAcces(@Param("types") List<String> types);
 }

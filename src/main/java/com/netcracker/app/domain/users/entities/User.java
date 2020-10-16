@@ -1,5 +1,7 @@
 package com.netcracker.app.domain.users.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.netcracker.app.domain.tariffs.entities.TariffHome;
 import com.netcracker.app.domain.tariffs.entities.TariffMobile;
 import org.springframework.security.core.GrantedAuthority;
@@ -19,6 +21,7 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String username;
+    @JsonIgnore
     private String password;
     private String firstName;
     private String middleName;
@@ -27,19 +30,26 @@ public class User implements UserDetails {
     private String number;
     private boolean active;
 
+//    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "tariffMobile_id")
     private TariffMobile tariffMobile;
 
+//    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "tariffHome_id")
     private TariffHome tariffHome;
 
+//    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @JsonIgnore
     @OneToOne(optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "userUsedTariffMobile_id")
     private UserUsedTariffMobile userUsedTariffMobile;
 
-
+//    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @JsonIgnore
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
     @Enumerated(EnumType.STRING)

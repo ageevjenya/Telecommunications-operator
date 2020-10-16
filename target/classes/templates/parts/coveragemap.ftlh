@@ -5,7 +5,10 @@
         <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
 
     </head>
-    <div id="map" style="width:1100px; height:500px;"></div>
+            <div id="map"
+                 style="width:1100px; height:500px;
+                 background: #fc0;
+                 box-shadow: 0 0 10px rgba(0,0,0,0.5);  padding: 10px;"></div>
     <script>
         // Creating map options
         var mapOptions = {
@@ -17,14 +20,13 @@
         var map = new L.map('map', mapOptions);
         // Creating a layer object
         var layer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
-
         // Adding layer to the map
         map.addLayer(layer);
 
 
         // Icon options
         var iconOptions = {
-            iconRetinaUrl: "https://cdn.icon-icons.com/icons2/1522/PNG/512/antennalinear_106189.png",
+            iconRetinaUrl: "/images/antenna.jpg",
             iconSize: [10, 10]
         }
 

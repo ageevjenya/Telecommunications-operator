@@ -12,7 +12,7 @@
 
                 <form method="get" action="/tariffsHome" class="form-inline">
                     Скорость интернета от 0 мб/с до
-                    <input type="text" class="form-control" name="filter" value="${filter}"
+                    <input type="text" class="form-control ml-1" name="filter" value="${filter}"
                            placeholder="мб/с"/>
                     <button type="submit" class="btn btn-default">Найти</button>
                 </form>

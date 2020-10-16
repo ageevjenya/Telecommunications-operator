@@ -94,10 +94,10 @@ public class PointAcces {
         Set<TypePointAcces> set = new LinkedHashSet<TypePointAcces>();
         set.add(TypePointAcces.G2);
         final Random random = new Random();
-        int a = 2;
-        int b = 3;
-        int c;
-        for (int i =0; i < 1000; i++) {
+        float a = 2;
+        float b = 3;
+        float c;
+        for (int i =0; i < 100; i++) {
             set.add(TypePointAcces.G2);
             c = i;
             if ((c % a) == 0) {
@@ -110,7 +110,7 @@ public class PointAcces {
             PointAcces pointAcces = new PointAcces();
             pointAcces.setLatitude(minLati + random.nextFloat() * (maxLati - minLati));
             pointAcces.setLongitude(minLong + random.nextFloat() * (maxLong - minLong));
-            pointAcces.setRadius(3000 + random.nextInt(1500));
+            pointAcces.setRadius(7000 + random.nextInt(5000));
 
             pointAcces.setTypePoint(set);
             pointAcces.setTitle("Адрес точки доступа");
