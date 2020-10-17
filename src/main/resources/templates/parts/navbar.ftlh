@@ -44,14 +44,35 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/user">Список пользователей</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/userResumesList">Резюме</a>
+                </li>
             </#if>
         </ul>
+        <ul class="navbar-nav" style="right: 5%">
         <#if Session.SPRING_SECURITY_CONTEXT??>
-            <div class="navbar-text mr-2">
-                <a class="nav-link" style="color: white" href="/cart">Корзина</a>
-            </div>
+            <li class="nav-item mr-2">
+                <a class="nav-link" href="/cart">Корзина</a>
+            </li>
+
+            <li class="nav-item dropdown mr-3">
+                <a class="nav-link dropdown-toggle" href="/personalArea" id="navbarDropdownPersonal" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    ${name}
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPersonal">
+                    <a class="btn btn-nowrap" style="position: center; color: #314A40" href="/personalArea">Личный кабинет</a>
+                    <a class="btn btn-nowrap" style="position: center; color: #314A40" href="/userOrders">Ваши заказы</a>
+                    <div class="dropdown-divider"></div>
+                    <@l.logout />
+                </div>
+            </li>
+            <#else>
+                <form action="/logout" method="post">
+                    <input type="hidden" name="_csrf" value="${_csrf.token}"/>
+                    <button class="btn btn-light"
+                            type="submit">Войти</button>
+                </form>
         </#if>
-        <div class="navbar-text mr-3">${name}</div>
-        <@l.logout />
+        </ul>
     </div>
 </nav>

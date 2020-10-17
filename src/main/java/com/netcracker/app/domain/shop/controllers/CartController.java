@@ -84,7 +84,7 @@ public class CartController {
 
         model.addAttribute("user", user);
         model.addAttribute("cart", cart);
-        return "cart";
+        return "redirect:/cart";
     }
 
     @GetMapping("/minusAmountModem/{id}")
@@ -99,7 +99,7 @@ public class CartController {
 
         model.addAttribute("user", user);
         model.addAttribute("cart", cart);
-        return "cart";
+        return "redirect:/cart";
     }
 
     @GetMapping("/plusAmountTech/{id}")
@@ -114,7 +114,7 @@ public class CartController {
 
         model.addAttribute("user", user);
         model.addAttribute("cart", cart);
-        return "cart";
+        return "redirect:/cart";
     }
 
     @GetMapping("/minusAmountTech/{id}")
@@ -129,6 +129,6 @@ public class CartController {
 
         model.addAttribute("user", user);
         model.addAttribute("cart", cart);
-        return "cart";
+        return "redirect:/cart";
     }
 }

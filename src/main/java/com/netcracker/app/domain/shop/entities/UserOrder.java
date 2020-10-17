@@ -4,6 +4,7 @@ import com.netcracker.app.domain.users.entities.User;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -61,7 +62,7 @@ public class UserOrder {
     }
 
     public void setAddress(String address) {
-        this.address = address;
+        this.address = address.trim();
     }
 
     public String getPhone() {
@@ -78,11 +79,22 @@ public class UserOrder {
         }
     }
 
+    private String stringOrder;
+
+    public String getStringOrder() {
+        return stringOrder;
+    }
+
+    public void setStringOrder(String stringOrder) {
+        this.stringOrder = stringOrder;
+    }
+
     public UserOrder() {}
-    public UserOrder(String email, String phone, String address) throws Exception {
+    public UserOrder(String phone, String address, String stringOrder) throws Exception {
         setAddress(address);
         setCreatedAt();
-        setEmail(email);
+        //setEmail(email);
         setPhone(phone);
+        setStringOrder(stringOrder);
     }
 }

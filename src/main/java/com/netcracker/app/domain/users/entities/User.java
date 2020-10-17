@@ -59,6 +59,7 @@ public class User implements UserDetails {
     public void setUserOrders(Set<UserOrder> userOrders) {
         this.userOrders = userOrders;
     }
+    public void setUserOrder(UserOrder userOrder) { userOrders.add(userOrder); }
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private Set<UserOrder> userOrders;
@@ -74,8 +75,7 @@ public class User implements UserDetails {
     @OneToOne(optional = false, cascade = CascadeType.ALL)
     private Cart cart;
 
-    public User() {
-    }
+    public User() { };
 
     public User(String username,
                 String password,
@@ -209,6 +209,9 @@ public class User implements UserDetails {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+    public void setRole(Role role) {
+        this.roles.add(role);
     }
 
     public boolean isAdmin() {

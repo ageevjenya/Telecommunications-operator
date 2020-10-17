@@ -43,11 +43,12 @@ public class Cart {
             counts = 0;
         } else {
             if (productTechInfos != null && productModemInfos != null) {
-                counts = productModemInfos.size() + productTechInfos.size();
+                counts = productModemInfos.stream().filter(e -> e.getAmount() != 0).toArray().length +
+                productTechInfos.stream().filter(e -> e.getAmount() != 0).toArray().length;//productModemInfos.size() + productTechInfos.size();
             } else if (productModemInfos != null) {
-                counts = productModemInfos.size();
+                counts = productModemInfos.stream().filter(e -> e.getAmount() != 0).toArray().length;
             } else {
-                counts = productTechInfos.size();
+                counts = productTechInfos.stream().filter(e -> e.getAmount() != 0).toArray().length;
             }
         }
     }
