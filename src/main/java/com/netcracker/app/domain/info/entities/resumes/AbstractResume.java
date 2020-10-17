@@ -25,6 +25,16 @@ public abstract class AbstractResume implements Resume {
     private String email;
     private String text;
 
+    public String getAccepted() {
+        return accepted;
+    }
+
+    public void setAccepted(String accepted) {
+        this.accepted = accepted;
+    }
+
+    private String accepted;
+
     public AbstractResume() {}
 
     public AbstractResume(String firstName, String lastName, String birthday,

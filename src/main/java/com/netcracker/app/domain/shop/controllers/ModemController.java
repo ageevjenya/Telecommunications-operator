@@ -78,8 +78,10 @@ public class ModemController {
         cart.setFullPrice();
         cartRepository.saveAndFlush(cart);
 
+
         model.addAttribute("imgs", imgModemRepository.findAllByModemId(modem.getId()));
         model.addAttribute("modem", repository.getOne(modem.getId()));
+        model.addAttribute("cart", cart);
         return "modem";
     }
 }

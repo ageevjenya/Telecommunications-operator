@@ -6,8 +6,8 @@
 
 <br>
     <#assign value = resumes?size />
-    <#if value gt 0>
-        <#if resumes[0].vacancy.id == vacancy.id>
+    <#if value gt 0 >
+        <#if resumes[0].vacancy.id == vacancy.id && exists == "да">
             <button type="button" id="save" class="btn btn-dark" style="margin-left: 20%" data-toggle="modal" data-target="#send">
                 Отправить резюме</button>
             <div class="modal fade" id="send" tabindex="-1" aria-labelledby="sendLabel" aria-hidden="true">

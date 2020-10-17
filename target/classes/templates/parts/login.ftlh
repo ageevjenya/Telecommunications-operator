@@ -113,7 +113,7 @@
 <#macro logout>
     <form action="/logout" method="post">
         <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-        <button class="btn btn-light"
+        <button class="btn btn-nowrap"
                 type="submit"><#if Session.SPRING_SECURITY_CONTEXT??>Выйти<#else>Войти</#if></button>
     </form>
 </#macro>

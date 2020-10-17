@@ -92,8 +92,16 @@
                                 <span class="glyphicon form-control-feedback"></span>
                             </div>
                             <input type="hidden" name="_csrf" value="${_csrf.token}"/>
+                            <#if resume.getAccepted()?hasContent>
+                                <#else>
                             <button id="change" type="submit" class="btn btn-light" style="color: black; margin-left: 350px">Изменить</button>
+                            </#if>
                         </form>
+                        <#if resume.getAccepted()?hasContent>
+                            <p>Ваше резюме ${resume.getAccepted()}</p>
+                            <#else>
+                                <p>Ваше резюме рассматривают.</p>
+                        </#if>
                         <#if resumes?size gt 1 && resume?index lt (resumes?size - 1)>
                             <hr class="my-4">
                         </#if>

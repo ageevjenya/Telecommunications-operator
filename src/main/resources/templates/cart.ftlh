@@ -29,13 +29,47 @@
                                     <p class="card-text" style="width: 80%">${productModem.device.shortDescription}</p>
                                     <p class="card-text">${productModem.device.price}, руб</p>
                                     <div class="row">
-                                        <a class="button ml-4 mr-3" href="/minusAmountModem/${productModem.getId()}" aria-label="Previous">
-                                            <span style="color: lightgray">&laquo;</span>
-                                        </a>
+                                        <#if productModem.getAmount() == 1>
+                                            <a class="button ml-4 mr-3" href="#" aria-label="Previous">
+                                                <span style="color: lightgray">&laquo;</span>
+                                            </a>
+                                            <#else>
+                                                <a class="button ml-4 mr-3" href="/minusAmountModem/${productModem.getId()}" aria-label="Previous">
+                                                    <span style="color: lightgray">&laquo;</span>
+                                                </a>
+                                        </#if>
+
                                         ${productModem.getAmount()}
-                                        <a class="button ml-3" href="/plusAmountModem/${productModem.getId()}" aria-label="Next">
-                                            <span style="color: lightgray">&raquo;</span>
-                                        </a>
+
+                                        <#if productModem.getAmount() < 4>
+                                            <a class="button ml-3" href="/plusAmountModem/${productModem.getId()}" aria-label="Next">
+                                                <span style="color: lightgray">&raquo;</span>
+                                            </a>
+                                        <#else>
+
+                                            <a type="button" id="next" class="button ml-3" aria-label="Next" data-toggle="modal" data-target="#send">
+                                                <span style="color: lightgray">&raquo;</span></a>
+                                            <div class="modal fade" id="send" tabindex="-1" aria-labelledby="sendLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="sendLabel" style="color: black">Внимание</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body" style="color: black">
+                                                            Вы не можете выбрать более 4 позиций одного товара!
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                                                            <a href="/cart" class="btn btn-dark">Ок</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </#if>
                                         <div class="card-text ml-3" style="color: lightgray">кол-во</div>
                                     </div>
                                     <br><br>
@@ -71,13 +105,48 @@
                                     <p class="card-text" style="width: 80%">${productTech.device.shortDescription}</p>
                                     <p class="card-text">${productTech.device.price}, руб</p>
                                     <div class="row">
-                                        <a class="button ml-4 mr-3" href="/minusAmountTech/${productTech.getId()}" aria-label="Previous">
-                                            <span style="color: lightgray">&laquo;</span>
-                                        </a>
+                                        <#if productTech.getAmount() == 1>
+                                            <a class="button ml-4 mr-3" href="#" aria-label="Previous">
+                                                <span style="color: lightgray">&laquo;</span>
+                                            </a>
+                                        <#else>
+                                            <a class="button ml-4 mr-3" href="/minusAmountTech/${productTech.getId()}" aria-label="Previous">
+                                                <span style="color: lightgray">&laquo;</span>
+                                            </a>
+                                        </#if>
                                         ${productTech.getAmount()}
-                                        <a class="button ml-3" href="/plusAmountTech/${productTech.getId()}" aria-label="Next">
-                                            <span style="color: lightgray">&raquo;</span>
-                                        </a>
+
+                                        <#if productTech.getAmount() < 4>
+                                            <a class="button ml-3" href="/plusAmountTech/${productTech.getId()}" aria-label="Next">
+                                                <span style="color: lightgray">&raquo;</span>
+                                            </a>
+                                        <#else>
+                                            <a type="button" id="next" class="button ml-3" aria-label="Next" data-toggle="modal" data-target="#send">
+                                                <span style="color: lightgray">&raquo;</span></a>
+
+                                        <div class="modal fade" id="send" tabindex="-1" aria-labelledby="sendLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="sendLabel" style="color: black">Внимание</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body" style="color: black">
+                                                            Вы не можете выбрать более 4 позиций одного товара!
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                                                            <a href="/cart" class="btn btn-dark">Ок</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </#if>
+
+
                                         <div class="card-text ml-3" style="color: lightgray">кол-во</div>
                                     </div>
                                     <br><br>
@@ -107,7 +176,7 @@
         </form>
     <br>
     <div class="text-right" style="margin-right: 20%; margin-left: 20%">
-    <a class="btn btn-dark" href="/order">Оформить заказ</a>
+    <a class="btn btn-dark" href="/createOrder">Оформить заказ</a>
     </div>
     </#if>
     <br><br>
