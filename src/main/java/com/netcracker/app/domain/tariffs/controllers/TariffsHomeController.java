@@ -1,12 +1,12 @@
 package com.netcracker.app.domain.tariffs.controllers;
 
+import com.netcracker.app.domain.balance.services.BalanceService;
 import com.netcracker.app.domain.notifications.NotificationsServiсe;
 import com.netcracker.app.domain.tariffs.entities.TariffHome;
+
 import com.netcracker.app.domain.tariffs.repositories.TariffHomeRepo;
 import com.netcracker.app.domain.users.entities.User;
 import com.netcracker.app.domain.users.repositories.UserRepo;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,20 +17,22 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 @Controller
 @RequestMapping("/tariffsHome")
 public class TariffsHomeController {
 
-    @Autowired
-    private TariffHomeRepo tariffHomeRepository;
+    private final TariffHomeRepo tariffHomeRepository;
+    private final UserRepo userRepo;
+    private final BalanceService balanceService;
+    private final NotificationsServiсe notificationsServiсe;
 
-    @Autowired
-    private UserRepo userRepo;
-
-    @Autowired
-    NotificationsServiсe notificationsServiсe;
+    public TariffsHomeController(TariffHomeRepo tariffHomeRepository, UserRepo userRepo, BalanceService balanceService, NotificationsServiсe notificationsServiсe) {
+        this.tariffHomeRepository = tariffHomeRepository;
+        this.userRepo = userRepo;
+        this.balanceService = balanceService;
+        this.notificationsServiсe = notificationsServiсe;
+    }
 
     @GetMapping
     public String internet(@RequestParam(required = false, defaultValue = "") String filter, Model model) {
@@ -121,7 +123,7 @@ public class TariffsHomeController {
     }
 
     @PostMapping("/connect")
-    public String userСonnectTariff(@RequestParam("tariffHomeId") Long tariffHomeId, Model model) {
+    public String userСonnectTariff(@RequestParam("tariffHomeId") Long tariffHomeId, Model model) throws Exception {
         User user = userRepo.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
         if (user == null) {
             return "login";
@@ -130,9 +132,9 @@ public class TariffsHomeController {
         TariffHome tariffHome = tariffHomeRepository.getOne(tariffHomeId);
         user.setTariffHome(tariffHome);
         userRepo.save(user);
+        balanceService.updateBalance(tariffHome.getPriceOfMonth(),user.getBalance().getId());
         String description = "Вы подключили тариф: " + tariffHome.getDescription();
         notificationsServiсe.AddNewNotificationInBDonDesctiption(description);
-
         return "redirect:/tariffsHome";
     }
 }

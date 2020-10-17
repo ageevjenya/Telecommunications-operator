@@ -2,6 +2,7 @@ package com.netcracker.app.domain.users.entities;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.netcracker.app.domain.balance.entities.Balance;
 import com.netcracker.app.domain.info.entities.resumes.ResumeImpl;
 import com.netcracker.app.domain.shop.entities.Cart;
 import com.netcracker.app.domain.shop.entities.UserOrder;
@@ -33,19 +34,19 @@ public class User implements UserDetails {
     private String number;
     private boolean active;
 
-//    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    //    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "tariffMobile_id")
     private TariffMobile tariffMobile;
 
-//    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    //    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "tariffHome_id")
     private TariffHome tariffHome;
 
-//    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    //    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @JsonIgnore
     @OneToOne(optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "userUsedTariffMobile_id")
@@ -252,4 +253,16 @@ public class User implements UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return getRoles();
     }
+    public Balance getBalance() {
+        return balance;
+    }
+
+    public void setBalance(Balance balance) {
+        this.balance = balance;
+    }
+
+    @OneToOne(optional = false, cascade = CascadeType.ALL)
+    @JoinColumn(name = "balance_id")
+    private Balance balance;
+
 }

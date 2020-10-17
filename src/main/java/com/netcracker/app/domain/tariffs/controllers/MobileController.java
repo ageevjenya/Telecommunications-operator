@@ -1,6 +1,6 @@
 package com.netcracker.app.domain.tariffs.controllers;
 
-import com.netcracker.app.domain.tariffs.entities.TariffHome;
+import com.netcracker.app.domain.balance.services.BalanceService;
 import com.netcracker.app.domain.tariffs.entities.TariffMobile;
 import com.netcracker.app.domain.tariffs.services.MobileService;
 import com.netcracker.app.domain.users.entities.User;
@@ -18,11 +18,13 @@ public class MobileController extends AbstractTariffController<TariffMobile, Mob
 
     private final MobileService mobileService;
     private final UserRepo userRepo;
+    private final BalanceService balanceService;
 
-    public MobileController(MobileService mobileService, UserRepo userRepo) {
+    public MobileController(MobileService mobileService, UserRepo userRepo, BalanceService balanceService) {
         super(mobileService);
         this.mobileService = mobileService;
         this.userRepo = userRepo;
+        this.balanceService = balanceService;
     }
 
     @Transactional
@@ -101,7 +103,7 @@ public class MobileController extends AbstractTariffController<TariffMobile, Mob
 
     @Transactional
     @PostMapping("/connect")
-    public String userСonnectsTariff(@RequestParam("tariffMobileId") Long tariffMobileId, Model model) {
+    public String userСonnectsTariff(@RequestParam("tariffMobileId") Long tariffMobileId, Model model) throws Exception {
         User user = userRepo.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
         if (user == null) {
             return "login";
@@ -109,7 +111,7 @@ public class MobileController extends AbstractTariffController<TariffMobile, Mob
         TariffMobile tariffMobile = mobileService.getById(tariffMobileId);
         user.setTariffMobile(tariffMobile);
         userRepo.save(user);
-
+        balanceService.updateBalance(tariffMobile.getPriceOfMonth(),user.getBalance().getId());
         return "redirect:/tariffs";
     }
 }
