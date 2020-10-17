@@ -58,9 +58,4 @@ public class TariffMobile extends Tariff {
     }
 
     public TariffMobile() {}
-
-    public static String[] getFieldsNames() {
-        String[] names = {"name",  "description", "priceOfMonth","gbInternet" , "minutes", "sms"  };
-        return names;
-    }
 }

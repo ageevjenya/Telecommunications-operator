@@ -1,7 +1,11 @@
 <#include "security.ftlh">
 <#import "login.ftlh" as l>
+
 <script src="../static/jsfunctions/notifications.js" type="text/javascript"></script>
-<nav id="navbar" class="navbar navbar-expand-lg navbar-dark" style="background-color: #424242;">
+<#--    <nav id="navbar" class="navbar navbar-expand-lg navbar-dark" style="background-color: #424242;">-->
+<nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+
     <a class="navbar-brand" href="/">Оператор связи</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -16,8 +20,10 @@
                     Тарифы
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownTariffs">
-                    <a class="dropdown-item" href="/tariffs">Мобильная связь</a>
-                    <a class="dropdown-item" href="/tariffsHome">Домашний интернет</a>
+                    <a class="btn btn-nowrap" style="position: center; color: #314A40" href="/tariffs">Мобильная
+                        связь</a>
+                    <a class="btn btn-nowrap" style="position: center; color: #314A40" href="/tariffsHome">Домашний
+                        интернет</a>
                 </div>
             </li>
             <li class="nav-item">
@@ -29,14 +35,15 @@
                     О нас
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownInfo">
-                    <a class="dropdown-item" href="/contacts">Контакты</a>
-                    <a class="dropdown-item" href="/faq">F.A.Q.</a>
-                    <a class="dropdown-item" href="/networkcoveragemap">Карта покрытия</a>
-                    <a class="dropdown-item" href="/work">Работа</a>
+                    <a class="btn btn-nowrap" style="position: center; color: #314A40" href="/contacts">Контакты</a>
+                    <a class="btn btn-nowrap" style="position: center; color: #314A40" href="/faq">F.A.Q.</a>
+                    <a class="btn btn-nowrap" style="position: center; color: #314A40" href="/networkcoveragemap">Карта
+                        покрытия</a>
+                    <a class="btn btn-nowrap" style="position: center; color: #314A40" href="/work">Работа</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="/promo">Акции</a>
-                    <a class="dropdown-item" href="/advertising">Реклама</a>
-                    <a class="dropdown-item" href="#">Рекомендации</a>
+                    <a class="btn btn-nowrap" style="position: center; color: #314A40" href="/promo">Акции</a>
+                    <a class="btn btn-nowrap" style="position: center; color: #314A40" href="/advertising">Реклама</a>
+                    <a class="btn btn-nowrap" style="position: center; color: #314A40" href="#">Рекомендации</a>
 
                 </div>
             </li>
@@ -55,12 +62,16 @@
             </#if>
         </ul>
 
-
     </div>
+    <#if Session.SPRING_SECURITY_CONTEXT??>
+        <div class="navbar-text mr-2">
+            <a class="nav-link" style="color: #A9A9A9" href="/cart">Корзина</a>
+        </div>
+    </#if>
     <#if isAuth>
         <div class="dropdown">
             <!-- the id is important here -->
-            <button class="btn btn-defoult dropdown-toggle" type="button" data-toggle="dropdown"
+            <button class="btn btn-defoult dropdown-toggle" style="color: #A9A9A9" type="button" data-toggle="dropdown"
                     onclick="notificationAllActive()" id="notification">Уведомления
                 <span class="caret"></span></button>
             <ul class="dropdown-menu" onclick="notificationAllActive()">

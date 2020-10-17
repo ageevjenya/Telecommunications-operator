@@ -1,7 +1,11 @@
 package com.netcracker.app.domain.tariffs.controllers;
 
+import com.netcracker.app.domain.tariffs.entities.TariffHome;
 import com.netcracker.app.domain.tariffs.entities.TariffMobile;
 import com.netcracker.app.domain.tariffs.services.MobileService;
+import com.netcracker.app.domain.users.entities.User;
+import com.netcracker.app.domain.users.repositories.UserRepo;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -13,21 +17,30 @@ import java.util.Map;
 public class MobileController extends AbstractTariffController<TariffMobile, MobileService> {
 
     private final MobileService mobileService;
+    private final UserRepo userRepo;
 
-    public MobileController(MobileService mobileService) {
+    public MobileController(MobileService mobileService, UserRepo userRepo) {
         super(mobileService);
         this.mobileService = mobileService;
+        this.userRepo = userRepo;
     }
 
     @Transactional
     @GetMapping("tariffs")
     public String tariff(@RequestParam(required = false) String filter, Model model) {
+        User user = userRepo.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
         if (filter != null && !filter.isEmpty()) {
             model.addAttribute("mobileTariffs", mobileService.getAllByName(filter));
         } else {
             model.addAttribute("mobileTariffs", mobileService.getAll());
         }
+        TariffMobile userTariffMobile = null;
+        if (user != null)
+        {
+            userTariffMobile = user.getTariffMobile();
+        }
         model.addAttribute("filter", filter);
+        model.addAttribute("userTariffMobile", userTariffMobile);
         return "tariffs";
     }
 
@@ -48,7 +61,7 @@ public class MobileController extends AbstractTariffController<TariffMobile, Mob
 
     @Transactional
     @PostMapping("update")
-    public String update(@RequestParam Integer id,
+    public String update(@RequestParam Long id,
                          @RequestParam(required = false, defaultValue = "defaultValue") String name,
                          @RequestParam(required = false, defaultValue = "0.0") double priceOfMonth,
                          @RequestParam(required = false, defaultValue = "0") int minutes,
@@ -80,9 +93,23 @@ public class MobileController extends AbstractTariffController<TariffMobile, Mob
 
     @Transactional
     @GetMapping("/delete/{id}")
-    public String delete(@PathVariable("id") Integer id, Map<String, Object> model) throws Exception {
+    public String delete(@PathVariable("id") Long id, Map<String, Object> model) throws Exception {
         mobileService.delete(id);
         model.put("mobileTariffs", mobileService.getAll());
+        return "redirect:/tariffs";
+    }
+
+    @Transactional
+    @PostMapping("/connect")
+    public String userСonnectsTariff(@RequestParam("tariffMobileId") Long tariffMobileId, Model model) {
+        User user = userRepo.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
+        if (user == null) {
+            return "login";
+        }
+        TariffMobile tariffMobile = mobileService.getById(tariffMobileId);
+        user.setTariffMobile(tariffMobile);
+        userRepo.save(user);
+
         return "redirect:/tariffs";
     }
 }

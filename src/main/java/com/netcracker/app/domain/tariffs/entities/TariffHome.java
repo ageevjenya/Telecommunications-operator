@@ -24,12 +24,12 @@ public class TariffHome extends Tariff {
         this.speedInternet = speedInternet;
     }
 
-//    @Override
+    //    @Override
     public Set<User> getUsers() {
         return users;
     }
 
-//   @Override
+    //   @Override
     public void setUsers(Set<User> users) {
         this.users = users;
     }

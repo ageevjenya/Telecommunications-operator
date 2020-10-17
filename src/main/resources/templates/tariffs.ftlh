@@ -2,20 +2,20 @@
 <#import "parts/common.ftlh" as c>
 <@c.page>
     <br>
-    <h3>Мобильная связь</h3>
+    <h3 style="margin-left: 3%">Мобильная связь</h3>
     <br>
 
-    <div>
+    <div style="margin-left: 3%">
         <form method="get" action="tariffs" class="form-inline">
             <input type="text" class="form-control" name="filter" placeholder="Пакет" />
-            <button type="submit" class="btn btn-default">Найти</button>
+            <button type="submit" class="btn btn-light" style="margin-left: 7px">Найти</button>
         </form>
     </div>
 
     <br><br>
 
     <div>
-      <table class="table table-hover">
+      <table class="table table-hover" style="margin-left: 3%; width: 95%">
         <tr>
             <#if isAdmin>
                 <th>ID</th>
@@ -43,11 +43,33 @@
           <td>${mobileTariff.gbInternet}</td>
           <td>${mobileTariff.priceOfMonth}</td>
           <td>${mobileTariff.description}</td>
+            <#if isAuth>
+                <td>
+                    <#if userTariffMobile?? && userTariffMobile==mobileTariff>
+                        <strong style="margin-left: 10px">Подключено</strong>
+                    <#else>
+                        <form method="post" action="/connect" class="form-inline">
+                            <input type="hidden" name="tariffMobileId" value="${mobileTariff.id?c}"/>
+                            <input type="hidden" name="name" value="${mobileTariff.name}"/>
+                            <input type="hidden" name="minutes" value="${mobileTariff.minutes}"/>
+                            <input type="hidden" name="sms" value="${mobileTariff.sms}"/>
+                            <input type="hidden" name="gbInternet"
+                                   value="${mobileTariff.gbInternet}"/>
+                            <input type="hidden" name="description"
+                                   value="${mobileTariff.description}"/>
+                            <input type="hidden" name="_csrf" value="${_csrf.token}"/>
+                            <#if userTariffMobile??>
+                                <button type="submit" class="btn btn-light">Подключить</button>
+                                <#else>
+                                <button type="submit" class="btn btn-dark">Подключить</button>
+                            </#if>
+                        </form>
+                    </#if>
+                </td>
+            </#if>
           <#if isAdmin>
               <td><a href="/delete/${mobileTariff.id}">Удалить</a></td>
               <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-              <#else>
-              <td><a href="#">Подключить</a></td>
           </#if>
         </tr>
         </#list>

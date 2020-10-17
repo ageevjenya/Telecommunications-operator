@@ -25,12 +25,7 @@ public class NetworkcoveragemapController {
     @GetMapping
     public String coveragemap(Model model) {
 //        PointAcces.newSomePoint(pointAccesRepo); //function add 100 new random point
-//        List[] types;
-//        for (TypePointAcces type: TypePointAcces.values()
-//             ) {type.setState(true);
-//
-//
-//        }
+
         Set<TypePointAcces> typepointschecked= new HashSet<TypePointAcces>();
         typepointschecked.add(TypePointAcces.G2);
         Iterable<PointAcces> pointsacces = pointAccesRepo.findAll();

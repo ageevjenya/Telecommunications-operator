@@ -79,7 +79,7 @@ public class TariffsHomeController {
             return "redirect:/login";
         }
         Long longTariffId = Long.valueOf(tariffId);
-        TariffHome  packInternet =  tariffHomeRepository.findById(longTariffId);
+        TariffHome packInternet = tariffHomeRepository.getOne(longTariffId);
 
         if (packInternet!=null) {
             tariffHomeRepository.deleteById(longTariffId);
@@ -100,7 +100,7 @@ public class TariffsHomeController {
         if (user == null) {
             return "login";
         }
-        TariffHome tariffHome = tariffHomeRepository.findById(Long.valueOf(tariffHomeId));
+        TariffHome tariffHome = tariffHomeRepository.getOne(Long.valueOf(tariffHomeId));
         if (tariffHome != null) {
             if (!name.isEmpty()) {
                 tariffHome.setName(name);
@@ -127,7 +127,7 @@ public class TariffsHomeController {
             return "login";
         }
 
-        TariffHome tariffHome = tariffHomeRepository.findById(tariffHomeId);
+        TariffHome tariffHome = tariffHomeRepository.getOne(tariffHomeId);
         user.setTariffHome(tariffHome);
         userRepo.save(user);
         String description = "Вы подключили тариф: " + tariffHome.getDescription();
@@ -135,7 +135,4 @@ public class TariffsHomeController {
 
         return "redirect:/tariffsHome";
     }
-
-
-
 }

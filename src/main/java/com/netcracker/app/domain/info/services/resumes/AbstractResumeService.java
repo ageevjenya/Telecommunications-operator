@@ -4,6 +4,8 @@ import com.netcracker.app.domain.info.entities.resumes.AbstractResume;
 import com.netcracker.app.domain.info.repositories.resumes.ResumeRepository;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public abstract class AbstractResumeService<E extends AbstractResume> implements ResumeService<E> {
 
@@ -33,7 +35,7 @@ public abstract class AbstractResumeService<E extends AbstractResume> implements
     }
 
     @Override
-    public Iterable<E> getAll() {
+    public List<E> getAll() {
         return repository.findAll();
     }
 }

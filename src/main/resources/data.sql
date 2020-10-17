@@ -8,3 +8,7 @@ insert into faq_impl values (2, 'Yes, visit page named "Work"', 'Can I supply my
 insert into modem values (1, 'Description', 'https://items.s1.citilink.ru/1114602_v01_b.jpg', 'Modem', 1000, 'Short description','Specifications');
 insert into modem values (2, 'Description', 'https://shop.mts.ru/upload/iblock/e07/mts_konnekt_4g_lte_wi_fi_router_1.jpg/resize/125x170/', 'Router', 2000, 'Short description', 'Specifications');
 insert into tech values (1, 'Description', 'https://shop.mts.ru/upload/iblock/95d/planshet_apple_ipad_10_2_2019_32gb_wi_fi_cellular_seryj_kosmos.jpg', 'Tablet', 40000, 'Short description', 'Specifications');*/
+/*insert into img_modem values (1, 'https://img.mvideo.ru/Pdb/30016829b.jpg', 1);
+insert into img_modem values (2, 'https://items.s1.citilink.ru/379697_v01_b.jpg', 1);
+insert into img_modem values (3, 'https://www.icover.ru/upload/resize_cache/iblock/581/1300_700_1/5813cb824c6a98aa684d624c320d8077.jpg', 2);
+insert into img_tech values (1, 'https://www.notebookcheck-ru.com/uploads/tx_nbc2/ipad7_2019_with_keyboard.jpg', 1);*/
