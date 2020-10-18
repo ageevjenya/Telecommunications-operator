@@ -85,3 +85,33 @@ function changeActive(id) {
     });
 
 };
+
+
+
+function notificationProduct() {
+
+    $(function () {
+        var token = $("input[name='_csrf']").val();
+        var header = "X-CSRF-TOKEN";
+        $(document).ajaxSend(function (e, xhr, options) {
+            xhr.setRequestHeader(header, token);
+        });
+    });
+    $.ajax({
+        type: "GET",
+        contentType: "application/json",
+        url: "/notifications/product",
+        dataType: 'json',
+        success: function (data) {
+            // console.log(data);
+            notificationView(data);
+        }
+    });
+
+};
+
+function notificationView(data) {
+    let view = data.description;
+    // console.log(view);
+    $('#notificationProductView').html(view);
+};

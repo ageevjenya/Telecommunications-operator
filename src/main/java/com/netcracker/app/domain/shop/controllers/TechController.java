@@ -1,5 +1,6 @@
 package com.netcracker.app.domain.shop.controllers;
 
+import com.netcracker.app.domain.notifications.NotificationsServiсe;
 import com.netcracker.app.domain.shop.entities.Cart;
 import com.netcracker.app.domain.shop.entities.ProductTechInfo;
 import com.netcracker.app.domain.shop.entities.Tech;
@@ -10,6 +11,7 @@ import com.netcracker.app.domain.shop.repositories.TechRepository;
 import com.netcracker.app.domain.shop.services.TechService;
 import com.netcracker.app.domain.users.entities.User;
 import com.netcracker.app.domain.users.repositories.UserRepo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,6 +30,8 @@ public class TechController {
     private final ProductTechInfoRepository techInfoRepository;
     private final ImgTechRepository imgTechRepository;
     private final TechRepository repository;
+    @Autowired
+    NotificationsServiсe notificationsServiсe;
 
     public TechController(TechService service, UserRepo userRepo, CartRepository cartRepository,
                           ProductTechInfoRepository techInfoRepository, ImgTechRepository imgTechRepository,
@@ -78,9 +82,11 @@ public class TechController {
         cart.setCounts();
         cart.setFullPrice();
         cartRepository.saveAndFlush(cart);
+        notificationsServiсe.AddNewNotificationToCart();
 
         model.addAttribute("imgs", imgTechRepository.findAllByTechId(tech.getId()));
         model.addAttribute("tech", repository.getOne(tech.getId()));
+        model.addAttribute("cart", cart);
         return "tech";
     }
 

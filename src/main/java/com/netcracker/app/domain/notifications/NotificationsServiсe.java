@@ -41,4 +41,17 @@ public class NotificationsServiсe {
 
         notificationRepo.save(notification);
     }
+
+    public void AddNewNotificationToCart() {
+        User user = userRepo.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
+        Notification notification = notificationRepo.getByProductAndActiveAndUser(user);
+        if (notification == null) {
+            Notification newNotification = new Notification(String.valueOf(user.getCart().getCounts()), user);
+            newNotification.setProduct(true);
+            notificationRepo.save(newNotification);
+        } else {
+            notification.setDescription(String.valueOf(user.getCart().getCounts()));
+            notificationRepo.save(notification);
+        }
+    }
 }

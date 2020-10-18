@@ -20,6 +20,16 @@ public class Notification {
     private LocalDateTime localDateTime;
     private boolean active;
 
+    public boolean isProduct() {
+        return product;
+    }
+
+    public void setProduct(boolean product) {
+        this.product = product;
+    }
+
+    private boolean product;
+
     @JsonIgnore
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")

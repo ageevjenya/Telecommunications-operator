@@ -1,7 +1,18 @@
 <#import "parts/common.ftlh" as c>
 <@c.page>
     <br><br><br><br>
-    <h3 style="margin-left: 20%">Корзина</h3>
+    <div class="row">
+        <h3 style="margin-left: 20.7%">Корзина</h3>
+        <#if cart.getCounts() gt 0>
+            <#if cart.getCounts() == 1>
+            <h3 class="ml-1">- ${cart.counts} товар</h3>
+            <#elseif cart.getCounts() gt 4>
+                <h3 class="ml-1">- ${cart.counts} товаров</h3>
+            <#else>
+            <h3 class="ml-1">- ${cart.counts} товара</h3>
+            </#if>
+        </#if>
+    </div>
     <#assign productAmount = true />
     <div style="background-color: #314A40; color: white; margin-top: 15px; margin-left: 20%; margin-right: 20%">
         <#if cart.counts == 0>

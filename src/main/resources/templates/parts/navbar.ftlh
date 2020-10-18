@@ -87,7 +87,8 @@
                     </ul>
             </li>
             <li class="nav-item mr-2">
-                <a class="nav-link" href="/cart"><i class="fas fa-shopping-cart mr-2"></i><span class="badge badge-secondary">0</span></a>
+                <a class="nav-link" href="/cart"><i class="fas fa-shopping-cart mr-2"></i><script>notificationProduct()</script><span
+                            class="badge badge-secondary" id="notificationProductView"></span></a>
             </li>
 
             <li class="nav-item dropdown mr-3">

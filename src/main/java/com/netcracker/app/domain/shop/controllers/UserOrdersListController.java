@@ -45,7 +45,7 @@ public class UserOrdersListController {
         userOrder.setStatus("принят");
         userOrderRepository.saveAndFlush(userOrder);
         User user = userRepo.getOne(userOrder.getUser().getId());
-        String description = "Ваш заказ: " + userOrder.getId() + " - " + userOrder.getStatus();
+        String description = "Заказ №" + userOrder.getId() + " " + userOrder.getStatus();
         notificationsServiсe.AddNewNotificationInBDonDescriptionToOtherUser(description, user);
         return "redirect:/userOrdersList";
     }
@@ -56,7 +56,7 @@ public class UserOrdersListController {
         userOrder.setStatus("отказ");
         userOrderRepository.saveAndFlush(userOrder);
         User user = userRepo.getOne(userOrder.getUser().getId());
-        String description = "Ваш заказ: " + userOrder.getId() + " - " + userOrder.getStatus();
+        String description = "Заказ №" + userOrder.getId() + " - " + userOrder.getStatus();
         notificationsServiсe.AddNewNotificationInBDonDescriptionToOtherUser(description, user);
         return "redirect:/userOrdersList";
     }
@@ -67,7 +67,7 @@ public class UserOrdersListController {
         userOrder.setStatus("доставлен");
         userOrderRepository.saveAndFlush(userOrder);
         User user = userRepo.getOne(userOrder.getUser().getId());
-        String description = "Ваш заказ: " + userOrder.getId() + " - " + userOrder.getStatus();
+        String description = "Заказ №" + userOrder.getId() + " " + userOrder.getStatus();
         notificationsServiсe.AddNewNotificationInBDonDescriptionToOtherUser(description, user);
         return "redirect:/userOrdersList";
     }

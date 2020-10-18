@@ -2,7 +2,7 @@
 <#import "parts/coveragemap.ftlh" as n>
 
 <@c.page>
-
+    <br> <br><br>
     <body>
     <script src="../static/jsfunctions/networkcoveragemap.js" type="text/javascript"></script>
     <div class="container">

@@ -3,9 +3,9 @@
     <div class="view" onClick=false>
         <img src="https://images.wallpaperscraft.ru/image/nochnoj_gorod_vid_sverkhu_zdaniya_zheleznaya_doroga_118814_1920x1080.jpg"
              class="img-fluid"
-             alt="" style="width: 100%; height: 100%; position: absolute" >
+             alt="" style="left: 0px; width: 100%; height: 100%; position: absolute" >
 
-
+        <br> <br><br><br>
         <div class="mask pattern-1 flex-center waves-effect waves-light" >
             <div class="card mx-auto" style="width: 420px">
                 <h3 class="card-header info-color white-text text-center py-4">
