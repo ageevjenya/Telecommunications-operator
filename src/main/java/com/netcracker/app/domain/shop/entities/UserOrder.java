@@ -35,6 +35,16 @@ public class UserOrder {
     private String address;
     private String phone;
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    private String status;
+
     public LocalDate getCreatedAt() {
         return createdAt;
     }

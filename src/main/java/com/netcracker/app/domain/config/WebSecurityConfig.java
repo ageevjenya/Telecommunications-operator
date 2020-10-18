@@ -30,10 +30,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/", "/registration",  "/static/**", "/networkcoveragemap", "/coveragemap","/contacts",
+                .antMatchers("/", "/registration", "/static/**",  "/networkcoveragemap", "/coveragemap", "/contacts",
                         "/faq", "/index", "/info", "/resume", "/vacancy", "/work", "/yourResume", "/shop", "/tariffs",
-                        "/tariffHome", "/modems", "/modem", "/techs", "/tech",
-                        "/modems/**", "/techs/**").permitAll()
+                        "/tariffsHome", "/modems", "/modem", "/techs", "/tech",
+                        "/modems/**", "/techs/**",
+                        "/networkcoveragemap/pointacces",
+                        "/resources/static/images/*", "/main/resources/static/images/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()

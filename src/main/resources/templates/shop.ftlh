@@ -26,8 +26,8 @@
             <img class="card-img-top" src="https://help-wifi.com/wp-content/uploads/2015/12/router3g_modem.jpg" alt="Card image modem">
             <div class="card-body">
                 <h5 class="card-title">Модемы и роутеры</h5>
-                <p class="card-text" style="margin-left: -3%">Арендуйте наши устройства для поддержки лучшей связи дома</p>
-                <a class="btn btn-light" href="/modems">Арендовать</a>
+                <p class="card-text" style="margin-left: -3%">Покупайте наши устройства для поддержки лучшей связи дома</p>
+                <a class="btn btn-light" href="/modems">Перейти</a>
                 <p class="card-text"><small class="text-muted">Наличие всех устройств гарантировано</small></p>
             </div>
         </div>
@@ -71,4 +71,9 @@
             </div>
         </div>
     </div>
+    <br><br>
+<#--
+        <#include "parts/footer.ftlh" />
+-->
+
 </@c.page>

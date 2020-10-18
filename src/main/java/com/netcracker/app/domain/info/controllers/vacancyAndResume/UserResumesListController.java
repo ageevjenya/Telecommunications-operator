@@ -32,7 +32,7 @@ public class UserResumesListController {
     @GetMapping("/userResumesList")
     public String userResumes(Model model) {
         User user = userRepo.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
-        if (user == null || user.getRoles().stream().noneMatch(e -> e.getAuthority().equals("ADMIN"))) {
+        if (user == null || user.getRoles().stream().noneMatch(e -> e.getAuthority().equals("ADMIN") || e.getAuthority().equals("MANAGER"))) {
             return "/";
         }
         List<ResumeImpl> resumes = resumeImplRepository.findAll().stream()
@@ -59,6 +59,8 @@ public class UserResumesListController {
             user.setRole(Role.ADMIN);
         } else if (roleName.equals("Оператор")) {
             user.setRole(Role.SUPPORT);
+        } else if (roleName.equals("Менеджер")) {
+            user.setRole(Role.MANAGER);
         }
         userRepo.saveAndFlush(user);
         ResumeImpl resume = resumeImplRepository.getById(resumeId);

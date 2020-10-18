@@ -1,11 +1,12 @@
 package com.netcracker.app.domain.users.entities;
 
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.netcracker.app.domain.info.entities.resumes.ResumeImpl;
 import com.netcracker.app.domain.shop.entities.Cart;
 import com.netcracker.app.domain.shop.entities.UserOrder;
 import com.netcracker.app.domain.tariffs.entities.TariffHome;
 import com.netcracker.app.domain.tariffs.entities.TariffMobile;
-import net.minidev.json.annotate.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -23,6 +24,7 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String username;
+    @JsonIgnore
     private String password;
     private String firstName;
     private String middleName;
@@ -31,27 +33,43 @@ public class User implements UserDetails {
     private String number;
     private boolean active;
 
+//    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "tariffMobile_id")
     private TariffMobile tariffMobile;
 
+//    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "tariffHome_id")
     private TariffHome tariffHome;
 
+//    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @JsonIgnore
     @OneToOne(optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "userUsedTariffMobile_id")
     private UserUsedTariffMobile userUsedTariffMobile;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<ResumeImpl> resumes;
 
+    //    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @JsonIgnore
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
     @Enumerated(EnumType.STRING)
     private Set<Role> roles;
 
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private Set<UserOrder> userOrders;
+
+    @JsonIgnore
+    @OneToOne(optional = false, cascade = CascadeType.ALL)
+    private Cart cart;
     public Set<UserOrder> getUserOrders() {
         return userOrders;
     }
@@ -61,8 +79,6 @@ public class User implements UserDetails {
     }
     public void setUserOrder(UserOrder userOrder) { userOrders.add(userOrder); }
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private Set<UserOrder> userOrders;
 
     public Cart getCart() {
         return cart;
@@ -72,10 +88,10 @@ public class User implements UserDetails {
         this.cart = cart;
     }
 
-    @OneToOne(optional = false, cascade = CascadeType.ALL)
-    private Cart cart;
+    public int getCartCount() { return cart.getCounts(); }
 
-    public User() { };
+    public User() {
+    }
 
     public User(String username,
                 String password,

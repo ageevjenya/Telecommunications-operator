@@ -1,7 +1,7 @@
 <#import "parts/common.ftlh" as c>
 
 <@c.page>
-    <div style="margin-left: 20%; margin-right: 20%">
+    <div style="margin-left: 3%">
         <br>
         <h3>Список вакансий</h3>
         <br>
@@ -37,7 +37,7 @@
             <form method="post" action="/no">
             <input type="hidden" name="resumeId" value="${resume.getId()}"/>
             <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-            <button type="submit" class="btn btn-light">Отклонить</button>
+            <button type="submit" class="btn btn-danger">Отклонить</button>
             </form>
                 </td>
             <td>
@@ -46,7 +46,7 @@
                     <input type="hidden" name="resumeId" value="${resume.getId()}"/>
                     <input type="hidden" name="vacancyId" value="${resume.getVacancy().getId()}"/>
                     <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-                    <button type="submit" class="btn btn-light">Принять</button>
+                    <button type="submit" class="btn btn-success">Принять</button>
                 </form>
             </td>
 

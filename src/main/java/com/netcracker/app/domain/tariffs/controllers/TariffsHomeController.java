@@ -1,5 +1,6 @@
 package com.netcracker.app.domain.tariffs.controllers;
 
+import com.netcracker.app.domain.notifications.NotificationsServiсe;
 import com.netcracker.app.domain.tariffs.entities.TariffHome;
 import com.netcracker.app.domain.tariffs.repositories.TariffHomeRepo;
 import com.netcracker.app.domain.users.entities.User;
@@ -28,6 +29,8 @@ public class TariffsHomeController {
     @Autowired
     private UserRepo userRepo;
 
+    @Autowired
+    NotificationsServiсe notificationsServiсe;
 
     @GetMapping
     public String internet(@RequestParam(required = false, defaultValue = "") String filter, Model model) {
@@ -127,6 +130,8 @@ public class TariffsHomeController {
         TariffHome tariffHome = tariffHomeRepository.getOne(tariffHomeId);
         user.setTariffHome(tariffHome);
         userRepo.save(user);
+        String description = "Вы подключили тариф: " + tariffHome.getDescription();
+        notificationsServiсe.AddNewNotificationInBDonDesctiption(description);
 
         return "redirect:/tariffsHome";
     }

@@ -17,6 +17,21 @@
                         <br><br>
                     </div>
                 </li>
+                <#if !order.getStatus()?has_content>
+            <div class="row">
+                    <h5 class="text ml-5 mr-1">Ваш заказ</h5><h5 class="text" style="color: white">в обработке</h5>
+            </div>
+                    <#elseif order.getStatus() == "принят">
+                        <div class="row">
+                        <h5 class="text ml-5 mr-1">Ваш заказ</h5><h5 class="text" style="color: #5488af">принят</h5>
+                        </div>
+                    <#elseif order.getStatus() == "доставлен">
+            <div class="row">
+                    <h5 class="text ml-5 mr-1">Ваш заказ</h5><h5 class="text" style="color: #ffcc00">доставлен</h5>
+            </div>
+                    <#else>
+                    <h5 class="text ml-5" style="color: #A9A9A9">Отказ</h5>
+                </#if>
                 <hr class="my-4">
             </#list>
         </ul>

@@ -74,10 +74,21 @@ public class VacancyResumeImplController {
                             Map<String, Object> model) throws Exception {
         User user = userRepo.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
         VacancyImpl vacancy = service.getById(id);
-        ResumeImpl resume = new ResumeImpl(firstName, lastName, birthday, phone, email, text, vacancy);
-        resume.setUser(user);
-        resumeImplService.add(resume);
-        model.put("yourResume", resume);
+        if (resumeImplService.getByVacancyUser(vacancy, user) != null) {
+            ResumeImpl resumeExists = resumeImplService.getByVacancyUser(vacancy, user);
+            resumeImplService.updateFirstName(firstName, resumeExists.getId());
+            resumeImplService.updateLastName(lastName, resumeExists.getId());
+            resumeImplService.updatePhone(phone, resumeExists.getId());
+            resumeImplService.updateEmail(email, resumeExists.getId());
+            resumeImplService.updateText(text, resumeExists.getId());
+            resumeImplService.updateAccepted(null, resumeExists.getId());
+            model.put("yourResume", resumeExists);
+        } else {
+            ResumeImpl resume = new ResumeImpl(firstName, lastName, birthday, phone, email, text, vacancy);
+            resume.setUser(user);
+            resumeImplService.add(resume);
+            model.put("yourResume", resume);
+        }
         return "yourResume";
     }
 

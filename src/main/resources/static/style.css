@@ -1,3 +1,105 @@
 body {
     color: #113;
 }
+
+#notificationList{
+    background: #E0FFFF; /* Цвет фона */
+    /*outline: 2px solid #ADD8E6;*/
+    border: 3px solid #ADD8E6;
+    border-radius: 10px; /* Радиус скругления */
+    padding: 5px;
+}
+#notificationList:hover{
+    color: #ffe; /* Цвет текста активного пункта */
+    background-color: #5488af; /* Цвет фона активного пункта */
+}
+
+#headcolumn {
+    width: 30%;	height: auto; /* Размеры */
+    margin: 10px 10px  0px 10px;
+    background: #ADD8E6; /* Цвет фона */
+    /*outline: 2px solid #ADD8E6; !* Чёрная рамка *!*/
+    border: 3px solid #fff; /* Белая рамка */
+    border-radius: 10px; /* Радиус скругления */
+    padding: 5px;
+}
+
+#column {
+    /*background-color: #111216;*/
+    /*color:#999999;*/
+    /*width:350px;*/
+    /*margin: 50px auto auto auto;*/
+    /*padding-bottom:12px;*/
+    width: 30%;	height: 450px; /* Размеры */
+    margin: 5px 10px  10px 10px;
+    font-size: 14px;
+    padding: 5px;
+    background: #FFFFF0; /* Цвет фона */
+    /*outline: 2px solid #ADD8E6; !* Чёрная рамка *!*/
+    border: 3px solid #fff; /* Белая рамка */
+    border-radius: 10px; /* Радиус скругления */
+}
+
+.chat
+{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.chat li
+{
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px dotted #B3A9A9;
+}
+
+.chat li.left .chat-body
+{
+    margin-left: 60px;
+}
+
+.chat li.right .chat-body
+{
+    margin-right: 60px;
+}
+
+
+.chat li .chat-body p
+{
+    margin: 0;
+    color: #777777;
+}
+
+.panel .slidedown .glyphicon, .chat .glyphicon
+{
+    margin-right: 5px;
+}
+
+.panel-body
+{
+    overflow-y: scroll;
+    height: 380px;
+}
+
+::-webkit-scrollbar-track
+{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar
+{
+    width: 12px;
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb
+{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #555;
+}
+
+
+
+

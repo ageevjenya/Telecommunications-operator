@@ -37,4 +37,7 @@
     </#if>
     <br><br>
     <a href="/work" class="btn btn-light" style="margin-left: 20%">Назад к вакансиям</a>
+<#--    <div style="margin-top: 13.8%">
+        <#include "parts/footer.ftlh" />
+    </div>-->
 </@c.page>
