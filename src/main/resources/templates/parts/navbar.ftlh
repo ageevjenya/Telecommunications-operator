@@ -79,8 +79,8 @@
             <li class="nav-item dropdown">
                     <!-- the id is important here -->
                     <a class="nav-link" style="color: #A9A9A9" type="button" data-toggle="dropdown"
-                            onclick="notificationAllActive()" id="notification"><i class="far fa-bell mr-2"></i>
-                        <span class="badge badge-secondary">0</span></a>
+                            onclick="notificationAllActive()" id="notification"><i class="far fa-bell mr-2"></i><script>notificationsAmount()</script>
+                        <span class="badge badge-secondary" id="notificationsAmountList"></span></a>
                     <ul class="dropdown-menu" onclick="notificationAllActive()">
                         <div id="notificationList"></div>
 

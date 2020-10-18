@@ -43,4 +43,12 @@ public class NotificationRestController {
         User user = userRepo.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
         return notificationRepo.getByProductAndActiveAndUser(user);
     }
+
+    @GetMapping(value = "/notifications/allCount", headers = {"Content-type=application/json"})
+    public Iterable<Notification> notificationsCount() {
+        User user = userRepo.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
+
+        Iterable<Notification> notifications = notificationRepo.findAllActiveNotificationsNative(user);
+        return notifications;
+    }
 }
