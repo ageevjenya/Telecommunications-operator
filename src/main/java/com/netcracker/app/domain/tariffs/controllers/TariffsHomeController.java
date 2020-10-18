@@ -130,7 +130,7 @@ public class TariffsHomeController {
         TariffHome tariffHome = tariffHomeRepository.getOne(tariffHomeId);
         user.setTariffHome(tariffHome);
         userRepo.save(user);
-        String description = "Вы подключили тариф: " + tariffHome.getDescription();
+        String description = "Вы подключили тариф: " + tariffHome.getName() + "\n" + tariffHome.getDescription();
         notificationsServiсe.AddNewNotificationInBDonDesctiption(description);
 
         return "redirect:/tariffsHome";

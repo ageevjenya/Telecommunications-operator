@@ -3,7 +3,7 @@
 
 <script src="../static/jsfunctions/notifications.js" type="text/javascript"></script>
 <#--    <nav id="navbar" class="navbar navbar-expand-lg navbar-dark" style="background-color: #424242;">-->
-<nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top scrolling-navbar">
 
 
     <a class="navbar-brand" href="/">Оператор связи</a>
@@ -76,25 +76,25 @@
         </ul>
         <ul class="navbar-nav" style="right: 5%">
         <#if Session.SPRING_SECURITY_CONTEXT??>
-            <li>
-                <div class="dropdown" style="margin-top: 1.5%">
+            <li class="nav-item dropdown">
                     <!-- the id is important here -->
-                    <button class="btn btn-defoult dropdown-toggle" style="color: #A9A9A9" type="button" data-toggle="dropdown"
-                            onclick="notificationAllActive()" id="notification">Уведомления
-                        <span class="caret"></span></button>
+                    <a class="nav-link" style="color: #A9A9A9" type="button" data-toggle="dropdown"
+                            onclick="notificationAllActive()" id="notification"><i class="far fa-bell mr-2"></i>
+                        <span class="badge badge-secondary">0</span></a>
                     <ul class="dropdown-menu" onclick="notificationAllActive()">
                         <div id="notificationList"></div>
 
                     </ul>
-                </div>
             </li>
             <li class="nav-item mr-2">
-                <a class="nav-link" href="/cart">Корзина <span class="badge badge-secondary">0</span></a>
+                <a class="nav-link" href="/cart"><i class="fas fa-shopping-cart mr-2"></i><span class="badge badge-secondary">0</span></a>
             </li>
 
             <li class="nav-item dropdown mr-3">
-                <a class="nav-link dropdown-toggle" href="/personalArea" id="navbarDropdownPersonal" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    ${name}
+                <a class="btn btn-outline-info lighten-2" style="border-color: #A9A9A9; color: #A9A9A9; background-color: #314A40"
+                   href="/personalArea" id="navbarDropdownPersonal" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    ${name}<i class="far fa-user ml-2"></i>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPersonal">
                     <a class="btn btn-nowrap" style="position: center; color: #314A40" href="/personalArea">Личный кабинет</a>

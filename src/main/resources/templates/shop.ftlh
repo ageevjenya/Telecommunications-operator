@@ -2,7 +2,7 @@
 
 <@c.page>
     <br>
-    <h3>Интернет-магазин</h3>
+    <br><br>
     <br>
     <div class="card-deck">
         <div class="card" style="background-color: #314A40; color: white">

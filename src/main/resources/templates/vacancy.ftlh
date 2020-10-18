@@ -1,6 +1,6 @@
 <#import "parts/common.ftlh" as c>
 <@c.page>
-<br>
+    <br> <br><br><br>
     <h3 style="margin-left: 20%">${vacancy.name}</h3><br>
     <p style="margin-left: 19.3%; margin-right: 20%">${vacancy.text}</p>
 

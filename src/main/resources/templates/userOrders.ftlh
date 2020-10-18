@@ -1,6 +1,6 @@
 <#import "parts/common.ftlh" as c>
 <@c.page>
-    <br>
+    <br><br><br>
     <div style="background-color: #314A40; color: white; margin-top: 15px; margin-left: 20%; margin-right: 20%">
         <br>
         <h5 class="text ml-5">Ваши заказы</h5>

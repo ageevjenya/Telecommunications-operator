@@ -3,7 +3,7 @@
 
 <@c.page>
 <#--    <script type="text/javascript"></script>-->
-    <br>
+    <br> <br><br><br>
     <h3 style="margin-left: 3%">Домашний интернет</h3>
     <br>
         <div style="margin-left: 3%">

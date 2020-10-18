@@ -2,7 +2,7 @@
 <#import "parts/common.ftlh" as c>
 
 <@c.page>
-    <br>
+    <br><br><br><br><br>
     <#if isAdmin>
         <div>
             <form method="post" action="create" class="form-inline">

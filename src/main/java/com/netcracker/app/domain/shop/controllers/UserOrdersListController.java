@@ -1,9 +1,11 @@
 package com.netcracker.app.domain.shop.controllers;
 
+import com.netcracker.app.domain.notifications.NotificationsServiсe;
 import com.netcracker.app.domain.shop.entities.UserOrder;
 import com.netcracker.app.domain.shop.repositories.UserOrderRepository;
 import com.netcracker.app.domain.users.entities.User;
 import com.netcracker.app.domain.users.repositories.UserRepo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +19,8 @@ import java.util.stream.Collectors;
 public class UserOrdersListController {
     private final UserRepo userRepo;
     private final UserOrderRepository userOrderRepository;
+    @Autowired
+    NotificationsServiсe notificationsServiсe;
 
     public UserOrdersListController(UserRepo userRepo, UserOrderRepository userOrderRepository) {
         this.userRepo = userRepo;
@@ -40,6 +44,9 @@ public class UserOrdersListController {
         UserOrder userOrder = userOrderRepository.getOne(id);
         userOrder.setStatus("принят");
         userOrderRepository.saveAndFlush(userOrder);
+        User user = userRepo.getOne(userOrder.getUser().getId());
+        String description = "Ваш заказ: " + userOrder.getId() + " - " + userOrder.getStatus();
+        notificationsServiсe.AddNewNotificationInBDonDescriptionToOtherUser(description, user);
         return "redirect:/userOrdersList";
     }
 
@@ -48,6 +55,9 @@ public class UserOrdersListController {
         UserOrder userOrder = userOrderRepository.getOne(id);
         userOrder.setStatus("отказ");
         userOrderRepository.saveAndFlush(userOrder);
+        User user = userRepo.getOne(userOrder.getUser().getId());
+        String description = "Ваш заказ: " + userOrder.getId() + " - " + userOrder.getStatus();
+        notificationsServiсe.AddNewNotificationInBDonDescriptionToOtherUser(description, user);
         return "redirect:/userOrdersList";
     }
 
@@ -56,6 +66,9 @@ public class UserOrdersListController {
         UserOrder userOrder = userOrderRepository.getOne(id);
         userOrder.setStatus("доставлен");
         userOrderRepository.saveAndFlush(userOrder);
+        User user = userRepo.getOne(userOrder.getUser().getId());
+        String description = "Ваш заказ: " + userOrder.getId() + " - " + userOrder.getStatus();
+        notificationsServiсe.AddNewNotificationInBDonDescriptionToOtherUser(description, user);
         return "redirect:/userOrdersList";
     }
 }

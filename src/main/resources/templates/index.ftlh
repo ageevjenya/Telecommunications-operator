@@ -6,7 +6,7 @@
 
 <@c.page>
 
-    <br>
+    <br><br> <br>
     <div class="jumbotron" style="background-image: linear-gradient(to bottom, rgba(255,255,255,0.6) 0%,rgba(255,255,255,0.9) 100%), url(https://expertsib.ru/assets/content/magazine/2018/6/08-01c.jpg); background-size: cover; background-position: center">
 
       <h3 class="display-4">Оператор связи</h3>

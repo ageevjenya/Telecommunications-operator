@@ -3,10 +3,13 @@ package com.netcracker.app.domain.info.controllers.vacancyAndResume;
 import com.netcracker.app.domain.info.entities.resumes.ResumeImpl;
 import com.netcracker.app.domain.info.repositories.resumes.ResumeImplRepository;
 import com.netcracker.app.domain.info.repositories.vacancies.VacancyImplRepository;
+import com.netcracker.app.domain.notifications.NotificationsServiсe;
 import com.netcracker.app.domain.users.entities.Role;
 import com.netcracker.app.domain.users.entities.User;
 import com.netcracker.app.domain.users.repositories.UserRepo;
 import org.apache.tomcat.util.buf.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +25,8 @@ public class UserResumesListController {
     private final UserRepo userRepo;
     private final ResumeImplRepository resumeImplRepository;
     private final VacancyImplRepository vacancyImplRepository;
+    @Autowired
+    NotificationsServiсe notificationsServiсe;
 
     public UserResumesListController(UserRepo userRepo, ResumeImplRepository resumeImplRepository, VacancyImplRepository vacancyImplRepository) {
         this.userRepo = userRepo;
@@ -66,6 +71,8 @@ public class UserResumesListController {
         ResumeImpl resume = resumeImplRepository.getById(resumeId);
         resume.setAccepted("принято");
         resumeImplRepository.saveAndFlush(resume);
+        String description = "Ваше резюме на вакансию " + resume.getVacancy().getName() + " " + resume.getAccepted();
+        notificationsServiсe.AddNewNotificationInBDonDescriptionToOtherUser(description, user);
         return "redirect:/userResumesList";
     }
 
@@ -73,6 +80,8 @@ public class UserResumesListController {
     public String no(@RequestParam("resumeId") ResumeImpl resume) {
         resume.setAccepted("отклонено");
         resumeImplRepository.saveAndFlush(resume);
+        String description = "Ваше резюме на вакансию " + resume.getVacancy().getName() + " " + resume.getAccepted();
+        notificationsServiсe.AddNewNotificationInBDonDescriptionToOtherUser(description, resume.getUser());
         return "redirect:/userResumesList";
     }
 }

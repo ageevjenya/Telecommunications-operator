@@ -1,6 +1,6 @@
 <#import "parts/common.ftlh" as c>
 <@c.page>
-    <br>
+    <br><br> <br><br>
     <h3 style="margin-left: 20%">Оформление заказа</h3>
     <div style="background-color: #314A40; color: white; margin-top: 15px; margin-left: 20%; margin-right: 20%">
         <br>

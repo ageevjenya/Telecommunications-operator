@@ -1,10 +1,12 @@
 package com.netcracker.app.domain.tariffs.controllers;
 
+import com.netcracker.app.domain.notifications.NotificationsServiсe;
 import com.netcracker.app.domain.tariffs.entities.TariffHome;
 import com.netcracker.app.domain.tariffs.entities.TariffMobile;
 import com.netcracker.app.domain.tariffs.services.MobileService;
 import com.netcracker.app.domain.users.entities.User;
 import com.netcracker.app.domain.users.repositories.UserRepo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +20,8 @@ public class MobileController extends AbstractTariffController<TariffMobile, Mob
 
     private final MobileService mobileService;
     private final UserRepo userRepo;
+    @Autowired
+    private NotificationsServiсe notificationsServiсe;
 
     public MobileController(MobileService mobileService, UserRepo userRepo) {
         super(mobileService);
@@ -109,6 +113,8 @@ public class MobileController extends AbstractTariffController<TariffMobile, Mob
         TariffMobile tariffMobile = mobileService.getById(tariffMobileId);
         user.setTariffMobile(tariffMobile);
         userRepo.save(user);
+        String description = "Вы подключили тариф: " + tariffMobile.getName() +"\n" + tariffMobile.getDescription();
+        notificationsServiсe.AddNewNotificationInBDonDesctiption(description);
 
         return "redirect:/tariffs";
     }

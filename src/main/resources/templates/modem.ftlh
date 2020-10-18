@@ -2,7 +2,7 @@
 <#import "parts/common.ftlh" as c>
 
 <@c.page>
-    <br>
+    <br> <br><br><br>
     <#if isAdmin>
         <a class="btn btn-primary" href="/adminModemTech">Управлять</a>
         <br>

@@ -1,7 +1,7 @@
 <#include "parts/security.ftlh">
 <#import "parts/common.ftlh" as c>
 <@c.page>
-    <br>
+    <br> <br><br><br>
     <h3 style="margin-left: 3%">Мобильная связь</h3>
     <br>
 

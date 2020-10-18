@@ -36,4 +36,9 @@ public class NotificationsServiсe {
 //        // call function from script file
 //        inv.invokeFunction("notificationAllActive", "");
     }
+    public void AddNewNotificationInBDonDescriptionToOtherUser(String description, User user) {
+        Notification notification = new Notification(description, user);
+
+        notificationRepo.save(notification);
+    }
 }
