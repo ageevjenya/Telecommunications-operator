@@ -46,6 +46,7 @@
             #left { position: absolute; left: 0; top: 80px; width: 15%; }
             #right { position: absolute; left: 20%; right: 30px; top: 80px; width: 80%; }
         </style>
+        <script src="../static/jsfunctions/chat.js" type="text/javascript"></script>
 
 
     </head>
@@ -53,6 +54,9 @@
     <#include "navbar.ftlh">
     <div class="container-fluid">
         <#nested>
+        <#if !isAdmin>
+        <#include "windowChat.ftlh">
+        </#if>
         <#--<br><br>
         <div id="footer" style="background-color: #314A40; color: white">
             <br>
