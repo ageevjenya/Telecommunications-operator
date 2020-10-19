@@ -227,7 +227,7 @@ public class User implements UserDetails {
         this.roles = roles;
     }
     public void setRole(Role role) {
-        this.roles.add(role);
+        roles.add(role);
     }
 
     public boolean isAdmin() {
