@@ -1,9 +1,13 @@
 package com.netcracker.app.domain.balance.services.expenses;
 
-import com.netcracker.app.domain.balance.entities.Balance;
 import com.netcracker.app.domain.balance.entities.expenses.Expenses;
 import com.netcracker.app.domain.balance.repositories.expenses.ExpensesRepo;
+import com.netcracker.app.domain.users.entities.User;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
+import java.util.Calendar;
+import java.util.List;
 
 @Service
 public class ExpensesImplService extends AbstractExpensesService<Expenses> {
@@ -14,59 +18,43 @@ public class ExpensesImplService extends AbstractExpensesService<Expenses> {
         this.repository = repository;
     }
 
-
     @Override
-    public boolean existsById(Long id) {
-        return false;
+    public void updateExpenses(double price, Calendar date, String description, Long id,User userId){
+        if(repository.existsById(id)) {
+            Expenses expenses = repository.getById(id);
+            expenses.setPrice(price);
+            expenses.setActivationDate(date);
+            expenses.setDescription(description);
+            expenses.setUser(userId);
+            repository.saveAndFlush(expenses);
+        }
+    }
+
+    public void allMobileExpenses(Long id, User userId){
+        if(repository.existsById(id)) {
+            Expenses expenses = repository.getById(id);
+
+            repository.saveAndFlush(expenses);
+        }
     }
 
     @Override
-    public Iterable<Expenses> getAll() {
-        return null;
+    public boolean existsById(Long id) {
+        return repository.existsById(id);
+    }
+
+    @Override
+    public Expenses getById(Long id) {
+        return repository.getById(id);
+    }
+
+    @Override
+    public List<Expenses> getAll() {
+        return repository.findAll();
     }
 
     @Override
     public void add(Expenses expenses) {
-
-    }
-
-    @Override
-    public Expenses getById(int id){
-        return null;
-    }
-
-    @Override
-    public void updateMonthlyFee(String monthlyFee, int id) throws Exception {
-
-    }
-
-    @Override
-    public void updatePackageActivationDate(String activationDate, int id) throws Exception {
-
-    }
-
-    @Override
-    public void updateMessages(String messages, int id) throws Exception {
-
-    }
-
-    @Override
-    public void updatePhoneCalls(String phoneCalls, int id) throws Exception {
-
-    }
-
-    @Override
-    public void updateMobileInternet(String mobileInternet, int id) throws Exception {
-
-    }
-
-    @Override
-    public void updateComplementaryServices(String complementaryServices, int id) throws Exception {
-
-    }
-
-    @Override
-    public void updateHomeInternet(String homeInternet, int id) throws Exception {
-
+        repository.saveAndFlush(expenses);
     }
 }

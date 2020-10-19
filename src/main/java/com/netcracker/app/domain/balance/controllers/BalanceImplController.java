@@ -33,7 +33,7 @@ public class BalanceImplController {
         }
 
         model.addAttribute("balance", balance);
-        return "balance";
+        return "personalArea";
     }
 
     @Transactional
@@ -46,22 +46,7 @@ public class BalanceImplController {
 
         Balance balance = balanceRepo.getOne(user.getBalance().getId());
         service.saveBalance(money,balance.getId());
-        return "redirect:/balance";
+        return "redirect:/personalArea";
     }
-/*
-    @Transactional
-    @PostMapping("updateBalance/{money}/{id}")
-    public String updateBalance(@PathVariable Integer id,
-                                @PathVariable(required = false) double money,
-                                Map<String,Object> model) throws Exception  {
-        if (service.existsById(id)) {
-            if (service.getById(id).getMoney() >= money) {
-                service.updateBalance(money, id);
-            }
-        }
-        model.put("balance",service.getById(id));
-        return "balance";
-    }
- */
 }
 

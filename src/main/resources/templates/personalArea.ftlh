@@ -1,29 +1,55 @@
-
 <#import "parts/common.ftlh" as c>
 <@c.page>
-                <div class="jumbotron" style="background-image: linear-gradient(to bottom, rgba(255,255,255,0.6) 0%,rgba(255,255,255,0.9) 100%), url(https://expertsib.ru/assets/content/magazine/2018/6/08-01c.jpg); background-size: cover; background-position: center">
-                    <h3 class="display-4">Личный кабинет</h3>
-                    <p class="lead">${user.lastName?ifExists} ${user.firstName} ${user.middleName?ifExists} </p>
-                    <p class="lead">${user.number?ifExists}</p>
-                    <p class="lead">Есть проблема, вопрос или предложение? Напишите нам. <br>
-                        P.S. Посмотреть статус обращения и написать нам вы можете в разделе заявки</p>
-                    <form method="post" action="/requests" class="form-inline">
-                        <input type="text" class="form-control" name="description"
-                               placeholder="Текст..."/>
-                        <input type="hidden" name="_csrf" value="${_csrf.token}"/>
+    <div class="jumbotron" style="background-image: linear-gradient(to bottom, rgba(255,255,255,0.6) 0%,rgba(255,255,255,0.9) 100%), url(https://expertsib.ru/assets/content/magazine/2018/6/08-01c.jpg); background-size: cover; background-position: center">
+        <h3 class="display-4">Личный кабинет</h3>
+        <p class="lead">${user.lastName?ifExists} ${user.firstName} ${user.middleName?ifExists} </p>
+        <div class="lead">
+            <div>
+                <div class="col-md-2">
+                    <div class="card flex-row mb-4 shadow-sm h-md-250">
+                        <div class="d-flex flex-column bd-highlight mb-2">
+                            <div class="p-2 bd-highlight">
+                                <h6 class="text-left text-muted">Баланс на сегодня</h6>
+                                <h3 class="text-secondary">${user.getBalance().money}</h3>
+                            </div>
+                            <div class="p-2 bd-highlight">
 
-                        <button type="submit" class="btn btn-default">Отправить</button>
-                    </form>
-                    <hr class="my-4">
-                    <p class="lead">Мобильная связь: <#if  user.tariffMobile??> <b>${user.tariffMobile.name}</b>. Осталось ${usedTariffMobile?ifExists}
-                        <#else> нет подключенных тарифов </#if> </p>
-                    <p><a href="/tariffs" class="btn btn-dark">Выбрать мобильный тариф</a></p>
-                    <p class="lead">Домашний интернет: <#if  user.tariffHome??>
-                            <b>${user.tariffHome.name},
-                                скорость интернета ${user.tariffHome.speedInternet} мб/с,
-                                цена ${user.tariffHome.priceOfMonth} рублей</b>
-                        <#else> нет подключенных тарифов </#if> </p>
-                    <p><a href="/tariffsHome" class="btn btn-dark">Выбрать домашний тариф</a></p>
+                                <h6 class="text-left text-muted">Мой номер</h6>
+                                <h5>${user.number}</h5>
+                                <br>
+                                <form method="post" action=/balance/save class="form-select-button">
+                                    <input type="text" class="form-control" name="money" placeholder="Введите сумму (₽)"/>
+                                    <input type="hidden" name="_csrf" value="${_csrf.token}" />
+                                    <br>
+                                    <button type="submit" class="btn btn-dark btn-block">Пополнение</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p class="lead">Есть проблема, вопрос или предложение? Напишите нам. <br>
+            P.S. Посмотреть статус обращения и написать нам вы можете в разделе заявки</p>
+        <form method="post" action="/requests" class="form-inline">
+            <input type="text" class="form-control" name="description"
+                   placeholder="Текст..."/>
+            <input type="hidden" name="_csrf" value="${_csrf.token}"/>
+
+            <button type="submit" class="btn btn-default">Отправить</button>
+        </form>
+        <hr class="my-4">
+        <p class="lead">Мобильная связь: <#if  user.tariffMobile??> <b>${user.tariffMobile.name}</b>. Осталось ${usedTariffMobile?ifExists}
+            <#else> нет подключенных тарифов </#if> </p>
+        <p><a href="/tariffs" class="btn btn-dark">Выбрать мобильный тариф</a></p>
+        <p class="lead">Домашний интернет: <#if  user.tariffHome??>
+                <b>${user.tariffHome.name},
+                    скорость интернета ${user.tariffHome.speedInternet} мб/с,
+                    цена ${user.tariffHome.priceOfMonth} рублей</b>
+            <#else> нет подключенных тарифов </#if> </p>
+        <p><a href="/tariffsHome" class="btn btn-dark">Выбрать домашний тариф</a></p>
+        <br><br><br>
+
     </div>
     <#if resumes?size gt 0>
         <div class="accordion" id="resume" style="padding-left: 20%; width: 80%">

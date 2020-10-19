@@ -1,8 +1,8 @@
 package com.netcracker.app.domain.users.entities;
 
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.netcracker.app.domain.balance.entities.Balance;
+import com.netcracker.app.domain.balance.entities.expenses.Expenses;
 import com.netcracker.app.domain.info.entities.resumes.ResumeImpl;
 import com.netcracker.app.domain.shop.entities.Cart;
 import com.netcracker.app.domain.shop.entities.UserOrder;
@@ -10,7 +10,6 @@ import com.netcracker.app.domain.tariffs.entities.TariffHome;
 import com.netcracker.app.domain.tariffs.entities.TariffMobile;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Collection;
@@ -40,6 +39,19 @@ public class User implements UserDetails {
     @JoinColumn(name = "tariffMobile_id")
     private TariffMobile tariffMobile;
 
+    public Balance getBalance() {
+        return balance;
+    }
+
+    public void setBalance(Balance balance) {
+        this.balance = balance;
+    }
+
+
+    @OneToOne(optional = false, cascade = CascadeType.ALL)
+    @JoinColumn(name = "balance_id")
+    private Balance balance;
+
     //    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @JsonIgnore
     @ManyToOne
@@ -63,6 +75,18 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Set<Role> roles;
 
+
+    public Set<Expenses> getExpenses() {
+        return expenses;
+    }
+
+    public void setExpenses(Set<Expenses> expenses) {
+        this.expenses = expenses;
+    }
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private Set<Expenses> expenses;
 
     @JsonIgnore
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
@@ -253,16 +277,4 @@ public class User implements UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return getRoles();
     }
-    public Balance getBalance() {
-        return balance;
-    }
-
-    public void setBalance(Balance balance) {
-        this.balance = balance;
-    }
-
-    @OneToOne(optional = false, cascade = CascadeType.ALL)
-    @JoinColumn(name = "balance_id")
-    private Balance balance;
-
 }

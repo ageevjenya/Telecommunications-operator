@@ -1,6 +1,9 @@
 package com.netcracker.app.domain.tariffs.controllers;
 
-import com.netcracker.app.domain.balance.services.BalanceService;
+import com.netcracker.app.domain.balance.entities.expenses.Expenses;
+import com.netcracker.app.domain.balance.services.BalanceImplService;
+import com.netcracker.app.domain.balance.services.expenses.ExpensesImplService;
+import com.netcracker.app.domain.balance.services.expenses.ExpensesService;
 import com.netcracker.app.domain.notifications.NotificationsServiсe;
 import com.netcracker.app.domain.tariffs.entities.TariffHome;
 
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Map;
 
@@ -24,14 +28,16 @@ public class TariffsHomeController {
 
     private final TariffHomeRepo tariffHomeRepository;
     private final UserRepo userRepo;
-    private final BalanceService balanceService;
+    private final BalanceImplService balanceService;
     private final NotificationsServiсe notificationsServiсe;
+    private final ExpensesImplService expensesService;
 
-    public TariffsHomeController(TariffHomeRepo tariffHomeRepository, UserRepo userRepo, BalanceService balanceService, NotificationsServiсe notificationsServiсe) {
+    public TariffsHomeController(TariffHomeRepo tariffHomeRepository, UserRepo userRepo, BalanceImplService balanceService, NotificationsServiсe notificationsServiсe, ExpensesImplService expensesService) {
         this.tariffHomeRepository = tariffHomeRepository;
         this.userRepo = userRepo;
         this.balanceService = balanceService;
         this.notificationsServiсe = notificationsServiсe;
+        this.expensesService = expensesService;
     }
 
     @GetMapping
@@ -133,6 +139,8 @@ public class TariffsHomeController {
         user.setTariffHome(tariffHome);
         userRepo.save(user);
         balanceService.updateBalance(tariffHome.getPriceOfMonth(),user.getBalance().getId());
+        Expenses expenses = expensesService.getById(new Expenses().getId());
+        expensesService.updateExpenses(user.getTariffMobile().getPriceOfMonth(),new GregorianCalendar(),"Домашний интернет",expenses.getId(),user);
         String description = "Вы подключили тариф: " + tariffHome.getDescription();
         notificationsServiсe.AddNewNotificationInBDonDesctiption(description);
         return "redirect:/tariffsHome";

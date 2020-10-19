@@ -1,29 +1,37 @@
 package com.netcracker.app.domain.balance.entities.expenses;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.netcracker.app.domain.tariffs.entities.TariffHome;
+import com.netcracker.app.domain.users.entities.User;
+
+import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Calendar;
 import java.util.Date;
 
 @MappedSuperclass
 public abstract class AbstractExpenses {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private double priceOfMonthMobile;
-    private double priceOfMonthHomeInternet;
-    private LocalDate mobileActivationDate;
-    private LocalDate homeInternetActivationDate;
-
+    private Calendar activationDate;
+    private double price;
+    private String description;
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
     public AbstractExpenses() {
+
     }
 
-    public AbstractExpenses(double priceOfMonthMobile, double priceOfMonthHomeInternet, LocalDate mobileActivationDate, LocalDate homeInternetActivationDate) {
-        this.priceOfMonthMobile = priceOfMonthMobile;
-        this.priceOfMonthHomeInternet = priceOfMonthHomeInternet;
-        this.mobileActivationDate = mobileActivationDate;
-        this.homeInternetActivationDate = homeInternetActivationDate;
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Long getId() {
@@ -34,36 +42,35 @@ public abstract class AbstractExpenses {
         this.id = id;
     }
 
-    public double getPriceOfMonthMobile() {
-        return priceOfMonthMobile;
+    public Calendar getActivationDate() {
+        return activationDate;
     }
 
-    public void setPriceOfMonthMobile(double priceOfMonthMobile) {
-        this.priceOfMonthMobile = priceOfMonthMobile;
+    public double getPrice() {
+        return price;
     }
 
-    public double getPriceOfMonthHomeInternet() {
-        return priceOfMonthHomeInternet;
+    public void setPrice(double price) {
+        this.price = price;
     }
 
-    public void setPriceOfMonthHomeInternet(double priceOfMonthHomeInternet) {
-        this.priceOfMonthHomeInternet = priceOfMonthHomeInternet;
+    public String getDescription() {
+        return description;
     }
 
-    public LocalDate getMobileActivationDate() {
-        return mobileActivationDate;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public void setMobileActivationDate(LocalDate mobileActivationDate) {
-        this.mobileActivationDate = mobileActivationDate;
+    public void setActivationDate(Calendar activationDate) {
+        this.activationDate = activationDate;
     }
 
-    public LocalDate getHomeInternetActivationDate() {
-        return homeInternetActivationDate;
-    }
-
-    public void setHomeInternetActivationDate(LocalDate homeInternetActivationDate) {
-        this.homeInternetActivationDate = homeInternetActivationDate;
+    public AbstractExpenses(Calendar activationDate, double price, String description, User user) {
+        this.activationDate = activationDate;
+        this.price = price;
+        this.description = description;
+        this.user = user;
     }
 }
 
