@@ -5,15 +5,15 @@
                     <h3 class="display-4">Личный кабинет</h3>
                     <p class="lead">${user.lastName?ifExists} ${user.firstName} ${user.middleName?ifExists} </p>
                     <p class="lead">${user.number?ifExists}</p>
-                    <p class="lead">Есть проблема, вопрос или предложение? Напишите нам. <br>
-                        P.S. Посмотреть статус обращения и написать нам вы можете в разделе заявки</p>
-                    <form method="post" action="/requests" class="form-inline">
-                        <input type="text" class="form-control" name="description"
-                               placeholder="Текст..."/>
-                        <input type="hidden" name="_csrf" value="${_csrf.token}"/>
+<#--                    <p class="lead">Есть проблема, вопрос или предложение? Напишите нам. <br>-->
+<#--                        P.S. Посмотреть статус обращения и написать нам вы можете в разделе заявки</p>-->
+<#--                    <form method="post" action="/requests" class="form-inline">-->
+<#--                        <input type="text" class="form-control" name="description"-->
+<#--                               placeholder="Текст..."/>-->
+<#--                        <input type="hidden" name="_csrf" value="${_csrf.token}"/>-->
 
-                        <button type="submit" class="btn btn-default">Отправить</button>
-                    </form>
+<#--                        <button type="submit" class="btn btn-default">Отправить</button>-->
+<#--                    </form>-->
                     <hr class="my-4">
                     <p class="lead">Мобильная связь: <#if  user.tariffMobile??> <b>${user.tariffMobile.name}</b>. Осталось ${usedTariffMobile?ifExists}
                         <#else> нет подключенных тарифов </#if> </p>

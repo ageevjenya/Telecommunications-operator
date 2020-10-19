@@ -34,7 +34,8 @@
                             </table>
                         </div>
                         <div id="column">
-                            <div id="info" class="border border-primary"></div>
+                            <div id="info" style="border: 3px solid #fff; border-radius: 10px;"
+                                 class="border border-primary p-2"></div>
                             <br>
                             <div id="button"></div>
                             <div id="idRequest" value=""></div>
@@ -50,7 +51,6 @@
                                 </div>
                                 <div class="panel-footer">
                                     <div class="input-group">
-                                        <#--                                        <form onsubmit="sendMessage();return false">-->
                                         <input id="text" type="text" class="form-control input-sm"
                                                placeholder="Введите сообщение..."/>
                                         <div class="input-group-btn">
@@ -58,21 +58,20 @@
                                                     id="btn-chat">Отправить
                                             </button>
                                         </div>
-                                        <#--                                        </form>-->
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <p class="lead">Есть проблема, вопрос или предложение? Напишите нам. <br>
-                        P.S. Посмотреть статус обращения и написать нам вы можете в разделе заявки</p>
-                    <form method="post" action="/requests" class="form-inline">
-                        <input type="text" class="form-control" name="description"
-                               placeholder="Текст..."/>
-                        <input type="hidden" name="_csrf" value="${_csrf.token}"/>
+<#--                    <p class="lead">Есть проблема, вопрос или предложение? Напишите нам. <br>-->
+<#--                        P.S. Посмотреть статус обращения и написать нам вы можете в разделе заявки</p>-->
+<#--                    <form method="post" action="/requests" class="form-inline">-->
+<#--                        <input type="text" class="form-control" name="description"-->
+<#--                               placeholder="Текст..."/>-->
+<#--                        <input type="hidden" name="_csrf" value="${_csrf.token}"/>-->
 
-                        <button type="submit" class="btn btn-default">Отправить</button>
-                    </form>
+<#--                        <button type="submit" class="btn btn-default">Отправить</button>-->
+<#--                    </form>-->
 
                 </div>
             </div>

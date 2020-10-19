@@ -34,7 +34,7 @@ function requestTableView(data) {
         newLine =
             "<tr><td>" +
             "<div id='" + data[i].id + "' onclick='requestInformation(this.id)' " +
-            "style='background:" + color + "' class='border border-primary'>" +
+            "style='background:" + color + ";border: 3px solid #fff; border-radius: 10px;' class='border border-primary p-2'>" +
             "id " + data[i].id + " <br>" +
             data[i].description + " <br> " +
             new Date(Date.parse(data[i].localDateTime)).toLocaleString() +
