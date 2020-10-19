@@ -42,7 +42,7 @@
             <#else> нет подключенных тарифов </#if> </p>
         <p><a href="/tariffsHome" class="btn btn-dark">Выбрать домашний тариф</a></p>
         <br><br><br>
-        
+
     </div>
     <#if resumes?size gt 0>
         <div class="accordion" id="resume" style="padding-left: 20%; width: 80%">
