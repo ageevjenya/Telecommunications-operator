@@ -44,31 +44,6 @@
         <p><a href="/tariffsHome" class="btn btn-dark">Выбрать домашний тариф</a></p>
         <br><br><br>
 
-    <br> <br><br>
-                <div class="jumbotron" style="background-image: linear-gradient(to bottom, rgba(255,255,255,0.6) 0%,rgba(255,255,255,0.9) 100%), url(https://expertsib.ru/assets/content/magazine/2018/6/08-01c.jpg); background-size: cover; background-position: center">
-                    <h3 class="display-4">Личный кабинет</h3>
-                    <p class="lead">${user.lastName?ifExists} ${user.firstName} ${user.middleName?ifExists} </p>
-                    <p class="lead">${user.number?ifExists}</p>
-                    <p class="lead">Есть проблема, вопрос или предложение? Напишите нам. <br>
-                        P.S. Посмотреть статус обращения и написать нам вы можете в разделе заявки</p>
-                    <form method="post" action="/requests" class="form-inline">
-                        <input type="text" class="form-control" name="description"
-                               placeholder="Текст..."/>
-                        <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-
-                        <button type="submit" class="btn btn-default">Отправить</button>
-                    </form>
-                    <hr class="my-4">
-                    <p class="lead">Мобильная связь: <#if  user.tariffMobile??> <b>${user.tariffMobile.name}</b>. Осталось ${usedTariffMobile?ifExists}
-                        <#else> нет подключенных тарифов </#if> </p>
-                    <p><a href="/tariffs" class="btn btn-dark">Выбрать мобильный тариф</a></p>
-                    <p class="lead">Домашний интернет: <#if  user.tariffHome??>
-                            <b>${user.tariffHome.name},
-                                скорость интернета ${user.tariffHome.speedInternet} мб/с,
-                                цена ${user.tariffHome.priceOfMonth} рублей</b>
-                        <#else> нет подключенных тарифов </#if> </p>
-                    <p><a href="/tariffsHome" class="btn btn-dark">Выбрать домашний тариф</a></p>
-    </div>
     <#if resumes?size gt 0>
         <div class="accordion" id="resume" style="padding-left: 20%; width: 80%">
         <div class="card">

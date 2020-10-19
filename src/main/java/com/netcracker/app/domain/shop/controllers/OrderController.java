@@ -1,11 +1,13 @@
 package com.netcracker.app.domain.shop.controllers;
 
+import com.netcracker.app.domain.notifications.NotificationsServiсe;
 import com.netcracker.app.domain.shop.entities.Cart;
 import com.netcracker.app.domain.shop.entities.UserOrder;
 import com.netcracker.app.domain.shop.repositories.CartRepository;
 import com.netcracker.app.domain.shop.repositories.UserOrderRepository;
 import com.netcracker.app.domain.users.entities.User;
 import com.netcracker.app.domain.users.repositories.UserRepo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +20,8 @@ public class OrderController {
     private final UserRepo userRepo;
     private final CartRepository cartRepository;
     private final UserOrderRepository userOrderRepository;
+    @Autowired
+    NotificationsServiсe notificationsServiсe;
 
     public OrderController(UserRepo userRepo, CartRepository cartRepository, UserOrderRepository userOrderRepository) {
         this.userRepo = userRepo;
@@ -61,6 +65,7 @@ public class OrderController {
         cart.setCounts();
         cart.setFullPrice();
         cartRepository.saveAndFlush(cart);
+        notificationsServiсe.AddNewNotificationToCart();
         model.addAttribute("order", order);
         return "newOrder";
     }

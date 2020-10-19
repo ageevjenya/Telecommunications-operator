@@ -51,25 +51,6 @@
                 <p class="card-text"><small class="text-muted">Наличие всех устройств гарантировано</small></p>
             </div>
         </div>
-        <div class="card" style="background-color: #314A40; color: white">
-            <img class="card-img-top" src="https://storins.ru/wp-content/uploads/2019/11/pokupka-podpiski.png" alt="Card image subscriptions">
-            <div class="card-body">
-                <h5 class="card-title">Подписки и опции</h5>
-                <p class="card-text" style="margin-left: -3%">Подключите полезные опции на ваше устройство</p>
-                <li class="nav-item dropdown" style = "list-style-type: none">
-                    <a class="btn btn-light dropdown-toggle" href="#" id="navbarDropdownSubs" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Подключить
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownSubs" style="width: 60%">
-                        <a class="btn btn-nowrap-light" href="#">Все</a>
-                        <a class="btn btn-nowrap-light" href="#">Красивый номер</a>
-                        <a class="btn btn-nowrap-light" href="#">Автоплатёж</a>
-                        <a class="btn btn-nowrap-light" href="#">Баланс близких</a>
-                    </div>
-                </li>
-                <p class="card-text"><small class="text-muted">Все подписки и опции актуальны</small></p>
-            </div>
-        </div>
     </div>
     <br><br>
 <#--

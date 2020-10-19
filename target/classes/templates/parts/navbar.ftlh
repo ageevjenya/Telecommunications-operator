@@ -40,10 +40,6 @@
                     <a class="btn btn-nowrap" style="position: center; color: #314A40" href="/networkcoveragemap">Карта
                         покрытия</a>
                     <a class="btn btn-nowrap" style="position: center; color: #314A40" href="/work">Работа</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="btn btn-nowrap" style="position: center; color: #314A40" href="/promo">Акции</a>
-                    <a class="btn btn-nowrap" style="position: center; color: #314A40" href="/advertising">Реклама</a>
-                    <a class="btn btn-nowrap" style="position: center; color: #314A40" href="#">Рекомендации</a>
 
                 </div>
             </li>

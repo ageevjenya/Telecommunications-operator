@@ -27,22 +27,11 @@
                 <div class="card-deck ">
                     <div class="card">
                         <div class="card-body" style="background-color: #314A40; color: white">
-                            <h5 class="card-title">Акции и рекомендации</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">Ваш BTC</h6>
-                            <p class="card-text mb-2" style="margin-left: -3.1%">Здесь вы можете ознакомится с лучшими предложениями</p>
-                            <br>
-                            <a href="/promo" class="btn btn-light">Акции</a>
-                            <a href="#" class="btn btn-light" style="margin-left: 10px">Рекомендации</a>
-                        </div>
-                    </div>
-
-
-                    <div class="card">
-                        <div class="card-body" style="background-color: #314A40; color: white">
                             <h5 class="card-title">Общая информация</h5>
                             <h6 class="card-subtitle mb-2 text-muted">Контакты. Карта покрытия. Работа.</h6>
                             <p class="card-text mb-2" style="margin-left: -3.1%">Здесь вы можете ознакомится с регионами в которых мы предоставляем
                                 связь</p>
+                            <br>
                             <div class="btn-group" role="group">
                                 <button id="btnGroupDrop1" type="button" class="btn btn-light dropdown-toggle"
                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

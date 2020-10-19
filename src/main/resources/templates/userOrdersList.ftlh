@@ -47,14 +47,14 @@
                         <form method="post" action="/yesOrder">
                             <input type="hidden" name="orderId" value="${order.getId()}"/>
                             <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-                            <button type="submit" class="btn btn-info">Принять</button>
+                            <button type="submit" class="btn btn-success">Принять</button>
                         </form>
                     </td>
                 <td>
                     <form method="post" action="/dev">
                         <input type="hidden" name="orderId" value="${order.getId()}"/>
                         <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-                        <button type="submit" class="btn btn-success">Доставлен</button>
+                        <button type="submit" class="btn" style="background-color: #555555; color: white">Доставлен</button>
                     </form>
                 </td>
                 </tr>

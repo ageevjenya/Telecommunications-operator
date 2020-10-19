@@ -70,7 +70,7 @@ public class MobileController extends AbstractTariffController<TariffMobile, Mob
         TariffMobile tariffMobile = new TariffMobile(minutes, sms, priceOfMonth, name, description, gbInternet);
         mobileService.add(tariffMobile);
         model.put("mobileTariffs", mobileService.getAll());
-        return "redirect:/tariffs";
+        return "tariffs";
     }
 
     @Transactional
@@ -102,7 +102,7 @@ public class MobileController extends AbstractTariffController<TariffMobile, Mob
                 mobileService.updateDescription(description, id);
             }
         model.put("mobileTariffs", mobileService.getAll());
-        return "redirect:/tariffs";
+        return "tariffs";
     }
 
     @Transactional
@@ -110,7 +110,7 @@ public class MobileController extends AbstractTariffController<TariffMobile, Mob
     public String delete(@PathVariable("id") Long id, Map<String, Object> model) throws Exception {
         mobileService.delete(id);
         model.put("mobileTariffs", mobileService.getAll());
-        return "redirect:/tariffs";
+        return "tariffs";
     }
 
     @Transactional
@@ -128,7 +128,7 @@ public class MobileController extends AbstractTariffController<TariffMobile, Mob
 
         Expenses expenses = expensesService.getById(new Expenses().getId());
         expensesService.updateExpenses(user.getTariffMobile().getPriceOfMonth(),new GregorianCalendar(),"Абонентская плата",expenses.getId(),user);
-        balanceService.updateBalance(tariffMobile.getPriceOfMonth(),user.getBalance().getId());
-        return "redirect:/tariffs";
+        balanceService.updateBalance(tariffMobile.getPriceOfMonth(), user.getBalance().getId());
+        return "tariffs";
     }
 }
