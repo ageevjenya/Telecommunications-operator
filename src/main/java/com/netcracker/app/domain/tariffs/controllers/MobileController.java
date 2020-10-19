@@ -1,6 +1,8 @@
 package com.netcracker.app.domain.tariffs.controllers;
 
-import com.netcracker.app.domain.tariffs.entities.TariffHome;
+import com.netcracker.app.domain.balance.entities.expenses.Expenses;
+import com.netcracker.app.domain.balance.services.BalanceImplService;
+import com.netcracker.app.domain.balance.services.expenses.ExpensesImplService;
 import com.netcracker.app.domain.tariffs.entities.TariffMobile;
 import com.netcracker.app.domain.tariffs.services.MobileService;
 import com.netcracker.app.domain.users.entities.User;
@@ -11,18 +13,24 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
+import java.time.LocalDateTime;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.Map;
 
 @Controller
 public class MobileController extends AbstractTariffController<TariffMobile, MobileService> {
-
+    private final ExpensesImplService expensesService;
     private final MobileService mobileService;
     private final UserRepo userRepo;
+    private final BalanceImplService balanceService;
 
-    public MobileController(MobileService mobileService, UserRepo userRepo) {
+    public MobileController(ExpensesImplService service, MobileService mobileService, UserRepo userRepo, BalanceImplService balanceService) {
         super(mobileService);
+        this.expensesService = service;
         this.mobileService = mobileService;
         this.userRepo = userRepo;
+        this.balanceService = balanceService;
     }
 
     @Transactional
@@ -101,7 +109,7 @@ public class MobileController extends AbstractTariffController<TariffMobile, Mob
 
     @Transactional
     @PostMapping("/connect")
-    public String userСonnectsTariff(@RequestParam("tariffMobileId") Long tariffMobileId, Model model) {
+    public String userСonnectsTariff(@RequestParam("tariffMobileId") Long tariffMobileId, Model model) throws Exception {
         User user = userRepo.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
         if (user == null) {
             return "login";
@@ -109,7 +117,9 @@ public class MobileController extends AbstractTariffController<TariffMobile, Mob
         TariffMobile tariffMobile = mobileService.getById(tariffMobileId);
         user.setTariffMobile(tariffMobile);
         userRepo.save(user);
-
+        Expenses expenses = expensesService.getById(new Expenses().getId());
+        expensesService.updateExpenses(user.getTariffMobile().getPriceOfMonth(),new GregorianCalendar(),"Абонентская плата",expenses.getId(),user);
+        balanceService.updateBalance(tariffMobile.getPriceOfMonth(),user.getBalance().getId());
         return "redirect:/tariffs";
     }
 }
