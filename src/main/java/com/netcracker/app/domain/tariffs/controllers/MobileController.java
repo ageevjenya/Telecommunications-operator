@@ -115,20 +115,28 @@ public class MobileController extends AbstractTariffController<TariffMobile, Mob
 
     @Transactional
     @PostMapping("/connect")
-    public String userСonnectsTariff(@RequestParam("tariffMobileId") Long tariffMobileId, Model model) throws Exception {
+    public String userConnectsTariff(@RequestParam("tariffMobileId") Long tariffMobileId, Model model) throws Exception {
         User user = userRepo.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
         if (user == null) {
             return "login";
         }
+
+        String description;
         TariffMobile tariffMobile = mobileService.getById(tariffMobileId);
+
+        try {
+            balanceService.updateBalance(tariffMobile.getPriceOfMonth(),user.getBalance().getId());
+        }
+        catch (Exception e ){
+            description = "Недостатчоно средств";
+            notificationsServiсe.AddNewNotificationInBDonDesctiption(description);
+            return "redirect:/tariffs";
+        }
+
         user.setTariffMobile(tariffMobile);
         userRepo.save(user);
-        String description = "Вы подключили тариф: " + tariffMobile.getName() +"\n" + tariffMobile.getDescription();
+        description = "Вы подключили тариф: " + tariffMobile.getName() +"\n" + tariffMobile.getDescription();
         notificationsServiсe.AddNewNotificationInBDonDesctiption(description);
-
-        Expenses expenses = expensesService.getById(new Expenses().getId());
-        expensesService.updateExpenses(user.getTariffMobile().getPriceOfMonth(),new GregorianCalendar(),"Абонентская плата",expenses.getId(),user);
-        balanceService.updateBalance(tariffMobile.getPriceOfMonth(), user.getBalance().getId());
-        return "tariffs";
+        return "redirect:/tariffs";
     }
 }
