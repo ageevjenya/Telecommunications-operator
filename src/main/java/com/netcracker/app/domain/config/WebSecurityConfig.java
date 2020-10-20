@@ -36,7 +36,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/modems/**", "/techs/**",
                         "/networkcoveragemap/pointacces",
                         "/resources/static/images/*", "/main/resources/static/images/**",
-                        "/chat/**").permitAll()
+                        "/chat/**", "/user/auth").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()

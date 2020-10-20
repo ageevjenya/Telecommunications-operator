@@ -1,4 +1,5 @@
 package com.netcracker.app.domain.balance.entities;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.netcracker.app.domain.users.entities.User;
 import javax.persistence.*;
 
@@ -9,6 +10,10 @@ public abstract class AbstractBalance {
     private Long id;
     private double money;
     private String number;
+
+    @JsonIgnore
+    @OneToOne(optional = false, mappedBy = "balance")
+    private User user;
 
     public User getUser() {
         return user;
@@ -52,6 +57,5 @@ public abstract class AbstractBalance {
 
     }
 
-    @OneToOne(optional = false, mappedBy = "balance")
-    private User user;
+
 }

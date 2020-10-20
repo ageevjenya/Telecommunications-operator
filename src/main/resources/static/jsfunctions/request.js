@@ -241,7 +241,7 @@ function messagesOnRequest(idReq, user) {
 function messagesTableView(data, user) {
     let view;
     let side;
-    console.log(data);
+    // console.log(data);
     let newLine
     if (data[0] === undefined) {
         view =

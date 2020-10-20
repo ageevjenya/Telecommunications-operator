@@ -1,6 +1,8 @@
 function openForm() {
     document.getElementById("myForm").style.display = "block";
     firstQuestion();
+    document.getElementById('btn').disabled = 1;
+    document.getElementById('requests').disabled = 1;
 }
 
 function closeForm() {
@@ -38,7 +40,7 @@ function onclickButtonMessage(button) {
     if (button.dataset.idAfterQuestion) {
         let question = {};
         question["id"] = button.dataset.idAfterQuestion;
-        console.log(question);
+        // console.log(question);
         $(function () {
             var token = $("input[name='_csrf']").val();
             var header = "X-CSRF-TOKEN";
@@ -133,10 +135,14 @@ function messagesChatView(data) {
             for (let i = 0; i < answers.length; i++) {
                 if (!(answers[i].afterQuestion == null)) {
                     afterQuestionid = answers[i].afterQuestion.id
-                } else{afterQuestionid = ""}
+                } else {
+                    afterQuestionid = ""
+                }
                 if (!(answers[i].functionChat == null)) {
                     functionChatid = answers[i].functionChat.id
-                }else{functionChatid = ""}
+                } else {
+                    functionChatid = ""
+                }
                 newLine =
                     "<button value='" + answers[i].id + "' " +
                     "data-id-after-question='" + afterQuestionid + "' " +
@@ -170,6 +176,7 @@ function functionChat(nameFunction) {
     let user;
     let view = "";
     let newLine = "";
+    // console.log(nameFunction);
     $(function () {
         var token = $("input[name='_csrf']").val();
         var header = "X-CSRF-TOKEN";
@@ -184,16 +191,17 @@ function functionChat(nameFunction) {
         url: "/user/auth",
         dataType: 'json',
         success: function (data) {
-            // console.log(data);
-            //
-            // console.log(JSON.parse(data));
+
+
             user = data;
+            // console.log(user);
 
         }
     });
     switch (nameFunction) {
         case 'firstQuestion':
             firstQuestion();
+            return;
             break;
         case 'topUpBalance':
             if (typeof user == "undefined") {
@@ -211,8 +219,9 @@ function functionChat(nameFunction) {
                     "</li>" + "\n";
                 view = view + newLine;
                 // console.log(user);
-            }else {
+            } else {
                 topUpBalance();
+                return;
             }
             break;
         case 'userBalance':
@@ -232,8 +241,9 @@ function functionChat(nameFunction) {
                 view = view + newLine;
                 // console.log(user);
 
-            }else {
+            } else {
                 userBalance();
+                return;
             }
             break;
         case 'connectedServices':
@@ -253,13 +263,15 @@ function functionChat(nameFunction) {
                 view = view + newLine;
                 // console.log(user);
 
-            }else {
+            } else {
                 connectedServices();
+                return;
             }
             break;
-            
+
         case 'serviceСatalog':
             serviceСatalog();
+            return;
             break;
         case 'myConnectedTarifs':
             if (typeof user == "undefined") {
@@ -278,27 +290,34 @@ function functionChat(nameFunction) {
                 view = view + newLine;
                 // console.log(user);
 
-            }else {
+            } else {
                 myConnectedTarifs();
+                return;
             }
             break;
         case 'tarifsCatalog':
             tarifsCatalog();
+            return;
             break;
         case 'homeTarifsCatalog':
             homeTarifsCatalog();
+            return;
             break;
         case 'mobileTarifsCatalog':
             mobileTarifsCatalog();
+            return;
             break;
         case 'modemsCatalog':
             modemsCatalog();
+            return;
             break;
         case 'usefulServices':
-             usefulServices();
+            usefulServices();
+            return;
             break;
         case 'equipmentCatalog':
-             equipmentCatalog();
+            equipmentCatalog();
+            return;
             break;
         case 'changePassword':
             // userBalance();
@@ -320,8 +339,9 @@ function functionChat(nameFunction) {
                 view = view + newLine;
                 // console.log(user);
 
-            }else {
+            } else {
                 detailViewer();
+                return;
             }
             break;
         case 'connectedServicesAll':
@@ -341,8 +361,9 @@ function functionChat(nameFunction) {
                 view = view + newLine;
                 // console.log(user);
 
-            }else {
+            } else {
                 connectedServicesAll();
+                return;
             }
             break;
         case 'balancesByPackages':
@@ -362,12 +383,32 @@ function functionChat(nameFunction) {
                 view = view + newLine;
                 // console.log(user);
 
-            }else {
+            } else {
                 balancesByPackages();
+                return;
             }
             break;
         case 'operatorСall':
-            operatorСall();
+            if (typeof user == "undefined") {
+                newLine =
+                    "<li class='right clearfix'>" +
+                    "<div class='chat-body clearfix'>" +
+                    "<div class='header'>" +
+                    "<strong class='primary-font'>Бот</strong>" +
+                    "<small class='pull-right text-muted'>" +
+                    "<span class='glyphicon glyphicon-time'></span>" +
+                    new Date(Date.now()).toLocaleString() + "</small>" +
+                    "</div>" +
+                    "<p>Авторизуйтесь или зарегистрируйтесь</p>" +
+                    "</div>" +
+                    "</li>" + "\n";
+                view = view + newLine;
+                // console.log(user);
+
+            } else {
+                operatorСall();
+                return;
+            }
             break;
         default:
             //Здесь находятся инструкции, которые выполняются при отсутствии соответствующего значения
@@ -382,6 +423,7 @@ function functionChat(nameFunction) {
         let block = document.getElementById("messagesScroll");
         block.scrollTop = block.scrollHeight;
     }
+
 }
 
 function userBalance() {
@@ -410,13 +452,13 @@ function userBalance() {
     $.ajax({
         type: "GET",
         contentType: "application/json",
-        url: "/chat/balance",
+        url: "/user/auth",
         dataType: 'json',
-        success: function (balance) {
+        success: function (user) {
             // console.log(balance);
 
             newLine =
-                balance + "</p>" +
+                user.balance.money + "</p>" +
                 "<button class='btn btn-warning btn-sm' onclick='operatorСall(); return false;'" +
                 "id='btn-chat'>Если у Вас остались вопросы, нажмите для соединения с опператором</button>" +
                 "</div>" +
@@ -436,6 +478,25 @@ function userBalance() {
 }
 
 function operatorСall() {
+    let view = "";
+    let newLine = "";
+    newLine =
+        "<li class='right clearfix'>" +
+        "<div class='chat-body clearfix'>" +
+        "<div class='header'>" +
+        "<strong class='primary-font'>Бот</strong>" +
+        "<small class='pull-right text-muted'>" +
+        "<span class='glyphicon glyphicon-time'></span>" +
+        new Date(Date.now()).toLocaleString() + "</small>" +
+        "</div>" +
+        "<p>Напишите свой вопрос ниже и отправьте, " +
+        "автоматически будет создана заявка по которой с вами скоро свяжется оператор </p>" +
+        "</div>" +
+        "</li>" + "\n";
+    view = view + newLine;
+    $('#nextMessage').html(view);
+    let block = document.getElementById("messagesScroll");
+    block.scrollTop = block.scrollHeight;
     document.getElementById('btn').disabled = 0;
     document.getElementById('requests').disabled = 0;
 }
@@ -452,7 +513,7 @@ function topUpBalance() {
         "<span class='glyphicon glyphicon-time'></span>" +
         new Date(Date.now()).toLocaleString() + "</small>" +
         "</div>" +
-        "<p><a href='#'>Перейдите по ссылке для пополнения баланса</a> " +
+        "<p><a href='/personalArea'>Перейдите по ссылке для пополнения баланса</a> " +
         "</p>" +
         "</div>" +
         "</li>" + "\n";
@@ -467,52 +528,9 @@ function topUpBalance() {
 function connectedServices() {
     let view = "";
     let newLine = "";
-    // newLine =
-    //     "<li class='right clearfix'>" +
-    //     "<div class='chat-body clearfix'>" +
-    //     "<div class='header'>" +
-    //     "<strong class='primary-font'>Бот</strong>" +
-    //     "<small class='pull-right text-muted'>" +
-    //     "<span class='glyphicon glyphicon-time'></span>" +
-    //     new Date(Date.now()).toLocaleString() + "</small>" +
-    //     "</div>" +
-    //     "<p>Ваш текущий баланс: ";
-    //
-    // view = view + newLine;
-    // $(function () {
-    //     var token = $("input[name='_csrf']").val();
-    //     var header = "X-CSRF-TOKEN";
-    //     $(document).ajaxSend(function (e, xhr, options) {
-    //         xhr.setRequestHeader(header, token);
-    //     });
-    // });
-    //
-    // $.ajax({
-    //     type: "GET",
-    //     contentType: "application/json",
-    //     url: "/chat/balance",
-    //     dataType: 'json',
-    //     success: function (balance) {
-    //         // console.log(balance);
-    //
-    //         newLine =
-    //             balance + "</p>" +
-    //             "<button class='btn btn-warning btn-sm' onclick='operatorСall(); return false;'" +
-    //             "id='btn-chat'>Если у Вас остались вопросы, нажмите для соединения с опператором</button>" +
-    //             "</div>" +
-    //             "</li>" + "\n";
-    //
-    //         if (view === undefined) {
-    //             view = "" + newLine;
-    //         } else {
-    //             view = view + newLine;
-    //         }
-    //         // console.log(view);
-    //         $('#nextMessage').html(view);
-    //         let block = document.getElementById("messagesScroll");
-    //         block.scrollTop = block.scrollHeight;
-    //     }
-    // })
+    let usertariffHome = "";
+    let usertariffMobile = "";
+
     newLine =
         "<li class='right clearfix'>" +
         "<div class='chat-body clearfix'>" +
@@ -522,18 +540,53 @@ function connectedServices() {
         "<span class='glyphicon glyphicon-time'></span>" +
         new Date(Date.now()).toLocaleString() + "</small>" +
         "</div>" +
-        "<p><a href='/personalArea'>Перейдите по ссылке чтобы посмотреть подключенные услуги</a> " +
-        "</p>" +
-        "<button class='btn btn-warning btn-sm' onclick='operatorСall(); return false;'" +
-                    "id='btn-chat'>Если у Вас остались вопросы, нажмите для соединения с опператором</button>" +
-        "</div>" +
-        "</li>" + "\n";
+        "<p>Подключенные услуги: </p>";
 
     view = view + newLine;
-    // console.log(view);
-    $('#nextMessage').html(view);
-    let block = document.getElementById("messagesScroll");
-    block.scrollTop = block.scrollHeight;
+    $(function () {
+        var token = $("input[name='_csrf']").val();
+        var header = "X-CSRF-TOKEN";
+        $(document).ajaxSend(function (e, xhr, options) {
+            xhr.setRequestHeader(header, token);
+        });
+    });
+
+    $.ajax({
+        type: "GET",
+        contentType: "application/json",
+        url: "/user/auth",
+        dataType: 'json',
+        success: function (user) {
+            // console.log(user);
+            if (!(user.tariffHome == null)) {
+                usertariffHome = "<p>Домашний интернет: " + user.tariffHome.description + "</p>"
+            } else {
+                usertariffHome = "<p>Домашний интернет не подключен</p>"
+            }
+            if (!(user.tariffMobile == null)) {
+                usertariffMobile = "<p>Мобильная связь: " + user.tariffMobile.description + "</p>"
+            } else {
+                usertariffMobile = "<p>Мобильная связь не подключена</p>"
+            }
+            newLine =
+                usertariffHome + usertariffMobile +
+                "<button class='btn btn-warning btn-sm' onclick='operatorСall(); return false;'" +
+                "id='btn-chat'>Если у Вас остались вопросы, нажмите для соединения с опператором</button>" +
+                "</div>" +
+                "</li>" + "\n";
+
+            if (view === undefined) {
+                view = "" + newLine;
+            } else {
+                view = view + newLine;
+            }
+            // console.log(view);
+            $('#nextMessage').html(view);
+            let block = document.getElementById("messagesScroll");
+            block.scrollTop = block.scrollHeight;
+        }
+    })
+
 }
 
 function serviceСatalog() {
@@ -548,68 +601,27 @@ function serviceСatalog() {
         "<span class='glyphicon glyphicon-time'></span>" +
         new Date(Date.now()).toLocaleString() + "</small>" +
         "</div>" +
-        // "<p><a href='/personalArea'>Перейдите по ссылке чтобы посмотреть подключенные услуги</a></p>" +
         "<p>Перейдите в раздел тарифы в верхней панели</p>" +
         "<button class='btn btn-warning btn-sm' onclick='operatorСall(); return false;'" +
         "id='btn-chat'>Если у Вас остались вопросы, нажмите для соединения с опператором</button>" +
         "</div>" +
         "</li>" + "\n";
 
+
     view = view + newLine;
     // console.log(view);
     $('#nextMessage').html(view);
+    // console.log(document.getElementById("nextMessage"));
     let block = document.getElementById("messagesScroll");
     block.scrollTop = block.scrollHeight;
 }
+
 function myConnectedTarifs() {
     let view = "";
     let newLine = "";
-    // newLine =
-    //     "<li class='right clearfix'>" +
-    //     "<div class='chat-body clearfix'>" +
-    //     "<div class='header'>" +
-    //     "<strong class='primary-font'>Бот</strong>" +
-    //     "<small class='pull-right text-muted'>" +
-    //     "<span class='glyphicon glyphicon-time'></span>" +
-    //     new Date(Date.now()).toLocaleString() + "</small>" +
-    //     "</div>" +
-    //     "<p>Ваш текущий баланс: ";
-    //
-    // view = view + newLine;
-    // $(function () {
-    //     var token = $("input[name='_csrf']").val();
-    //     var header = "X-CSRF-TOKEN";
-    //     $(document).ajaxSend(function (e, xhr, options) {
-    //         xhr.setRequestHeader(header, token);
-    //     });
-    // });
-    //
-    // $.ajax({
-    //     type: "GET",
-    //     contentType: "application/json",
-    //     url: "/chat/balance",
-    //     dataType: 'json',
-    //     success: function (balance) {
-    //         // console.log(balance);
-    //
-    //         newLine =
-    //             balance + "</p>" +
-    //             "<button class='btn btn-warning btn-sm' onclick='operatorСall(); return false;'" +
-    //             "id='btn-chat'>Если у Вас остались вопросы, нажмите для соединения с опператором</button>" +
-    //             "</div>" +
-    //             "</li>" + "\n";
-    //
-    //         if (view === undefined) {
-    //             view = "" + newLine;
-    //         } else {
-    //             view = view + newLine;
-    //         }
-    //         // console.log(view);
-    //         $('#nextMessage').html(view);
-    //         let block = document.getElementById("messagesScroll");
-    //         block.scrollTop = block.scrollHeight;
-    //     }
-    // })
+    let usertariffHome = "";
+    let usertariffMobile = "";
+
     newLine =
         "<li class='right clearfix'>" +
         "<div class='chat-body clearfix'>" +
@@ -619,21 +631,55 @@ function myConnectedTarifs() {
         "<span class='glyphicon glyphicon-time'></span>" +
         new Date(Date.now()).toLocaleString() + "</small>" +
         "</div>" +
-        "<p><a href='/personalArea'>Перейдите по ссылке чтобы посмотреть подключенные тарифы</a> " +
-        "</p>" +
-        "<button class='btn btn-warning btn-sm' onclick='operatorСall(); return false;'" +
-        "id='btn-chat'>Если у Вас остались вопросы, нажмите для соединения с опператором</button>" +
-        "</div>" +
-        "</li>" + "\n";
+        "<p>Подключенные услуги: </p>";
 
     view = view + newLine;
-    // console.log(view);
-    $('#nextMessage').html(view);
-    let block = document.getElementById("messagesScroll");
-    block.scrollTop = block.scrollHeight;
+    $(function () {
+        var token = $("input[name='_csrf']").val();
+        var header = "X-CSRF-TOKEN";
+        $(document).ajaxSend(function (e, xhr, options) {
+            xhr.setRequestHeader(header, token);
+        });
+    });
+
+    $.ajax({
+        type: "GET",
+        contentType: "application/json",
+        url: "/user/auth",
+        dataType: 'json',
+        success: function (user) {
+            // console.log(user);
+            if (!(user.tariffHome == null)) {
+                usertariffHome = "<p>Домашний интернет: " + user.tariffHome.description + "</p>"
+            } else {
+                usertariffHome = "<p>Домашний интернет не подключен</p>"
+            }
+            if (!(user.tariffMobile == null)) {
+                usertariffMobile = "<p>Мобильная связь: " + user.tariffMobile.description + "</p>"
+            } else {
+                usertariffMobile = "<p>Мобильная связь не подключена</p>"
+            }
+            newLine =
+                usertariffHome + usertariffMobile +
+                "<button class='btn btn-warning btn-sm' onclick='operatorСall(); return false;'" +
+                "id='btn-chat'>Если у Вас остались вопросы, нажмите для соединения с опператором</button>" +
+                "</div>" +
+                "</li>" + "\n";
+
+            if (view === undefined) {
+                view = "" + newLine;
+            } else {
+                view = view + newLine;
+            }
+            // console.log(view);
+            $('#nextMessage').html(view);
+            let block = document.getElementById("messagesScroll");
+            block.scrollTop = block.scrollHeight;
+        }
+    })
 }
 
-function tarifsCatalog(){
+function tarifsCatalog() {
     let view = "";
     let newLine = "";
     newLine =
@@ -659,7 +705,7 @@ function tarifsCatalog(){
     block.scrollTop = block.scrollHeight;
 }
 
-function homeTarifsCatalog(){
+function homeTarifsCatalog() {
     let view = "";
     let newLine = "";
     newLine =
@@ -683,7 +729,8 @@ function homeTarifsCatalog(){
     let block = document.getElementById("messagesScroll");
     block.scrollTop = block.scrollHeight;
 }
-function mobileTarifsCatalog(){
+
+function mobileTarifsCatalog() {
     let view = "";
     let newLine = "";
     newLine =
@@ -708,31 +755,6 @@ function mobileTarifsCatalog(){
     block.scrollTop = block.scrollHeight;
 }
 
-function modemsCatalog() {
-    let view = "";
-    let newLine = "";
-    newLine =
-        "<li class='right clearfix'>" +
-        "<div class='chat-body clearfix'>" +
-        "<div class='header'>" +
-        "<strong class='primary-font'>Бот</strong>" +
-        "<small class='pull-right text-muted'>" +
-        "<span class='glyphicon glyphicon-time'></span>" +
-        new Date(Date.now()).toLocaleString() + "</small>" +
-        "</div>" +
-        "<p><a href='/modems'>Перейдите по ссылке чтобы посмотреть каталог модемов и роутеров</a></p>" +
-        "<button class='btn btn-warning btn-sm' onclick='operatorСall(); return false;'" +
-        "id='btn-chat'>Если у Вас остались вопросы, нажмите для соединения с опператором</button>" +
-        "</div>" +
-        "</li>" + "\n";
-
-    view = view + newLine;
-    // console.log(view);
-    $('#nextMessage').html(view);
-    let block = document.getElementById("messagesScroll");
-    block.scrollTop = block.scrollHeight;
-
-}
 
 function modemsCatalog() {
     let view = "";
@@ -786,7 +808,7 @@ function equipmentCatalog() {
 
 }
 
-function  usefulServices() {
+function usefulServices() {
     let view = "";
     let newLine = "";
     newLine =
@@ -811,7 +833,7 @@ function  usefulServices() {
     block.scrollTop = block.scrollHeight;
 }
 
-function  detailViewer() {
+function detailViewer() {
     let view = "";
     let newLine = "";
     newLine =
@@ -840,6 +862,9 @@ function  detailViewer() {
 function connectedServicesAll() {
     let view = "";
     let newLine = "";
+    let usertariffHome = "";
+    let usertariffMobile = "";
+
     newLine =
         "<li class='right clearfix'>" +
         "<div class='chat-body clearfix'>" +
@@ -849,24 +874,62 @@ function connectedServicesAll() {
         "<span class='glyphicon glyphicon-time'></span>" +
         new Date(Date.now()).toLocaleString() + "</small>" +
         "</div>" +
-        "<p><a href='/personalArea'>Перейдите по ссылке чтобы посмотреть подключенные тарифы</a> " +
-        "</p>" +
-        "<button class='btn btn-warning btn-sm' onclick='operatorСall(); return false;'" +
-        "id='btn-chat'>Если у Вас остались вопросы, нажмите для соединения с опператором</button>" +
-        "</div>" +
-        "</li>" + "\n";
+        "<p>Подключенные услуги: </p>";
 
     view = view + newLine;
-    // console.log(view);
-    $('#nextMessage').html(view);
-    let block = document.getElementById("messagesScroll");
-    block.scrollTop = block.scrollHeight;
+    $(function () {
+        var token = $("input[name='_csrf']").val();
+        var header = "X-CSRF-TOKEN";
+        $(document).ajaxSend(function (e, xhr, options) {
+            xhr.setRequestHeader(header, token);
+        });
+    });
+
+    $.ajax({
+        type: "GET",
+        contentType: "application/json",
+        url: "/user/auth",
+        dataType: 'json',
+        success: function (user) {
+            // console.log(user);
+            if (!(user.tariffHome == null)) {
+                usertariffHome = "<p>Домашний интернет: " + user.tariffHome.description + "</p>"
+            } else {
+                usertariffHome = "<p>Домашний интернет не подключен</p>"
+            }
+            if (!(user.tariffMobile == null)) {
+                usertariffMobile = "<p>Мобильная связь: " + user.tariffMobile.description + "</p>"
+            } else {
+                usertariffMobile = "<p>Мобильная связь не подключена</p>"
+            }
+            newLine =
+                usertariffHome + usertariffMobile +
+                "<button class='btn btn-warning btn-sm' onclick='operatorСall(); return false;'" +
+                "id='btn-chat'>Если у Вас остались вопросы, нажмите для соединения с опператором</button>" +
+                "</div>" +
+                "</li>" + "\n";
+
+            if (view === undefined) {
+                view = "" + newLine;
+            } else {
+                view = view + newLine;
+            }
+            // console.log(view);
+            $('#nextMessage').html(view);
+            let block = document.getElementById("messagesScroll");
+            block.scrollTop = block.scrollHeight;
+        }
+    })
 
 }
 
 function balancesByPackages() {
     let view = "";
     let newLine = "";
+    let usedInternet = "";
+    let usedMinutes = "";
+    let usedSms = "";
+
     newLine =
         "<li class='right clearfix'>" +
         "<div class='chat-body clearfix'>" +
@@ -876,16 +939,44 @@ function balancesByPackages() {
         "<span class='glyphicon glyphicon-time'></span>" +
         new Date(Date.now()).toLocaleString() + "</small>" +
         "</div>" +
-        "<p><a href='/personalArea'>Перейдите по ссылке чтобы посмотреть остатки по пакетам</a> " +
-        "</p>" +
-        "<button class='btn btn-warning btn-sm' onclick='operatorСall(); return false;'" +
-        "id='btn-chat'>Если у Вас остались вопросы, нажмите для соединения с опператором</button>" +
-        "</div>" +
-        "</li>" + "\n";
+        "<p>Подключенные услуги: </p>";
 
     view = view + newLine;
-    // console.log(view);
-    $('#nextMessage').html(view);
-    let block = document.getElementById("messagesScroll");
-    block.scrollTop = block.scrollHeight;
+    $(function () {
+        var token = $("input[name='_csrf']").val();
+        var header = "X-CSRF-TOKEN";
+        $(document).ajaxSend(function (e, xhr, options) {
+            xhr.setRequestHeader(header, token);
+        });
+    });
+
+    $.ajax({
+        type: "GET",
+        contentType: "application/json",
+        url: "/user/auth",
+        dataType: 'json',
+        success: function (user) {
+            console.log(user);
+            usedInternet = "<p>Израсходовано мб мобильного интернета: " + user.userUsedTariffMobile.usedInternet + "</p>";
+            usedMinutes = "<p>Израсходовано минут: " + user.userUsedTariffMobile.usedMinutes + "</p>";
+            usedSms = "<p>Израсходовано SMS: " + user.userUsedTariffMobile.usedSms + "</p>";
+
+            newLine =
+                usedInternet + usedMinutes + usedSms +
+                "<button class='btn btn-warning btn-sm' onclick='operatorСall(); return false;'" +
+                "id='btn-chat'>Если у Вас остались вопросы, нажмите для соединения с опператором</button>" +
+                "</div>" +
+                "</li>" + "\n";
+
+            if (view === undefined) {
+                view = "" + newLine;
+            } else {
+                view = view + newLine;
+            }
+            // console.log(view);
+            $('#nextMessage').html(view);
+            let block = document.getElementById("messagesScroll");
+            block.scrollTop = block.scrollHeight;
+        }
+    })
 }

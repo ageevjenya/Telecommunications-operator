@@ -1,5 +1,6 @@
 package com.netcracker.app.domain.users.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.netcracker.app.domain.users.entities.User;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
@@ -13,6 +14,7 @@ public class UserUsedTariffMobile {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @JsonIgnore
     @OneToOne(optional = false, mappedBy = "userUsedTariffMobile")
     private User user;
 

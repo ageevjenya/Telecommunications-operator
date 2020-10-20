@@ -1,5 +1,6 @@
 package com.netcracker.app.domain.tariffs.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.netcracker.app.domain.users.entities.User;
 
 import javax.persistence.*;
@@ -13,6 +14,7 @@ public class TariffMobile extends Tariff {
     private int minutes;
 
     private int sms;
+    @JsonIgnore
     @OneToMany//(mappedBy="user")
     private Set<User> users;
 

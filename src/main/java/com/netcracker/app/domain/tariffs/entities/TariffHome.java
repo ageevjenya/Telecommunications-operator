@@ -1,5 +1,6 @@
 package com.netcracker.app.domain.tariffs.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.netcracker.app.domain.users.entities.User;
 
 import javax.persistence.*;
@@ -12,7 +13,7 @@ public class TariffHome extends Tariff {
 
 
     private Integer speedInternet;
-
+    @JsonIgnore
     @OneToMany//(mappedBy="user")
     private Set<User> users;
 

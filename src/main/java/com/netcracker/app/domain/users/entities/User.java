@@ -34,18 +34,9 @@ public class User implements UserDetails {
     private boolean active;
 
     //    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "tariffMobile_id")
     private TariffMobile tariffMobile;
-
-    public Balance getBalance() {
-        return balance;
-    }
-
-    public void setBalance(Balance balance) {
-        this.balance = balance;
-    }
 
 
     @OneToOne(optional = false, cascade = CascadeType.ALL)
@@ -53,13 +44,12 @@ public class User implements UserDetails {
     private Balance balance;
 
     //    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "tariffHome_id")
     private TariffHome tariffHome;
 
     //    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    @JsonIgnore
+
     @OneToOne(optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "userUsedTariffMobile_id")
     private UserUsedTariffMobile userUsedTariffMobile;
@@ -76,14 +66,6 @@ public class User implements UserDetails {
     private Set<Role> roles;
 
 
-    public Set<Expenses> getExpenses() {
-        return expenses;
-    }
-
-    public void setExpenses(Set<Expenses> expenses) {
-        this.expenses = expenses;
-    }
-
     @JsonIgnore
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private Set<Expenses> expenses;
@@ -97,6 +79,23 @@ public class User implements UserDetails {
     private Cart cart;
     public Set<UserOrder> getUserOrders() {
         return userOrders;
+    }
+
+
+    public Set<Expenses> getExpenses() {
+        return expenses;
+    }
+
+    public void setExpenses(Set<Expenses> expenses) {
+        this.expenses = expenses;
+    }
+
+    public Balance getBalance() {
+        return balance;
+    }
+
+    public void setBalance(Balance balance) {
+        this.balance = balance;
     }
 
     public void setUserOrders(Set<UserOrder> userOrders) {
