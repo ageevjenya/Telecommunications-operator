@@ -23,7 +23,7 @@ function notificationAllActive() {
 
 function notificationListView(data) {
     let view;
-    let color;
+    /*let color;*/
     let newLine;
     if (data[0] === undefined) {
         view =
@@ -31,11 +31,11 @@ function notificationListView(data) {
         document.getElementById('notification').style.border = '0px';
     } else {
         for (let i = 0; i < data.length; i++) {
-            if (data[i].active) {
+            /*if (data[i].active) {
                 color = '#fbcece'
             } else {
                 color = '#cafea7';
-            }
+            }*/
             newLine =
                 "<li>" +
                 "<div id='" + data[i].id + "' onclick='changeActive(this.id)' " +
@@ -50,7 +50,7 @@ function notificationListView(data) {
                 view = view + newLine;
             }
         }
-        document.getElementById('notification').style.border = '2px solid #66CDAA';
+        /*document.getElementById('notification').style.border = '2px solid #A9A9A9';*/
 
     }
     // console.log(view);
@@ -84,4 +84,62 @@ function changeActive(id) {
         }
     });
 
+};
+
+
+
+function notificationProduct() {
+
+    $(function () {
+        var token = $("input[name='_csrf']").val();
+        var header = "X-CSRF-TOKEN";
+        $(document).ajaxSend(function (e, xhr, options) {
+            xhr.setRequestHeader(header, token);
+        });
+    });
+    $.ajax({
+        type: "GET",
+        contentType: "application/json",
+        url: "/notifications/product",
+        dataType: 'json',
+        success: function (data) {
+            // console.log(data);
+            notificationView(data);
+        }
+    });
+
+};
+
+function notificationView(data) {
+    let view = data.description;
+    // console.log(view);
+    $('#notificationProductView').html(view);
+};
+
+function notificationsAmount() {
+
+    $(function () {
+        var token = $("input[name='_csrf']").val();
+        var header = "X-CSRF-TOKEN";
+        $(document).ajaxSend(function (e, xhr, options) {
+            xhr.setRequestHeader(header, token);
+        });
+    });
+    $.ajax({
+        type: "GET",
+        contentType: "application/json",
+        url: "/notifications/allCount",
+        dataType: 'json',
+        success: function (data) {
+            // console.log(data);
+            notificationAmountListView(data);
+        }
+    });
+
+};
+
+function notificationAmountListView(data) {
+    let view = data.length;
+    // console.log(view);
+    $('#notificationsAmountList').html(view);
 };

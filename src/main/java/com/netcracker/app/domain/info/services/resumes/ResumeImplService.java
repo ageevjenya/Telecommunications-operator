@@ -4,6 +4,7 @@ import com.netcracker.app.domain.info.entities.resumes.ResumeImpl;
 import com.netcracker.app.domain.info.entities.vacancies.VacancyImpl;
 import com.netcracker.app.domain.info.repositories.resumes.ResumeImplRepository;
 import com.netcracker.app.domain.info.repositories.vacancies.VacancyImplRepository;
+import com.netcracker.app.domain.users.entities.User;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -17,6 +18,10 @@ public class ResumeImplService extends AbstractResumeService<ResumeImpl> {
         this.vacancyImplRepository = vacancyImplRepository;
     }
 
+    public ResumeImpl getByVacancyUser(VacancyImpl vacancy, User user) {
+        return repository.getByVacancyAndUser(vacancy, user);
+    }
+
     @Override
     public ResumeImpl getById(int id) throws Exception {
         if (repository.existsById(id)) {
@@ -24,6 +29,12 @@ public class ResumeImplService extends AbstractResumeService<ResumeImpl> {
         } else {
             throw new Exception("Doesn't exist");
         }
+    }
+
+    public void updateAccepted(String name, int id) {
+        ResumeImpl resume = repository.getById(id);
+        resume.setAccepted(null);
+        repository.saveAndFlush(resume);
     }
 
     @Override

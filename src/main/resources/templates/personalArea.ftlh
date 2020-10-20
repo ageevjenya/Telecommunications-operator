@@ -1,5 +1,6 @@
 <#import "parts/common.ftlh" as c>
 <@c.page>
+    <br><br><br>
 
     <div class="jumbotron" style="background-image: linear-gradient(to bottom, rgba(255,255,255,0.6) 0%,rgba(255,255,255,0.9) 100%), url(https://expertsib.ru/assets/content/magazine/2018/6/08-01c.jpg); background-size: cover; background-position: center">
         <h3 class="display-4">Личный кабинет</h3>
@@ -43,7 +44,9 @@
         <p><a href="/tariffsHome" class="btn btn-dark">Выбрать домашний тариф</a></p>
         <br><br><br>
 
+
     </div>
+
     <#if resumes?size gt 0>
         <div class="accordion" id="resume" style="padding-left: 20%; width: 80%">
         <div class="card">
@@ -119,8 +122,20 @@
                                 <span class="glyphicon form-control-feedback"></span>
                             </div>
                             <input type="hidden" name="_csrf" value="${_csrf.token}"/>
+                            <#if resume.getAccepted()?hasContent>
+                                <#else>
                             <button id="change" type="submit" class="btn btn-light" style="color: black; margin-left: 350px">Изменить</button>
+                            </#if>
                         </form>
+                        <#if resume.getAccepted()?hasContent>
+                            <#if resume.getAccepted() == "принято">
+                                <p style="color: #ffcc00">Ваше резюме ${resume.getAccepted()}</p>
+                                <#else>
+                                    <p style="color: #A9A9A9">Ваше резюме ${resume.getAccepted()}</p>
+                            </#if>
+                            <#else>
+                                <p style="color: #5488af">Ваше резюме рассматривают.</p>
+                        </#if>
                         <#if resumes?size gt 1 && resume?index lt (resumes?size - 1)>
                             <hr class="my-4">
                         </#if>

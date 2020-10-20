@@ -1,7 +1,7 @@
 <#import "parts/common.ftlh" as c>
 
 <@c.page>
-<br>
+    <br> <br><br><br>
   <h3 style="margin-left: 20%">Отправить нам резюме</h3><br>
     <p style="margin-left: 20%"><strong>Вакансия: ${vacancy.name}</strong></p>
 

@@ -37,4 +37,18 @@ public class NotificationRestController {
         notificationBD.setActive(!notificationBD.isActive());
         notificationRepo.save(notificationBD);
     }
+
+    @GetMapping(value = "/notifications/product", headers = {"Content-type=application/json"})
+    public Notification productNotifications() {
+        User user = userRepo.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
+        return notificationRepo.getByProductAndActiveAndUser(user);
+    }
+
+    @GetMapping(value = "/notifications/allCount", headers = {"Content-type=application/json"})
+    public Iterable<Notification> notificationsCount() {
+        User user = userRepo.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
+
+        Iterable<Notification> notifications = notificationRepo.findAllActiveNotificationsNative(user);
+        return notifications;
+    }
 }

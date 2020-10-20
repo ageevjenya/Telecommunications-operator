@@ -1,5 +1,6 @@
 package com.netcracker.app.domain.shop.controllers;
 
+import com.netcracker.app.domain.notifications.NotificationsServiсe;
 import com.netcracker.app.domain.shop.entities.Cart;
 import com.netcracker.app.domain.shop.entities.Modem;
 import com.netcracker.app.domain.shop.entities.ProductModemInfo;
@@ -10,6 +11,7 @@ import com.netcracker.app.domain.shop.repositories.ProductModemInfoRepository;
 import com.netcracker.app.domain.shop.services.ModemService;
 import com.netcracker.app.domain.users.entities.User;
 import com.netcracker.app.domain.users.repositories.UserRepo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,6 +29,8 @@ public class ModemController {
     private final CartRepository cartRepository;
     private final ProductModemInfoRepository productModemInfoRepository;
     private final ImgModemRepository imgModemRepository;
+    @Autowired
+    NotificationsServiсe notificationsServiсe;
 
     public ModemController(ModemService service, ModemRepository modemRepository, UserRepo userRepo,
                            CartRepository cartRepository, ProductModemInfoRepository productModemInfoRepository, ImgModemRepository imgModemRepository) {
@@ -77,9 +81,11 @@ public class ModemController {
         cart.setCounts();
         cart.setFullPrice();
         cartRepository.saveAndFlush(cart);
+        notificationsServiсe.AddNewNotificationToCart();
 
         model.addAttribute("imgs", imgModemRepository.findAllByModemId(modem.getId()));
         model.addAttribute("modem", repository.getOne(modem.getId()));
+        model.addAttribute("cart", cart);
         return "modem";
     }
 }

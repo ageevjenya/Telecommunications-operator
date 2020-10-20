@@ -3,7 +3,7 @@
 
 <script src="../static/jsfunctions/notifications.js" type="text/javascript"></script>
 <#--    <nav id="navbar" class="navbar navbar-expand-lg navbar-dark" style="background-color: #424242;">-->
-<nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top scrolling-navbar">
 
 
     <a class="navbar-brand" href="/">Оператор связи</a>
@@ -40,10 +40,6 @@
                     <a class="btn btn-nowrap" style="position: center; color: #314A40" href="/networkcoveragemap">Карта
                         покрытия</a>
                     <a class="btn btn-nowrap" style="position: center; color: #314A40" href="/work">Работа</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="btn btn-nowrap" style="position: center; color: #314A40" href="/promo">Акции</a>
-                    <a class="btn btn-nowrap" style="position: center; color: #314A40" href="/advertising">Реклама</a>
-                    <a class="btn btn-nowrap" style="position: center; color: #314A40" href="#">Рекомендации</a>
 
                 </div>
             </li>
@@ -55,32 +51,65 @@
                     <a class="nav-link" href="/requests">Заявки</a>
                 </li>
             </#if>
-            <#if isAdmin>
+            <#if isAdmin || isManager || isSupport>
+                <#if isAdmin>
                 <li class="nav-item">
-                    <a class="nav-link" href="/user">Список пользователей</a>
+                    <a class="nav-link" style="color: #5488af" href="/user">Пользователи</a>
                 </li>
+                </#if>
+            <#if isAdmin || isManager>
+                <li class="nav-item">
+                    <a class="nav-link" style="color: #5488af" href="/userResumesList">Резюме</a>
+                </li>
+                </#if>
+
+                <#if isSupport || isAdmin>
+                    <li class="nav-item">
+                        <a class="nav-link" style="color: #5488af" href="/userOrdersList">П-заказы</a>
+                    </li>
+                    </#if>
             </#if>
         </ul>
 
     </div>
-    <#if Session.SPRING_SECURITY_CONTEXT??>
-        <div class="navbar-text mr-2">
-            <a class="nav-link" style="color: #A9A9A9" href="/cart">Корзина</a>
-        </div>
-    </#if>
-    <#if isAuth>
-        <div class="dropdown">
-            <!-- the id is important here -->
-            <button class="btn btn-defoult dropdown-toggle" style="color: #A9A9A9" type="button" data-toggle="dropdown"
-                    onclick="notificationAllActive()" id="notification">Уведомления
-                <span class="caret"></span></button>
-            <ul class="dropdown-menu" onclick="notificationAllActive()">
-                <div id="notificationList"></div>
+    <ul class="navbar-nav" style="right: 5%">
+        <#if Session.SPRING_SECURITY_CONTEXT??>
+            <li class="nav-item dropdown">
+                <!-- the id is important here -->
+                <a class="nav-link" style="color: #A9A9A9" type="button" data-toggle="dropdown"
+                   onclick="notificationAllActive()" id="notification"><i class="far fa-bell mr-2"></i><script>notificationsAmount()</script>
+                    <span class="badge badge-secondary" id="notificationsAmountList"></span></a>
+                <ul class="dropdown-menu" onclick="notificationAllActive()">
+                    <div id="notificationList"></div>
 
-            </ul>
-        </div>
-    </#if>
-    <div class="navbar-text mr-3">${name}</div>
-    <@l.logout />
+                </ul>
+            </li>
+            <li class="nav-item mr-2">
+                <a class="nav-link" href="/cart"><i class="fas fa-shopping-cart mr-2"></i><script>notificationProduct()</script><span
+                            class="badge badge-secondary" id="notificationProductView"></span></a>
+            </li>
+
+            <li class="nav-item dropdown mr-3">
+                <a class="btn btn-outline-info lighten-2" style="border-color: #A9A9A9; color: #A9A9A9; background-color: #314A40"
+                   href="/personalArea" id="navbarDropdownPersonal" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    ${name}<i class="far fa-user ml-2"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPersonal">
+                    <a class="btn btn-nowrap" style="position: center; color: #314A40" href="/personalArea">Личный кабинет</a>
+                    <a class="btn btn-nowrap" style="position: center; color: #314A40" href="/userOrders">Ваши заказы</a>
+                    <div class="dropdown-divider"></div>
+                    <@l.logout />
+                </div>
+            </li>
+
+        <#else>
+            <form action="/logout" method="post">
+                <input type="hidden" name="_csrf" value="${_csrf.token}"/>
+                <button class="btn btn-light"
+                        type="submit">Войти</button>
+            </form>
+        </#if>
+    </ul>
 </nav>
 <script> notificationAllActive()</script>

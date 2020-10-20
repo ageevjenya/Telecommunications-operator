@@ -2,17 +2,17 @@
 <#import "parts/coveragemap.ftlh" as n>
 
 <@c.page>
-
+    <br> <br><br>
     <body>
     <script src="../static/jsfunctions/networkcoveragemap.js" type="text/javascript"></script>
-
     <div class="container">
         <div class="row">
             <div class="col mx-1">
-                <h3 class="display-5">Карта покрытия</h3>
+                <br>
+                <h3 class="display-5" style="margin-left: 13.5%">Карта покрытия</h3>
 
                 <form id="typePointAcces">
-                    <div>
+                    <div style="margin-left: 13.5%">
                         <#list typepoints as typepoint>
                             <label><input name="typePointAcces" type="radio" id="${typepoint}"
                                           onclick="pointacceschoose(this)" value="${typepoint}"
@@ -34,5 +34,8 @@
     </div>
 
     </body>
+ <#--   <br>
+
+        <#include "parts/footer.ftlh" />-->
 
 </@c.page>

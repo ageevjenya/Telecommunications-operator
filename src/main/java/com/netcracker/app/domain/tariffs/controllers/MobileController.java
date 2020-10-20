@@ -3,10 +3,15 @@ package com.netcracker.app.domain.tariffs.controllers;
 import com.netcracker.app.domain.balance.entities.expenses.Expenses;
 import com.netcracker.app.domain.balance.services.BalanceImplService;
 import com.netcracker.app.domain.balance.services.expenses.ExpensesImplService;
+import com.netcracker.app.domain.notifications.NotificationsServiсe;
+import com.netcracker.app.domain.tariffs.entities.TariffHome;
+import com.netcracker.app.domain.notifications.NotificationsServiсe;
 import com.netcracker.app.domain.tariffs.entities.TariffMobile;
 import com.netcracker.app.domain.tariffs.services.MobileService;
 import com.netcracker.app.domain.users.entities.User;
 import com.netcracker.app.domain.users.repositories.UserRepo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,7 +29,8 @@ public class MobileController extends AbstractTariffController<TariffMobile, Mob
     private final MobileService mobileService;
     private final UserRepo userRepo;
     private final BalanceImplService balanceService;
-
+    @Autowired
+    private NotificationsServiсe notificationsServiсe;
     public MobileController(ExpensesImplService service, MobileService mobileService, UserRepo userRepo, BalanceImplService balanceService) {
         super(mobileService);
         this.expensesService = service;
@@ -64,7 +70,7 @@ public class MobileController extends AbstractTariffController<TariffMobile, Mob
         TariffMobile tariffMobile = new TariffMobile(minutes, sms, priceOfMonth, name, description, gbInternet);
         mobileService.add(tariffMobile);
         model.put("mobileTariffs", mobileService.getAll());
-        return "redirect:/tariffs";
+        return "tariffs";
     }
 
     @Transactional
@@ -96,7 +102,7 @@ public class MobileController extends AbstractTariffController<TariffMobile, Mob
                 mobileService.updateDescription(description, id);
             }
         model.put("mobileTariffs", mobileService.getAll());
-        return "redirect:/tariffs";
+        return "tariffs";
     }
 
     @Transactional
@@ -104,7 +110,7 @@ public class MobileController extends AbstractTariffController<TariffMobile, Mob
     public String delete(@PathVariable("id") Long id, Map<String, Object> model) throws Exception {
         mobileService.delete(id);
         model.put("mobileTariffs", mobileService.getAll());
-        return "redirect:/tariffs";
+        return "tariffs";
     }
 
     @Transactional
@@ -117,9 +123,12 @@ public class MobileController extends AbstractTariffController<TariffMobile, Mob
         TariffMobile tariffMobile = mobileService.getById(tariffMobileId);
         user.setTariffMobile(tariffMobile);
         userRepo.save(user);
+        String description = "Вы подключили тариф: " + tariffMobile.getName() +"\n" + tariffMobile.getDescription();
+        notificationsServiсe.AddNewNotificationInBDonDesctiption(description);
+
         Expenses expenses = expensesService.getById(new Expenses().getId());
         expensesService.updateExpenses(user.getTariffMobile().getPriceOfMonth(),new GregorianCalendar(),"Абонентская плата",expenses.getId(),user);
-        balanceService.updateBalance(tariffMobile.getPriceOfMonth(),user.getBalance().getId());
-        return "redirect:/tariffs";
+        balanceService.updateBalance(tariffMobile.getPriceOfMonth(), user.getBalance().getId());
+        return "tariffs";
     }
 }

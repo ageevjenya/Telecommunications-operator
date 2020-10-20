@@ -9,7 +9,6 @@
               id="bootstrap-css">
     </head>
     <body>
-
     <div class="container">
         <div class="row">
             <div class="col mx-1">

@@ -36,4 +36,22 @@ public class NotificationsServiсe {
 //        // call function from script file
 //        inv.invokeFunction("notificationAllActive", "");
     }
+    public void AddNewNotificationInBDonDescriptionToOtherUser(String description, User user) {
+        Notification notification = new Notification(description, user);
+
+        notificationRepo.save(notification);
+    }
+
+    public void AddNewNotificationToCart() {
+        User user = userRepo.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
+        Notification notification = notificationRepo.getByProductAndActiveAndUser(user);
+        if (notification == null) {
+            Notification newNotification = new Notification(String.valueOf(user.getCart().getCounts()), user);
+            newNotification.setProduct(true);
+            notificationRepo.save(newNotification);
+        } else {
+            notification.setDescription(String.valueOf(user.getCart().getCounts()));
+            notificationRepo.save(notification);
+        }
+    }
 }

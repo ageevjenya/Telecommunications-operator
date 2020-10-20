@@ -1,6 +1,7 @@
 <#import "parts/common.ftlh" as c>
 
 <@c.page>
+    <br><br><br><br><br>
     <form method="post" action="/advertising/delete" class="form-inline">
         <input type="number" name="advertisingId" class="from-control" value="${advertisingId?ifExists}" placeholder="Search by id">
         <input type="hidden" name="_csrf" value="${_csrf.token}" />

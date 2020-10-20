@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -39,8 +40,17 @@ public class VacancyResumeImplController {
     public String vacancy(@PathVariable("id") Integer id, Map<String, Object> model) {
         User user = userRepo.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
 
-        model.put("resumes", resumeImplService.getAll().stream().filter(e -> e.getUser().getId() == user.getId()
-                && e.getVacancy().getId() == id).collect(Collectors.toList()));
+        List<ResumeImpl> resumes = resumeImplService.getAll().stream().filter(e -> e.getUser().getId().equals(user.getId())
+                && e.getVacancy().getId().equals(id)).collect(Collectors.toList());
+        model.put("resumes", resumes);
+        String exists = "нет";
+        if (resumes.size()!= 0) {
+            if (resumes.get(0).getAccepted() == null || resumes.get(0).getAccepted().equals("принято")) {
+                exists = "да";
+            }
+        }
+
+        model.put("exists", exists);
         model.put("vacancy", service.getById(id));
         return "vacancy";
     }
@@ -64,10 +74,21 @@ public class VacancyResumeImplController {
                             Map<String, Object> model) throws Exception {
         User user = userRepo.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
         VacancyImpl vacancy = service.getById(id);
-        ResumeImpl resume = new ResumeImpl(firstName, lastName, birthday, phone, email, text, vacancy);
-        resume.setUser(user);
-        resumeImplService.add(resume);
-        model.put("yourResume", resume);
+        if (resumeImplService.getByVacancyUser(vacancy, user) != null) {
+            ResumeImpl resumeExists = resumeImplService.getByVacancyUser(vacancy, user);
+            resumeImplService.updateFirstName(firstName, resumeExists.getId());
+            resumeImplService.updateLastName(lastName, resumeExists.getId());
+            resumeImplService.updatePhone(phone, resumeExists.getId());
+            resumeImplService.updateEmail(email, resumeExists.getId());
+            resumeImplService.updateText(text, resumeExists.getId());
+            resumeImplService.updateAccepted(null, resumeExists.getId());
+            model.put("yourResume", resumeExists);
+        } else {
+            ResumeImpl resume = new ResumeImpl(firstName, lastName, birthday, phone, email, text, vacancy);
+            resume.setUser(user);
+            resumeImplService.add(resume);
+            model.put("yourResume", resume);
+        }
         return "yourResume";
     }
 

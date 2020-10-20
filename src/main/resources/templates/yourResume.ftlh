@@ -1,6 +1,6 @@
 <#import "parts/common.ftlh" as c>
 <@c.page>
-<br>
+    <br> <br><br><br>
   <h3 style="margin-left: 20%">Ваше резюме на рассмотрении</h3><br>
 <div style="margin-left: 20%">
 

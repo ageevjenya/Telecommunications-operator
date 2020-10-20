@@ -101,6 +101,7 @@ public class User implements UserDetails {
     public void setUserOrders(Set<UserOrder> userOrders) {
         this.userOrders = userOrders;
     }
+    public void setUserOrder(UserOrder userOrder) { userOrders.add(userOrder); }
 
 
     public Cart getCart() {
@@ -110,6 +111,8 @@ public class User implements UserDetails {
     public void setCart(Cart cart) {
         this.cart = cart;
     }
+
+    public int getCartCount() { return cart.getCounts(); }
 
     public User() {
     }
@@ -246,6 +249,9 @@ public class User implements UserDetails {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+    public void setRole(Role role) {
+        this.roles.add(role);
     }
 
     public boolean isAdmin() {

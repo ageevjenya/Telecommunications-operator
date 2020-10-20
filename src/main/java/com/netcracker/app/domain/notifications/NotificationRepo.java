@@ -11,7 +11,9 @@ import java.util.List;
 @Repository
 public interface NotificationRepo extends PagingAndSortingRepository<Notification, Long> {
     @Query(
-            value = "SELECT * FROM Notification n WHERE n.active = true AND user_id=:user",
+            value = "SELECT * FROM Notification n WHERE n.active = true AND user_id=:user AND n.product = false",
             nativeQuery = true)
     Iterable<Notification> findAllActiveNotificationsNative(@Param("user") User user);
+    @Query(nativeQuery = true, value = "select * from notification n where n.active = true and user_id=:user and n.product = true")
+    Notification getByProductAndActiveAndUser(@Param("user") User user);
 }

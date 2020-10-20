@@ -1,5 +1,6 @@
 package com.netcracker.app.domain.shop.controllers;
 
+import com.netcracker.app.domain.notifications.NotificationsServiсe;
 import com.netcracker.app.domain.shop.entities.Cart;
 import com.netcracker.app.domain.shop.entities.ProductModemInfo;
 import com.netcracker.app.domain.shop.entities.ProductTechInfo;
@@ -9,6 +10,7 @@ import com.netcracker.app.domain.shop.repositories.ProductTechInfoRepository;
 import com.netcracker.app.domain.shop.repositories.UserOrderRepository;
 import com.netcracker.app.domain.users.entities.User;
 import com.netcracker.app.domain.users.repositories.UserRepo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +24,8 @@ public class CartController {
     private final UserOrderRepository userOrderRepository;
     private final ProductModemInfoRepository productModemInfoRepository;
     private final ProductTechInfoRepository productTechInfoRepository;
+    @Autowired
+    NotificationsServiсe notificationsServiсe;
 
     public CartController(CartRepository cartRepository, UserRepo userRepo,
                           UserOrderRepository userOrderRepository,
@@ -51,6 +55,7 @@ public class CartController {
         cart.setCounts();
         cart.setFullPrice();
         cartRepository.saveAndFlush(cart);
+        notificationsServiсe.AddNewNotificationToCart();
 
         model.addAttribute("user", user);
         model.addAttribute("cart", cart);
@@ -66,6 +71,7 @@ public class CartController {
         cart.setCounts();
         cart.setFullPrice();
         cartRepository.saveAndFlush(cart);
+        notificationsServiсe.AddNewNotificationToCart();
 
         model.addAttribute("user", user);
         model.addAttribute("cart", cart);
@@ -84,7 +90,7 @@ public class CartController {
 
         model.addAttribute("user", user);
         model.addAttribute("cart", cart);
-        return "cart";
+        return "redirect:/cart";
     }
 
     @GetMapping("/minusAmountModem/{id}")
@@ -99,7 +105,7 @@ public class CartController {
 
         model.addAttribute("user", user);
         model.addAttribute("cart", cart);
-        return "cart";
+        return "redirect:/cart";
     }
 
     @GetMapping("/plusAmountTech/{id}")
@@ -114,7 +120,7 @@ public class CartController {
 
         model.addAttribute("user", user);
         model.addAttribute("cart", cart);
-        return "cart";
+        return "redirect:/cart";
     }
 
     @GetMapping("/minusAmountTech/{id}")
@@ -129,6 +135,6 @@ public class CartController {
 
         model.addAttribute("user", user);
         model.addAttribute("cart", cart);
-        return "cart";
+        return "redirect:/cart";
     }
 }

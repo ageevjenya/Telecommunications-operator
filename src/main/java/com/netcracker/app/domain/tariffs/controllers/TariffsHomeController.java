@@ -138,10 +138,10 @@ public class TariffsHomeController {
         TariffHome tariffHome = tariffHomeRepository.getOne(tariffHomeId);
         user.setTariffHome(tariffHome);
         userRepo.save(user);
-        balanceService.updateBalance(tariffHome.getPriceOfMonth(),user.getBalance().getId());
+        String description = "Вы подключили тариф: " + tariffHome.getName() + "\n" + tariffHome.getDescription();
+        balanceService.updateBalance(tariffHome.getPriceOfMonth(), user.getBalance().getId());
         Expenses expenses = expensesService.getById(new Expenses().getId());
-        expensesService.updateExpenses(user.getTariffMobile().getPriceOfMonth(),new GregorianCalendar(),"Домашний интернет",expenses.getId(),user);
-        String description = "Вы подключили тариф: " + tariffHome.getDescription();
+        expensesService.updateExpenses(user.getTariffMobile().getPriceOfMonth(), new GregorianCalendar(), "Домашний интернет", expenses.getId(), user);
         notificationsServiсe.AddNewNotificationInBDonDesctiption(description);
         return "redirect:/tariffsHome";
     }

@@ -1,13 +1,13 @@
 <#import "parts/common.ftlh" as c>
 <@c.page>
-<br>
+    <br> <br><br><br>
     <h3 style="margin-left: 20%">${vacancy.name}</h3><br>
     <p style="margin-left: 19.3%; margin-right: 20%">${vacancy.text}</p>
 
 <br>
     <#assign value = resumes?size />
-    <#if value gt 0>
-        <#if resumes[0].vacancy.id == vacancy.id>
+    <#if value gt 0 >
+        <#if resumes[0].vacancy.id == vacancy.id && exists == "да">
             <button type="button" id="save" class="btn btn-dark" style="margin-left: 20%" data-toggle="modal" data-target="#send">
                 Отправить резюме</button>
             <div class="modal fade" id="send" tabindex="-1" aria-labelledby="sendLabel" aria-hidden="true">
@@ -37,4 +37,7 @@
     </#if>
     <br><br>
     <a href="/work" class="btn btn-light" style="margin-left: 20%">Назад к вакансиям</a>
+<#--    <div style="margin-top: 13.8%">
+        <#include "parts/footer.ftlh" />
+    </div>-->
 </@c.page>

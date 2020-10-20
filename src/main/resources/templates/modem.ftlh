@@ -2,7 +2,7 @@
 <#import "parts/common.ftlh" as c>
 
 <@c.page>
-    <br>
+    <br> <br><br><br>
     <#if isAdmin>
         <a class="btn btn-primary" href="/adminModemTech">Управлять</a>
         <br>
@@ -46,6 +46,7 @@
                         <h6 class="card-title p-2" style="width: 80%">${modem.name}</h6>
                         <p class="card-text" style="width: 80%">${modem.shortDescription}</p>
                         <p class="card-text">${modem.price}, руб</p>
+
                         <a class="btn btn-dark" style="margin-left: 11px" href="/modem/${modem.id}">Добавить в корзину</a>
                     </div>
                 </li>
