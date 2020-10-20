@@ -129,20 +129,29 @@ public class TariffsHomeController {
     }
 
     @PostMapping("/connect")
-    public String userСonnectTariff(@RequestParam("tariffHomeId") Long tariffHomeId, Model model) throws Exception {
+    public String userConnectTariff(@RequestParam("tariffHomeId") Long tariffHomeId, Model model) throws Exception {
         User user = userRepo.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
         if (user == null) {
             return "login";
         }
 
+        String description;
         TariffHome tariffHome = tariffHomeRepository.getOne(tariffHomeId);
+
+        try {
+            balanceService.updateBalance(tariffHome.getPriceOfMonth(), user.getBalance().getId());}
+        catch (Exception e ){
+            description = "Недостатчоно средств";
+            notificationsServiсe.AddNewNotificationInBDonDesctiption(description);
+            return "redirect:/tariffsHome";
+        }
+
         user.setTariffHome(tariffHome);
         userRepo.save(user);
-        String description = "Вы подключили тариф: " + tariffHome.getName() + "\n" + tariffHome.getDescription();
-        balanceService.updateBalance(tariffHome.getPriceOfMonth(), user.getBalance().getId());
-        Expenses expenses = expensesService.getById(new Expenses().getId());
-        expensesService.updateExpenses(user.getTariffMobile().getPriceOfMonth(), new GregorianCalendar(), "Домашний интернет", expenses.getId(), user);
+        description = "Вы подключили тариф: " + tariffHome.getName() + "\n" + tariffHome.getDescription();
         notificationsServiсe.AddNewNotificationInBDonDesctiption(description);
         return "redirect:/tariffsHome";
+
+
     }
 }
