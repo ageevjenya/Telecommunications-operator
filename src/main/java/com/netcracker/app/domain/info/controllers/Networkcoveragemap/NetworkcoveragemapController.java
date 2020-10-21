@@ -35,28 +35,5 @@ public class NetworkcoveragemapController {
         return "networkcoveragemap";
     }
 
-//    @PostMapping
-//    public String coveragemap(@RequestParam Map<String, String> form,
-//                              Model model) {
-//
-//        Set<String> typePoint = Arrays.stream(TypePointAcces.values())
-//                .map(TypePointAcces::name)
-//                .collect(Collectors.toSet());
-//
-//        Set<TypePointAcces> typePointChecked = new HashSet<>();
-//        List<String> ListTypePoint = new ArrayList<>();
-//        for (String key : form.keySet()) {
-//            if (typePoint.contains(key)) {
-//                ListTypePoint.add(TypePointAcces.valueOf(key).toString());
-//            }
-//        }
-//
-////        System.out.println(ListTypePoint.toString());
-//
-//        Iterable<PointAcces> pointsacces = pointAccesRepo.selectPointAcces(ListTypePoint);
-//        model.addAttribute("typepoints", TypePointAcces.values());
-//        model.addAttribute("typepointschecked", ListTypePoint);
-//        model.addAttribute("pointsacces", pointsacces);
-//        return "networkcoveragemap";
-//    }
+
 }

@@ -79,6 +79,7 @@ function changeActive(id) {
         success: function () {
             setTimeout(function () {
                 notificationAllActive();
+
             }, (300));
 
         }

@@ -37,11 +37,11 @@ public class UserConroller {
 
     @PostMapping
     public String userSave(
-            @RequestParam String username,
+//            @RequestParam String username,
             @RequestParam Map<String, String> form,
             @RequestParam("userId") User user) {
 
-        user.setUsername(username);
+//        user.setUsername(username);
         Set<String> roles = Arrays.stream(Role.values())
                 .map(Role::name)
                 .collect(Collectors.toSet());
