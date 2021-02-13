@@ -5,11 +5,11 @@
         <h3 style="margin-left: 20.7%">Корзина</h3>
         <#if cart.getCounts() gt 0>
             <#if cart.getCounts() == 1>
-            <h3 class="ml-1">- ${cart.counts} товар</h3>
+            <h3 class="ml-1">- ${cart.counts?c} товар</h3>
             <#elseif cart.getCounts() gt 4>
-                <h3 class="ml-1">- ${cart.counts} товаров</h3>
+                <h3 class="ml-1">- ${cart.counts?c} товаров</h3>
             <#else>
-            <h3 class="ml-1">- ${cart.counts} товара</h3>
+            <h3 class="ml-1">- ${cart.counts?c} товара</h3>
             </#if>
         </#if>
     </div>
@@ -29,31 +29,31 @@
                                 <img src="${productModem.device.imgUrl}" class="align-self-center mr-3" style="width: 150px" alt="Modem image">
                                 <div class="media-body" style="margin-left: 50px">
                                     <div class="row">
-                                        <h6 class="card-title p-2 ml-3" style="width: 80%"><a style="color: white" href="/modems/${productModem.device.id}">${productModem.device.name}</a></h6>
+                                        <h6 class="card-title p-2 ml-3" style="width: 80%"><a style="color: white" href="/modems/${productModem.device.id?c}">${productModem.device.name}</a></h6>
 
                                         <a type="button" class="mb-4 close" data-dismiss="toast" data-toggle="tooltip"
-                                                data-placement="bottom" title="Убрать из корзины" href="/deleteModem/${productModem.getId()}" aria-label="Close">
+                                                data-placement="bottom" title="Убрать из корзины" href="/deleteModem/${productModem.getId()?c}" aria-label="Close">
                                             <span style="color: #343A40">&times;</span>
                                         </a>
                                     </div>
 
                                     <p class="card-text" style="width: 80%">${productModem.device.shortDescription}</p>
-                                    <p class="card-text">${productModem.device.price}, руб</p>
+                                    <p class="card-text">${productModem.device.price?c}, руб</p>
                                     <div class="row">
                                         <#if productModem.getAmount() == 1>
                                             <a class="button ml-4 mr-3" href="#" aria-label="Previous">
                                                 <span style="color: lightgray">&laquo;</span>
                                             </a>
                                             <#else>
-                                                <a class="button ml-4 mr-3" href="/minusAmountModem/${productModem.getId()}" aria-label="Previous">
+                                                <a class="button ml-4 mr-3" href="/minusAmountModem/${productModem.getId()?c}" aria-label="Previous">
                                                     <span style="color: lightgray">&laquo;</span>
                                                 </a>
                                         </#if>
 
-                                        ${productModem.getAmount()}
+                                        ${productModem.getAmount()?c}
 
                                         <#if productModem.getAmount() < 4>
-                                            <a class="button ml-3" href="/plusAmountModem/${productModem.getId()}" aria-label="Next">
+                                            <a class="button ml-3" href="/plusAmountModem/${productModem.getId()?c}" aria-label="Next">
                                                 <span style="color: lightgray">&raquo;</span>
                                             </a>
                                         <#else>
@@ -84,7 +84,7 @@
                                         <div class="card-text ml-3" style="color: lightgray">кол-во</div>
                                     </div>
                                     <br><br>
-                                    <a class="btn btn-dark" style="margin-left: 11px" href="/modems/${productModem.device.id}">Перейти</a>
+                                    <a class="btn btn-dark" style="margin-left: 11px" href="/modems/${productModem.device.id?c}">Перейти</a>
                                     <br><br>
                                 </div>
                             </li>
@@ -106,29 +106,29 @@
                                 <img src="${productTech.device.imgUrl}" class="align-self-center mr-3" style="margin-left: 25px; width: 100px" alt="Tech image">
                                 <div class="media-body" style="margin-left: 75px">
                                     <div class="row">
-                                        <h6 class="card-title p-2 ml-3" style="width: 80%"><a style="color: white" href="/techs/${productTech.device.id}">${productTech.device.name}</a></h6>
+                                        <h6 class="card-title p-2 ml-3" style="width: 80%"><a style="color: white" href="/techs/${productTech.device.id?c}">${productTech.device.name}</a></h6>
 
                                         <a type="button" class="mb-4 close" data-dismiss="toast" data-toggle="tooltip"
-                                                data-placement="bottom" title="Убрать из корзины" href="/deleteTech/${productTech.getId()}" aria-label="Close">
+                                                data-placement="bottom" title="Убрать из корзины" href="/deleteTech/${productTech.getId()?c}" aria-label="Close">
                                             <span style="color: #343A40">&times;</span>
                                         </a>
                                     </div>
                                     <p class="card-text" style="width: 80%">${productTech.device.shortDescription}</p>
-                                    <p class="card-text">${productTech.device.price}, руб</p>
+                                    <p class="card-text">${productTech.device.price?c}, руб</p>
                                     <div class="row">
                                         <#if productTech.getAmount() == 1>
                                             <a class="button ml-4 mr-3" href="#" aria-label="Previous">
                                                 <span style="color: lightgray">&laquo;</span>
                                             </a>
                                         <#else>
-                                            <a class="button ml-4 mr-3" href="/minusAmountTech/${productTech.getId()}" aria-label="Previous">
+                                            <a class="button ml-4 mr-3" href="/minusAmountTech/${productTech.getId()?c}" aria-label="Previous">
                                                 <span style="color: lightgray">&laquo;</span>
                                             </a>
                                         </#if>
-                                        ${productTech.getAmount()}
+                                        ${productTech.getAmount()?c}
 
                                         <#if productTech.getAmount() < 4>
-                                            <a class="button ml-3" href="/plusAmountTech/${productTech.getId()}" aria-label="Next">
+                                            <a class="button ml-3" href="/plusAmountTech/${productTech.getId()?c}" aria-label="Next">
                                                 <span style="color: lightgray">&raquo;</span>
                                             </a>
                                         <#else>
@@ -183,7 +183,7 @@
     <#if !productAmount>
         <br>
         <form class="form-inline justify-content-end" style="margin-right: 20%; margin-left: 20%">
-            <h3>Цена: <strong>${cart.fullPrice}</strong>, руб</h3>
+            <h3>Стоимость: <strong>${cart.fullPrice?c}</strong>, руб</h3>
         </form>
     <br>
     <div class="text-right" style="margin-right: 20%; margin-left: 20%">

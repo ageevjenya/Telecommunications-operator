@@ -71,7 +71,7 @@
                                     font-weight: bolder;
                                 }
                             </style>
-                            <input type="hidden" id="id" name="id" value="${resume.id}" />
+                            <input type="hidden" id="id" name="id" value="${resume.id?c}" />
                             <div class="form-group row has-feedback">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-vacancyName"></i></span>
                                 <label for="vacancyName" class="col-xs col-form-label" style="padding-left: 25px; padding-right: 15px"><strong>Вакансия: </strong></label>

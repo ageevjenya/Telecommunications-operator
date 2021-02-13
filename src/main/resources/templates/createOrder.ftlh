@@ -88,7 +88,7 @@
                                 <img src="${productModem.device.imgUrl}" class="align-self-center mr-3" style="width: 150px" alt="Modem image">
                                 <div class="media-body" style="margin-left: 50px">
                                     <div class="row">
-                                        <h6 class="card-title p-2 ml-3" style="width: 80%"><a style="color: white" href="/modems/${productModem.device.id}">${productModem.device.name}</a></h6>
+                                        <h6 class="card-title p-2 ml-3" style="width: 80%"><a style="color: white" href="/modems/${productModem.device.id?c}">${productModem.device.name}</a></h6>
                                     </div>
 
                                     <p class="card-text" style="width: 80%">${productModem.device.shortDescription}</p>
@@ -116,7 +116,7 @@
                                 <img src="${productTech.device.imgUrl}" class="align-self-center mr-3" style="margin-left: 25px; width: 100px" alt="Tech image">
                                 <div class="media-body" style="margin-left: 75px">
                                     <div class="row">
-                                        <h6 class="card-title p-2 ml-3" style="width: 80%"><a style="color: white" href="/techs/${productTech.device.id}">${productTech.device.name}</a></h6>
+                                        <h6 class="card-title p-2 ml-3" style="width: 80%"><a style="color: white" href="/techs/${productTech.device.id?c}">${productTech.device.name}</a></h6>
                                     </div>
                                     <p class="card-text" style="width: 80%">${productTech.device.shortDescription}</p>
                                     <p class="card-text">${productTech.device.price}, руб</p>

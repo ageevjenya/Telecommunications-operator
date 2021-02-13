@@ -7,7 +7,7 @@
 <br>
     <#assign value = resumes?size />
     <#if value gt 0 >
-        <#if resumes[0].vacancy.id == vacancy.id && exists == "да">
+        <#if resumes[0].vacancy.id?c == vacancy.id?c && exists == "да">
             <button type="button" id="save" class="btn btn-dark" style="margin-left: 20%" data-toggle="modal" data-target="#send">
                 Отправить резюме</button>
             <div class="modal fade" id="send" tabindex="-1" aria-labelledby="sendLabel" aria-hidden="true">
@@ -30,10 +30,10 @@
                 </div>
             </div>
             <#else>
-                <a href="/resume/${vacancy.id}" class="btn btn-dark" style="margin-left: 20%">Отправить резюме</a>
+                <a href="/resume/${vacancy.id?c}" class="btn btn-dark" style="margin-left: 20%">Отправить резюме</a>
         </#if>
         <#else>
-            <a href="/resume/${vacancy.id}" class="btn btn-dark" style="margin-left: 20%">Отправить резюме</a>
+            <a href="/resume/${vacancy.id?c}" class="btn btn-dark" style="margin-left: 20%">Отправить резюме</a>
     </#if>
     <br><br>
     <a href="/work" class="btn btn-light" style="margin-left: 20%">Назад к вакансиям</a>

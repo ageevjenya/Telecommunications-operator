@@ -23,7 +23,7 @@
             </tr>
             <#list orders as order>
                 <tr>
-                    <td>${order.getId()}</td>
+                    <td>${order.getId()?c}</td>
 
                     <#if order.getStatus()?has_content>
                         <td>Принят</td>

@@ -7,6 +7,13 @@ import org.springframework.security.core.context.SecurityContextHolder;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.LongStream;
+import java.util.stream.Stream;
 
 @Entity
 public class Notification {
@@ -36,6 +43,7 @@ public class Notification {
     private User user;
 
     public Notification() {
+
     }
 
     public Notification(Long id) {

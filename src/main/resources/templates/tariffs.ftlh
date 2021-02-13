@@ -35,10 +35,10 @@
         <#list mobileTariffs as mobileTariff>
         <tr>
             <#if isAdmin>
-                <td>${mobileTariff.id}</td>
+                <td>${mobileTariff.id?c}</td>
             </#if>
           <td>${mobileTariff.name}</td>
-          <td>${mobileTariff.minutes}</td>
+          <td>${mobileTariff.minutes?c}</td>
           <td>${mobileTariff.sms}</td>
           <td>${mobileTariff.gbInternet}</td>
           <td>${mobileTariff.priceOfMonth}</td>
@@ -68,7 +68,7 @@
                 </td>
             </#if>
           <#if isAdmin>
-              <td><a href="/delete/${mobileTariff.id}">Удалить</a></td>
+              <td><a href="/delete/${mobileTariff.id?c}">Удалить</a></td>
               <input type="hidden" name="_csrf" value="${_csrf.token}"/>
           </#if>
         </tr>

@@ -60,7 +60,7 @@
                 <div class="row">
                <button type="button" id="save" class="btn btn-dark" style="margin-left: 20.5%" data-toggle="modal" data-target="#send">
                    Отправить</button>
-                <a href="/vacancy/${vacancy.id}" class="btn btn-light" style="margin-left: 10px">Назад к вакансии</a>
+                <a href="/vacancy/${vacancy.id?c}" class="btn btn-light" style="margin-left: 10px">Назад к вакансии</a>
                 </div>
                 <div class="modal fade" id="send" tabindex="-1" aria-labelledby="sendLabel" aria-hidden="true">
                     <div class="modal-dialog">
